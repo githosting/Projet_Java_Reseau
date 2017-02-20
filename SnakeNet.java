@@ -1,16 +1,17 @@
 
-package morpionet;
+package snakenet;
 
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 
-public class MorpioNet extends Application {
+public class SnakeNet extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -26,15 +27,28 @@ public class MorpioNet extends Application {
         
         
         controller.getLabelInfo().setText("KIKOO !");
-         
+        
+        /*
+        for (int i = 0 ; i < 30 ; i++) 
+        {
+            for (int j = 0; j < 30; j++) 
+            {
+                controller.getGridPane().add(new Label(), i, j);
+            }
+        }
+        */
+        controller.fillGridWithLabels();
+        
         for (Node child : controller.getGridPane().getChildren()) 
         {
             child.setStyle("-fx-background-color: black;");
-            /*
-            if(child.getStyle() == "-fx-background-color: red;")
-                child.setStyle("-fx-background-color: black;");
-            */
+            
+            
+            if(child.getStyle() == "-fx-background-color: black;")
+                child.setStyle("-fx-background-color: red;");
+            
         }
+        
 
     }
 
