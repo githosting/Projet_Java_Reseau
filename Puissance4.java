@@ -1,5 +1,5 @@
 
-package snakenet;
+package puissance4;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 
-public class SnakeNet extends Application {
+public class Puissance4 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -26,27 +26,18 @@ public class SnakeNet extends Application {
         stage.show();
         
         
-        controller.getLabelInfo().setText("KIKOO !");
-        
-        /*
-        for (int i = 0 ; i < 30 ; i++) 
-        {
-            for (int j = 0; j < 30; j++) 
-            {
-                controller.getGridPane().add(new Label(), i, j);
-            }
-        }
-        */
-        controller.fillGridWithLabels();
+        controller.getLabelInfo().setText("DEBUG LABEL");
+
+        //controller.fillGridWithLabels();
         
         for (Node child : controller.getGridPane().getChildren()) 
         {
             child.setStyle("-fx-background-color: black;");
             
-            
+            /*
             if(child.getStyle() == "-fx-background-color: black;")
                 child.setStyle("-fx-background-color: red;");
-            
+            */
         }
         
 
