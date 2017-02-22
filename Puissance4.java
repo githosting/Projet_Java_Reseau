@@ -1,6 +1,8 @@
 
 package puissance4;
 
+import java.io.IOException;
+import java.net.ServerSocket;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,10 @@ import javafx.stage.Stage;
 
 
 public class Puissance4 extends Application {
+    
+    public static ServerSocket server_socket = null;
+    public static Thread thread_attente_connexion;
+    
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -27,18 +33,28 @@ public class Puissance4 extends Application {
         
         
         controller.getLabelInfo().setText("DEBUG LABEL");
-
         //controller.fillGridWithLabels();
         
         for (Node child : controller.getGridPane().getChildren()) 
         {
-            child.setStyle("-fx-background-color: black;");
+            child.setStyle("-fx-background-color: white;");
             
             /*
             if(child.getStyle() == "-fx-background-color: black;")
                 child.setStyle("-fx-background-color: red;");
             */
         }
+        
+        
+        try 
+        {
+            server_socket = new ServerSocket(2013);
+            System.out.println("Le serveur est à l'écoute du port "+server_socket.getLocalPort());
+
+            thread_attente_connexion = new Thread(new RUN_Connexion(server_socket));
+            thread_attente_connexion.start();
+        } 
+        catch (IOException e) { System.err.println("Le port "+server_socket.getLocalPort()+" est déjà utilisé !"); }
         
 
     }
