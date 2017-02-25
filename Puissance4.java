@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -29,8 +30,7 @@ public class Puissance4 extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
-        
+
         controller.getLabelInfo().setText("Bienvenue.");
         //controller.fillGridWithLabels();
         
@@ -43,7 +43,29 @@ public class Puissance4 extends Application {
                 child.setStyle("-fx-background-color: red;");
             */
         }
-
+        
+        // Le Thread qui va actualiser la gridPane.
+            /*
+            new Thread( new Runnable() 
+            {
+                @Override
+                public void run() 
+                {
+                    while(true)
+                    {
+                        controller.getLabelInfo().setText(controller.getLabelInfo().getText() + RUN_Reception.message);
+                    }
+                }
+            }).start();
+            */
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    controller.getLabelInfo().setText(controller.getLabelInfo().getText() + RUN_Reception.message);
+                }
+            });
+                
+                
     }
 
     /**

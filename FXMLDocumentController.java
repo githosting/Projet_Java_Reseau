@@ -27,6 +27,8 @@ public class FXMLDocumentController implements Initializable {
     private PrintWriter out;
     private BufferedReader in;
     private Scanner sc;
+    private String message;
+    private Scanner scanner;
     public static ServerSocket server_socket;
     public static Thread thread_attente_connexion;
     public static Thread thread_emission;
@@ -40,26 +42,21 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField textfield_port; 
     @FXML
-    private Label label_info;
+    public Label label_info;
     @FXML
     private GridPane gp;
     
     // FXML Getters
     public Label getLabelInfo() { return label_info; }
     public GridPane getGridPane() { return gp; }
+
     
     @FXML
-    public void fillGridWithLabels() 
+    public void refreshGrid(String message) 
     {
-        for (int i = 0 ; i < 30 ; i++) 
-        {
-            for (int j = 0; j < 30; j++) 
-            {
-                Label label = new Label("-");
-                gp.add(label, i, j);
-            }
-        }
+        label_info.setText(label_info.getText()+" KIKOU !");
     }
+    
     
     @FXML
     private void btn_connect(ActionEvent event) 
@@ -110,20 +107,8 @@ public class FXMLDocumentController implements Initializable {
             server_socket = new ServerSocket(port_serveur);
             label_info.setText("Port "+server_socket.getLocalPort()+" écouté...");
 
-            
-            
             thread_attente_connexion = new Thread(new RUN_Connexion(server_socket));
-            thread_attente_connexion.start();
-            
-            /*
-            socket = server_socket.accept();
-            // Dès qu'une demande de connexion arrive, on lance les Threads d'écoute et de réception.
-            thread_reception = new Thread(new RUN_Reception(in));
-            thread_reception.start();
-            thread_emission = new Thread(new RUN_Emission(out));
-            thread_emission.start();
-            */
-                
+            thread_attente_connexion.start();     
         } 
         catch (IOException e) { System.err.println("BUG : Port "+server_socket.getLocalPort()+" déjà utilisé."); }
         
@@ -145,12 +130,27 @@ public class FXMLDocumentController implements Initializable {
     public void label_infoClick(MouseEvent event)
     {
         System.out.println("CLICK");
+        
+        RUN_Emission.message = "CLICK from server";
     }
     
     @FXML 
     public void gpClick(MouseEvent event)
     {
         System.out.println("CLICK");
+    }
+    
+    @FXML
+    public void fillGridWithLabels() 
+    {
+        for (int i = 0 ; i < 30 ; i++) 
+        {
+            for (int j = 0; j < 30; j++) 
+            {
+                Label label = new Label("-");
+                gp.add(label, i, j);
+            }
+        }
     }
     
     @Override
