@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 public class RUN_Reception implements Runnable 
 {
     private final BufferedReader in;
-    public static String message;
+    public static String message = "truc";
     
     
     @FXML

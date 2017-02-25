@@ -11,6 +11,7 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.application.Platform;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +34,8 @@ public class FXMLDocumentController implements Initializable {
     public static Thread thread_attente_connexion;
     public static Thread thread_emission;
     public static Thread thread_reception;
+    public String player_color = "";
+    public boolean my_turn = false;
     
         
     @FXML
@@ -61,6 +64,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void btn_connect(ActionEvent event) 
     {
+        player_color = "green";
         try 
         {
             label_info.setText("Demande de connexion...");
@@ -101,6 +105,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void btn_server(ActionEvent event) 
     {
+        player_color = "orange";
+        my_turn = true;
         try 
         {
             int port_serveur = Integer.parseInt(textfield_port.getText());
@@ -135,9 +141,27 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML 
-    public void gpClick(MouseEvent event)
+    public void cellClick(MouseEvent event)
     {
-        System.out.println("CLICK");
+        Node source = (Node)event.getSource() ;
+        
+        Platform.runLater(() -> {
+            
+            if(source.getStyle().length() == 0)
+                source.setStyle("-fx-background-color: green;");
+            else
+                source.setStyle("");
+            
+        });
+        
+        
+        
+        Integer colIndex = GridPane.getColumnIndex(source);
+        Integer rowIndex = GridPane.getRowIndex(source);
+        System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
+        
+        // On update le message à envoyer.
+        RUN_Emission.message = TABLEAU DES DONNEES;
     }
     
     @FXML

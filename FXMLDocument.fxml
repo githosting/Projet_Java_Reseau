@@ -21,7 +21,7 @@
       <Button onAction="#btn_connect" layoutX="363.0" layoutY="21.0" mnemonicParsing="false" text="Connect" />
       <Button onAction="#btn_server" layoutX="429.0" layoutY="21.0" mnemonicParsing="false" text="Server" />
       <Label fx:id="label_info" onMouseClicked="#label_infoClick" layoutX="77.0" layoutY="57.0" prefHeight="17.0" prefWidth="383.0" text="Label" textAlignment="CENTER" />
-      <GridPane fx:id="gp" onMouseClicked="#gpClick" gridLinesVisible="true" layoutX="20.0" layoutY="87.0" prefHeight="366.0" prefWidth="496.0">
+      <GridPane fx:id="gp" gridLinesVisible="true" layoutX="20.0" layoutY="87.0" prefHeight="366.0" prefWidth="496.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,48 +40,48 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="112.0" prefWidth="86.0" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="1" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="2" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="3" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="4" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="5" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <Label prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="1" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="2" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="3" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="4" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.rowIndex="5" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
          </children>
       </GridPane>
    </children>

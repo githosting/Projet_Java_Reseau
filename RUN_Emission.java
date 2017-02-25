@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class RUN_Emission implements Runnable 
 {
     private final PrintWriter out;
-    public static String message;
+    public static String message = "truc";
     private Scanner scanner;
 
     public RUN_Emission(PrintWriter out) 

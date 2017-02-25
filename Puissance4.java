@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 
@@ -30,13 +32,19 @@ public class Puissance4 extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        
+        
+        //Application.setUserAgentStylesheet(null);
+        //scene.getStylesheets().add(getClass().getResource("css.css").toExternalForm());
 
         controller.getLabelInfo().setText("Bienvenue.");
         //controller.fillGridWithLabels();
         
         for (Node child : controller.getGridPane().getChildren()) 
         {
-            child.setStyle("-fx-background-color: white;");
+
+            //child.setStyle("-fx-background-color: white;");
+            
             
             /*
             if(child.getStyle() == "-fx-background-color: black;")
@@ -45,7 +53,6 @@ public class Puissance4 extends Application {
         }
         
         // Le Thread qui va actualiser la gridPane.
-            /*
             new Thread( new Runnable() 
             {
                 @Override
@@ -53,18 +60,17 @@ public class Puissance4 extends Application {
                 {
                     while(true)
                     {
-                        controller.getLabelInfo().setText(controller.getLabelInfo().getText() + RUN_Reception.message);
+                        Platform.runLater(() -> {
+                            controller.getLabelInfo().setText(controller.getLabelInfo().getText() + RUN_Reception.message);
+                        });
+                        
+                        // On fait une pause
+                        try { Thread.sleep(1000); }
+                        catch (Exception e) {  }
                     }
                 }
             }).start();
-            */
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    controller.getLabelInfo().setText(controller.getLabelInfo().getText() + RUN_Reception.message);
-                }
-            });
-                
+    
                 
     }
 
