@@ -3,14 +3,15 @@ package puissance4;
 
 import java.io.*;
 import java.net.*;
+import static puissance4.FXMLDocumentController.socket;
 
 
 public class RUN_Connexion implements Runnable
 {
-    private ServerSocket server_socket = null;
-    private Socket socket = null;
-    private PrintWriter out = null;
-    private BufferedReader in = null;
+    private ServerSocket server_socket;
+    private Socket socket;
+    private PrintWriter out;
+    private BufferedReader in;
     public Thread thread_attente_reception;
     public Thread thread_attente_Emission;
 
@@ -19,6 +20,7 @@ public class RUN_Connexion implements Runnable
         server_socket = ss;
     }
 
+    @Override
     public void run() 
     {	
         try 
@@ -27,6 +29,9 @@ public class RUN_Connexion implements Runnable
             {
                 socket = server_socket.accept();
                 System.out.println("En attente d'une connexion...  ");
+                
+                out = new PrintWriter(socket.getOutputStream());
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
                 // Dès qu'une demande de connexion arrive, on lance les Threads d'écoute et de réception.
                 thread_attente_reception = new Thread(new RUN_Reception(in));

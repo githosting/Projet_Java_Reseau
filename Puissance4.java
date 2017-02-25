@@ -15,8 +15,7 @@ import javafx.stage.Stage;
 
 public class Puissance4 extends Application {
     
-    public static ServerSocket server_socket = null;
-    public static Thread thread_attente_connexion;
+    
     
     
     @Override
@@ -32,7 +31,7 @@ public class Puissance4 extends Application {
         stage.show();
         
         
-        controller.getLabelInfo().setText("DEBUG LABEL");
+        controller.getLabelInfo().setText("Bienvenue.");
         //controller.fillGridWithLabels();
         
         for (Node child : controller.getGridPane().getChildren()) 
@@ -44,18 +43,6 @@ public class Puissance4 extends Application {
                 child.setStyle("-fx-background-color: red;");
             */
         }
-        
-        
-        try 
-        {
-            server_socket = new ServerSocket(2013);
-            System.out.println("Le serveur est à l'écoute du port "+server_socket.getLocalPort());
-
-            thread_attente_connexion = new Thread(new RUN_Connexion(server_socket));
-            thread_attente_connexion.start();
-        } 
-        catch (IOException e) { System.err.println("Le port "+server_socket.getLocalPort()+" est déjà utilisé !"); }
-        
 
     }
 
