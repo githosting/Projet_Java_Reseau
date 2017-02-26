@@ -1,6 +1,7 @@
 
 package puissance4;
 
+import java.io.Console;
 import java.io.IOException;
 import java.net.ServerSocket;
 import javafx.application.Application;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 
@@ -59,15 +61,41 @@ public class Puissance4 extends Application {
                 public void run() 
                 {
                     while(true)
-                    {
+                    {  
                         Platform.runLater(() -> {
-                            controller.getLabelInfo().setText(controller.getLabelInfo().getText() + RUN_Reception.message);
-                        });
-                        
+                            
+                            int colIndex = 0;
+                            int rowIndex = 0;
+                            String player_color;
+
+                            if(RUN_Reception.message != null && RUN_Reception.message.length() > 0)
+                            {
+                                colIndex = Integer.parseInt((RUN_Reception.message.split(";"))[0]);
+                                rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
+                                player_color = (RUN_Reception.message.split(";"))[2];
+
+                                // On change la couleur du label concerné.
+                                for (Node node : controller.getGridPane().getChildren()) 
+                                {
+                                    System.out.println("colIndex : " + colIndex);
+                                    System.out.println("node_col_index : " + controller.getGridPane().getColumnIndex(node));
+
+                                    if (node instanceof Label 
+                                        && GridPane.getColumnIndex(node) == colIndex
+                                        && GridPane.getRowIndex(node) == rowIndex) 
+                                    {
+                                            ((Label)node).setStyle("-fx-background-color: " + player_color + ";");
+                                    }
+                                }
+                            }       
+                        });         
+
                         // On fait une pause
                         try { Thread.sleep(1000); }
                         catch (Exception e) {  }
+                    
                     }
+                    
                 }
             }).start();
     

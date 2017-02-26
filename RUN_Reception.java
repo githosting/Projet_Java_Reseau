@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 
@@ -14,7 +15,7 @@ import javafx.scene.control.Label;
 public class RUN_Reception implements Runnable 
 {
     private final BufferedReader in;
-    public static String message = "truc";
+    public static String message;
     
     
     @FXML

@@ -137,31 +137,29 @@ public class FXMLDocumentController implements Initializable {
     {
         System.out.println("CLICK");
         
-        RUN_Emission.message = "CLICK from server";
+        
     }
     
     @FXML 
     public void cellClick(MouseEvent event)
     {
         Node source = (Node)event.getSource() ;
-        
-        Platform.runLater(() -> {
-            
-            if(source.getStyle().length() == 0)
-                source.setStyle("-fx-background-color: green;");
-            else
-                source.setStyle("");
-            
-        });
-        
-        
-        
-        Integer colIndex = GridPane.getColumnIndex(source);
-        Integer rowIndex = GridPane.getRowIndex(source);
-        System.out.printf("Mouse entered cell [%d, %d]%n", colIndex.intValue(), rowIndex.intValue());
-        
-        // On update le message à envoyer.
-        RUN_Emission.message = TABLEAU DES DONNEES;
+  
+        if(source.getStyle().length() == 0 /* AJOUTER CONDITION my_turn */)
+        {
+            int colIndex;
+            colIndex = GridPane.getColumnIndex(source);
+            int rowIndex;
+            rowIndex = GridPane.getRowIndex(source);
+
+            // On update le message à envoyer.
+            RUN_Emission.message = colIndex + ";" + rowIndex + ";" + player_color;
+
+            Platform.runLater(() -> {
+                source.setStyle("-fx-background-color: " + player_color + ";");
+            });
+        }
+
     }
     
     @FXML
