@@ -54,6 +54,7 @@ public class Puissance4 extends Application {
             */
         }
         
+        /* CODE DEPORTE VERS LE CONTROLLER - TOUT EN BAS DU CONTROLLER
         // Le Thread qui va actualiser la gridPane.
             new Thread( new Runnable() 
             {
@@ -98,7 +99,7 @@ public class Puissance4 extends Application {
                     
                 }
             }).start();
-    
+        */
                 
     }
 

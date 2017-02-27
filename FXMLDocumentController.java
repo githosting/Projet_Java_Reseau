@@ -179,6 +179,53 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
+        
+        // Le Thread qui va actualiser la gridPane.
+            new Thread( new Runnable() 
+            {
+                @Override
+                public void run() 
+                {
+                    while(true)
+                    {  
+                        System.out.println("THREAD Refresh Grid...");
+                        
+                        Platform.runLater(() -> {
+                            
+                            int colIndex = 0;
+                            int rowIndex = 0;
+                            String player_color;
+
+                            if(RUN_Reception.message != null && RUN_Reception.message.length() > 0)
+                            {
+                                colIndex = Integer.parseInt((RUN_Reception.message.split(";"))[0]);
+                                rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
+                                player_color = (RUN_Reception.message.split(";"))[2];
+
+                                // On change la couleur du label concerné.
+                                for (Node node : gp.getChildren()) 
+                                {
+                                    System.out.println("colIndex : " + colIndex);
+                                    System.out.println("node : " + node);
+                                    System.out.println("node_col_index : " + gp.getColumnIndex(node));
+
+                                    if (GridPane.getColumnIndex(node) == colIndex
+                                        && GridPane.getRowIndex(node) == rowIndex) 
+                                    {
+                                            ((Label)node).setStyle("-fx-background-color: " + player_color + ";");
+                                    }
+                                }
+                            }       
+                        });         
+
+                        // On fait une pause
+                        try { Thread.sleep(1000); }
+                        catch (Exception e) {  }
+                    
+                    }
+                    
+                }
+            }).start();
  
     }    
     
