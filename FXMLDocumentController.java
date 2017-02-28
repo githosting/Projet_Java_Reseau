@@ -12,6 +12,7 @@ import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -201,13 +202,34 @@ public class FXMLDocumentController implements Initializable {
                                 colIndex = Integer.parseInt((RUN_Reception.message.split(";"))[0]);
                                 rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
                                 player_color = (RUN_Reception.message.split(";"))[2];
+                                
+                                
+                                
+                                
+                                
+                                
+                                ObservableList<Node> childrens = gp.getChildren();
 
+                                for (Node node : childrens) 
+                                {
+                                    if (GridPane.getColumnIndex(node) == colIndex
+                                        && GridPane.getRowIndex(node) == rowIndex) 
+                                    {
+                                            ((Label)node).setStyle("-fx-background-color: " + player_color + ";");
+                                            break;
+                                    }
+                                }
+    
+    
+    
+    
+                                /*
                                 // On change la couleur du label concerné.
                                 for (Node node : gp.getChildren()) 
                                 {
-                                    System.out.println("colIndex : " + colIndex);
-                                    System.out.println("node : " + node);
-                                    System.out.println("node_col_index : " + gp.getColumnIndex(node));
+                                    //System.out.println("colIndex : " + colIndex);
+                                    //System.out.println("node : " + node);
+                                    //System.out.println("node_col_index : " + gp.getColumnIndex(node));
 
                                     if (GridPane.getColumnIndex(node) == colIndex
                                         && GridPane.getRowIndex(node) == rowIndex) 
@@ -215,6 +237,7 @@ public class FXMLDocumentController implements Initializable {
                                             ((Label)node).setStyle("-fx-background-color: " + player_color + ";");
                                     }
                                 }
+                                */
                             }       
                         });         
 
