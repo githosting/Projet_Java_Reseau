@@ -38,6 +38,16 @@ public class FXMLDocumentController implements Initializable {
     public String player_color = "";
     public boolean my_turn = false;
     
+    // La matrice représentant la grille de jeu et les pions dessus.
+    public String grille_de_jeu [][]= {
+                                    {"null", "null", "null", "null", "null", "null", "null"}, 
+                                    {"null", "null", "null", "null", "null", "null", "null"}, 
+                                    {"null", "null", "null", "null", "null", "null", "null"},
+                                    {"null", "null", "null", "null", "null", "null", "null"},
+                                    {"null", "null", "null", "null", "null", "null", "null"},
+                                    {"null", "null", "null", "null", "null", "null", "null"}
+                                   };
+    
         
     @FXML
     private TextField textfield_pseudo;
@@ -152,6 +162,9 @@ public class FXMLDocumentController implements Initializable {
             colIndex = GridPane.getColumnIndex(source);
             int rowIndex;
             rowIndex = GridPane.getRowIndex(source);
+            
+            // On actualise grille_de_jeu avec le coup du joueur.
+            grille_de_jeu[rowIndex][colIndex] = player_color;
 
             // On update le message à envoyer.
             RUN_Emission.message = colIndex + ";" + rowIndex + ";" + player_color;
@@ -176,11 +189,29 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    
+    public void check_victory()
+    {
+        for(int i=0; i<6; i++)
+        { 
+            for(int j = 0; j < 7; j++)
+            { 
+                // Pour chaque élément, on explore toutes les possibilités d'enchaînement de 4 pions à partir de lui.
+                
+                System.out.println(grille_de_jeu[i][j]); 
+            } 
+        }    
+    }
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
         
+        
+
         // Le Thread qui va actualiser la gridPane.
             new Thread( new Runnable() 
             {
@@ -203,13 +234,13 @@ public class FXMLDocumentController implements Initializable {
                                 rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
                                 player_color = (RUN_Reception.message.split(";"))[2];
                                 
+                                // On met à jour grille_de_jeu avec le coup de l'adversaire.
+                                grille_de_jeu[rowIndex][colIndex] = player_color;
                                 
                                 
                                 
-                                
-                                
+                                // On change la couleur du label concerné.
                                 ObservableList<Node> childrens = gp.getChildren();
-
                                 for (Node node : childrens) 
                                 {
                                     if (GridPane.getColumnIndex(node) == colIndex
@@ -220,7 +251,11 @@ public class FXMLDocumentController implements Initializable {
                                     }
                                 }
     
-    
+                                
+                                // On vérifie s'il y a un vainqueur.
+                                // S'il y a un vainqueur, la fonction check_victory se charge de l'afficher au joueur et bloque le jeu.
+                                check_victory();
+                                
     
     
                                 /*
