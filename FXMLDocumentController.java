@@ -1,4 +1,3 @@
-
 package puissance4;
 
 import java.io.BufferedReader;
@@ -39,14 +38,15 @@ public class FXMLDocumentController implements Initializable {
     public boolean my_turn = false;
     
     // La matrice représentant la grille de jeu et les pions dessus.
-    public String grille_de_jeu [][]= {
-                                    {"null", "null", "null", "null", "null", "null", "null"}, 
-                                    {"null", "null", "null", "null", "null", "null", "null"}, 
-                                    {"null", "null", "null", "null", "null", "null", "null"},
-                                    {"null", "null", "null", "null", "null", "null", "null"},
-                                    {"null", "null", "null", "null", "null", "null", "null"},
-                                    {"null", "null", "null", "null", "null", "null", "null"}
-                                   };
+    public String grille_de_jeu [][] =   
+        {
+            {"null", "null", "null", "null", "null", "null", "null"}, 
+            {"null", "null", "null", "null", "null", "null", "null"}, 
+            {"null", "null", "null", "null", "null", "null", "null"},
+            {"null", "null", "null", "null", "null", "null", "null"},
+            {"null", "null", "null", "null", "null", "null", "null"},
+            {"null", "null", "null", "null", "null", "null", "null"}
+        };
     
         
     @FXML
@@ -98,19 +98,6 @@ public class FXMLDocumentController implements Initializable {
         } 
         catch (UnknownHostException e) { System.err.println("BUG : Connexion impossible à l'adresse "+socket.getLocalAddress()); } 
         catch (IOException e) { System.err.println("BUG : Pas de serveur à l'écoute du port "+socket.getLocalPort()); }
-        
-        /*
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new PrintWriter(socket.getOutputStream());
-
-        out.println("Entrez votre login :");
-        out.flush();
-        login = in.readLine();
-
-        out.println("connecte");
-        System.out.println(login +" vient de se connecter ");
-        out.flush();
-        */
     }
     
     @FXML
@@ -132,11 +119,9 @@ public class FXMLDocumentController implements Initializable {
         /*
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream());
-
         out.println("Entrez votre login :");
         out.flush();
         login = in.readLine();
-
         out.println("connecte");
         System.out.println(login +" vient de se connecter ");
         out.flush();
@@ -146,15 +131,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML 
     public void label_infoClick(MouseEvent event)
     {
-        System.out.println("CLICK");
-        
-        
+        System.out.println("CLICK"); 
     }
     
     @FXML 
     public void cellClick(MouseEvent event)
     {
-        Node source = (Node)event.getSource() ;
+        Node source = (Node)event.getSource();
   
         if(source.getStyle().length() == 0 /* AJOUTER CONDITION my_turn */)
         {
@@ -165,9 +148,17 @@ public class FXMLDocumentController implements Initializable {
             
             // On actualise grille_de_jeu avec le coup du joueur.
             grille_de_jeu[rowIndex][colIndex] = player_color;
+			
+            // On vérifie s'il y a un vainqueur.
+            // S'il y a un vainqueur, la fonction check_victory se charge de l'afficher au joueur et bloque le jeu.
+            String victory_color = check_victory();
+            if(victory_color != "null")
+            {
+                label_info.setText("Le joueur " + victory_color + " gagne.");
+            }
 
             // On update le message à envoyer.
-            RUN_Emission.message = colIndex + ";" + rowIndex + ";" + player_color;
+            RUN_Emission.message = colIndex + ";" + rowIndex + ";" + player_color + ";" + victory_color;
 
             Platform.runLater(() -> {
                 source.setStyle("-fx-background-color: " + player_color + ";");
@@ -190,17 +181,60 @@ public class FXMLDocumentController implements Initializable {
     }
     
     
-    public void check_victory()
+    public String check_victory()
     {
+        String actual_color;
+        
+        // Pour chaque élément de grille_de_jeu, on explore toutes les possibilités d'enchaînement de 4 pions à partir de lui.
         for(int i=0; i<6; i++)
         { 
             for(int j = 0; j < 7; j++)
             { 
-                // Pour chaque élément, on explore toutes les possibilités d'enchaînement de 4 pions à partir de lui.
-                
-                System.out.println(grille_de_jeu[i][j]); 
+                actual_color = grille_de_jeu[i][j];
+				
+                // Si une combinaison de 4 pions existe à partir du pion en cours d'analyse.  
+                if( 
+                    (actual_color != "null")
+                    &&
+                    (
+                        // Par la droite.
+                        (j <= 3 && grille_de_jeu[i][j+1] == actual_color && grille_de_jeu[i][j+2] == actual_color && grille_de_jeu[i][j+3] == actual_color)
+                        || // Par la gauche.
+                        (j >= 3 && grille_de_jeu[i][j-1] == actual_color && grille_de_jeu[i][j-2] == actual_color && grille_de_jeu[i][j-3] == actual_color)
+                        || // Par le haut.
+                        (i >= 3 && grille_de_jeu[i-1][j] == actual_color && grille_de_jeu[i-2][j] == actual_color && grille_de_jeu[i-3][j] == actual_color)
+                        || // Par le bas.
+                        (i <= 2 && grille_de_jeu[i+1][j] == actual_color && grille_de_jeu[i+2][j] == actual_color && grille_de_jeu[i+3][j] == actual_color)
+                        || // En diagonale haut droit
+                        (i >= 3 && j <= 3 && grille_de_jeu[i-1][j+1] == actual_color && grille_de_jeu[i-2][j+2] == actual_color && grille_de_jeu[i-3][j+3] == actual_color)
+                        || // En diagonale haut gauche
+                        (i >= 3 && j >= 3 && grille_de_jeu[i-1][j-1] == actual_color && grille_de_jeu[i-2][j-2] == actual_color && grille_de_jeu[i-3][j-3] == actual_color)
+                        || // En diagonale bas droit
+                        (i <= 2 && j <= 3 && grille_de_jeu[i+1][j+1] == actual_color && grille_de_jeu[i+2][j+2] == actual_color && grille_de_jeu[i+3][j+3] == actual_color)
+                        || // En diagonale bas gauche
+                        (i <= 2 && j >= 3 && grille_de_jeu[i+1][j-1] == actual_color && grille_de_jeu[i+2][j-2] == actual_color && grille_de_jeu[i+3][j-3] == actual_color)
+                    )
+                )
+                {
+                    // On retourne la couleur du joueur qui gagne.
+                    return actual_color;
+                    
+                    
+                    // On bloque les clicks sur la GridPane.
+                    
+                    // On arrête les threads.
+
+                    // On fait apparaître un bouton permettant de réinitialiser le jeu.
+                    
+                    
+
+                }
+				
+				
+                 
             } 
-        }    
+        }
+        return "null";
     }
     
     
@@ -209,8 +243,6 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
-        
-        
 
         // Le Thread qui va actualiser la gridPane.
             new Thread( new Runnable() 
@@ -227,12 +259,14 @@ public class FXMLDocumentController implements Initializable {
                             int colIndex = 0;
                             int rowIndex = 0;
                             String player_color;
+                            String victory_color;
 
                             if(RUN_Reception.message != null && RUN_Reception.message.length() > 0)
                             {
                                 colIndex = Integer.parseInt((RUN_Reception.message.split(";"))[0]);
                                 rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
                                 player_color = (RUN_Reception.message.split(";"))[2];
+                                victory_color = (RUN_Reception.message.split(";"))[3];
                                 
                                 // On met à jour grille_de_jeu avec le coup de l'adversaire.
                                 grille_de_jeu[rowIndex][colIndex] = player_color;
@@ -250,41 +284,23 @@ public class FXMLDocumentController implements Initializable {
                                             break;
                                     }
                                 }
-    
                                 
-                                // On vérifie s'il y a un vainqueur.
-                                // S'il y a un vainqueur, la fonction check_victory se charge de l'afficher au joueur et bloque le jeu.
-                                check_victory();
-                                
-    
-    
-                                /*
-                                // On change la couleur du label concerné.
-                                for (Node node : gp.getChildren()) 
+                                // On check s'il y a un vainqueur.
+                                if(victory_color != "null")
                                 {
-                                    //System.out.println("colIndex : " + colIndex);
-                                    //System.out.println("node : " + node);
-                                    //System.out.println("node_col_index : " + gp.getColumnIndex(node));
-
-                                    if (GridPane.getColumnIndex(node) == colIndex
-                                        && GridPane.getRowIndex(node) == rowIndex) 
-                                    {
-                                            ((Label)node).setStyle("-fx-background-color: " + player_color + ";");
-                                    }
+                                    label_info.setText("Le joueur " + victory_color + " gagne.");
                                 }
-                                */
-                            }       
+    
+                            } 
                         });         
 
                         // On fait une pause
                         try { Thread.sleep(1000); }
                         catch (Exception e) {  }
                     
-                    }
-                    
+                    } 
                 }
             }).start();
  
     }    
-    
 }

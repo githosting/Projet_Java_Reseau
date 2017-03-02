@@ -30,8 +30,11 @@ public class Puissance4 extends Application
         FXMLDocumentController controller = loader.getController();
         
         Scene scene = new Scene(root);
+        stage.setTitle("Puissance 4 Net");
         stage.setScene(scene);
         stage.show();
+        
+        
 
         //Application.setUserAgentStylesheet(null);
         //scene.getStylesheets().add(getClass().getResource("css.css").toExternalForm());
