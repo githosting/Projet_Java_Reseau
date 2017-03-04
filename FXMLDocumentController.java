@@ -1,9 +1,11 @@
 package puissance4;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
@@ -19,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
@@ -44,6 +47,7 @@ public class FXMLDocumentController implements Initializable
     public static boolean client_connecte = false;
     public boolean game_start = false;
     public static boolean game_over = false;
+    public String image_path;
     
     // La matrice représentant la grille de jeu et les pions dessus.
     public String grille_de_jeu [][] =   
@@ -84,14 +88,17 @@ public class FXMLDocumentController implements Initializable
     
     
     @FXML
-    private void btn_connect(ActionEvent event) 
+    private void btn_connect(ActionEvent event) throws MalformedURLException 
     {
         button_connect.setVisible(false);
         button_server.setVisible(false);
         textfield_adresse.setVisible(false);
         textfield_port.setVisible(false);
         
-        player_color = "green";
+        player_color = "blue";
+        File image = new File("blue.png");
+        image_path = image.toURI().toURL().toString();
+        
         player_type = "client";
         
         try 
@@ -121,7 +128,7 @@ public class FXMLDocumentController implements Initializable
     }
     
     @FXML
-    private void btn_server(ActionEvent event) 
+    private void btn_server(ActionEvent event) throws MalformedURLException 
     {
         button_connect.setVisible(false);
         button_server.setVisible(false);
@@ -129,8 +136,13 @@ public class FXMLDocumentController implements Initializable
         textfield_port.setVisible(false);
         
         player_color = "orange";
+        File image = new File("orange.png");
+        image_path = image.toURI().toURL().toString();
+        
         player_type = "server";
+        
         my_turn = true;
+        
         try 
         {
             int port_serveur = Integer.parseInt(textfield_port.getText());
@@ -150,10 +162,15 @@ public class FXMLDocumentController implements Initializable
     }
     
     @FXML 
-    public void cellClick(MouseEvent event)
+    public void cellClick(MouseEvent event) throws MalformedURLException
     {
         Node source = (Node)event.getSource();
-  
+        
+        System.out.println("IMAGE PATH : "+image_path);
+        Platform.runLater(() -> {
+                    source.setStyle("-fx-background-image: url(" + image_path + ");");
+                });
+
         if(source.getStyle().length() == 0 && my_turn == true && game_start == true && game_over == false)
         {
             int colIndex = GridPane.getColumnIndex(source);
@@ -186,7 +203,7 @@ public class FXMLDocumentController implements Initializable
                 RUN_Emission.message = colIndex + ";" + rowIndex + ";" + player_color + ";" + victory_color;
 
                 Platform.runLater(() -> {
-                    source.setStyle("-fx-background-color: " + player_color + ";");
+                    source.setStyle("-fx-background-image: url(" + image_path + ");");
                 });
 
                 my_turn = false;
@@ -256,7 +273,7 @@ public class FXMLDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         
         // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
-
+        
         // Le Thread qui va actualiser la gridPane.
             new Thread( new Runnable() 
             {
@@ -305,7 +322,7 @@ public class FXMLDocumentController implements Initializable
                                     && GridPane.getRowIndex(node) == rowIndex) 
                                 {
                                     Platform.runLater(() -> {
-                                        ((Label)node).setStyle("-fx-background-color: " + player_color + ";");
+                                        ((Label)node).setStyle("-fx-background-image: url(" + image_path + ");");
                                     });
                                     break;
                                 }
