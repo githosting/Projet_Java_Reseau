@@ -23,8 +23,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 
-public class FXMLDocumentController implements Initializable {
-    
+public class FXMLDocumentController implements Initializable 
+{
     public static Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -43,7 +43,7 @@ public class FXMLDocumentController implements Initializable {
     public static String player_type;
     public static boolean client_connecte = false;
     public boolean game_start = false;
-    public boolean game_over = false;
+    public static boolean game_over = false;
     
     // La matrice représentant la grille de jeu et les pions dessus.
     public String grille_de_jeu [][] =   
@@ -55,8 +55,7 @@ public class FXMLDocumentController implements Initializable {
             {"null", "null", "null", "null", "null", "null", "null"},
             {"null", "null", "null", "null", "null", "null", "null"}
         };
-    
-        
+     
     @FXML
     private TextField textfield_pseudo;
     @FXML
@@ -142,17 +141,6 @@ public class FXMLDocumentController implements Initializable {
             thread_attente_connexion.start();     
         } 
         catch (IOException e) { System.err.println("BUG : Port "+server_socket.getLocalPort()+" déjà utilisé."); }
-        
-        /*
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new PrintWriter(socket.getOutputStream());
-        out.println("Entrez votre login :");
-        out.flush();
-        login = in.readLine();
-        out.println("connecte");
-        System.out.println(login +" vient de se connecter ");
-        out.flush();
-        */
     }
     
     @FXML 
@@ -204,7 +192,6 @@ public class FXMLDocumentController implements Initializable {
                 my_turn = false;
             }
         }
-
     }
     
     @FXML
@@ -258,34 +245,18 @@ public class FXMLDocumentController implements Initializable {
                 {
                     // On retourne la couleur du joueur qui gagne.
                     return actual_color;
-                    
-                    
-                    // On bloque les clicks sur la GridPane.
-                    
-                    // On arrête les threads.
-
-                    // On fait apparaître un bouton permettant de réinitialiser le jeu.
-                    
-                    
-
-                }
-				
-				
-                 
+                }  
             } 
         }
         return "null";
     }
     
     
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
-        
-        
-        
+
         // Le Thread qui va actualiser la gridPane.
             new Thread( new Runnable() 
             {
@@ -294,7 +265,6 @@ public class FXMLDocumentController implements Initializable {
                 {
                     String ancien_message = "";
                     
-
                     while(!game_over)
                     {  
                         // Pour le serveur à l'initialisation seulement.
@@ -309,63 +279,58 @@ public class FXMLDocumentController implements Initializable {
                         
                         System.out.println("THREAD Refresh Grid...");
                         String nouveau_message = RUN_Reception.message;
-                        
-                        // ICI ANCIEN DEBUT DU platform runlater
                             
-                            int colIndex;
-                            int rowIndex;
-                            String player_color;
-                            String victory_color;
+                        int colIndex;
+                        int rowIndex;
+                        String player_color;
+                        String victory_color;
 
-                            if(nouveau_message != null && nouveau_message.length() > 0 && !(nouveau_message.equals(ancien_message)))
+                        if(nouveau_message != null && nouveau_message.length() > 0 && !(nouveau_message.equals(ancien_message)))
+                        {
+                            ancien_message = nouveau_message;
+
+                            colIndex = Integer.parseInt((RUN_Reception.message.split(";"))[0]);
+                            rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
+                            player_color = (RUN_Reception.message.split(";"))[2];
+                            victory_color = (RUN_Reception.message.split(";"))[3];
+
+                            // On met à jour grille_de_jeu avec le coup de l'adversaire.
+                            grille_de_jeu[rowIndex][colIndex] = player_color;
+
+                            // On change la couleur du label concerné.
+                            ObservableList<Node> childrens = gp.getChildren();
+                            for (Node node : childrens) 
                             {
-                                ancien_message = nouveau_message;
-                                
-                                colIndex = Integer.parseInt((RUN_Reception.message.split(";"))[0]);
-                                rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
-                                player_color = (RUN_Reception.message.split(";"))[2];
-                                victory_color = (RUN_Reception.message.split(";"))[3];
-                                
-                                // On met à jour grille_de_jeu avec le coup de l'adversaire.
-                                grille_de_jeu[rowIndex][colIndex] = player_color;
-                                
-                                
-                                
-                                // On change la couleur du label concerné.
-                                ObservableList<Node> childrens = gp.getChildren();
-                                for (Node node : childrens) 
+                                if (GridPane.getColumnIndex(node) == colIndex
+                                    && GridPane.getRowIndex(node) == rowIndex) 
                                 {
-                                    if (GridPane.getColumnIndex(node) == colIndex
-                                        && GridPane.getRowIndex(node) == rowIndex) 
-                                    {
-                                        Platform.runLater(() -> {
-                                            ((Label)node).setStyle("-fx-background-color: " + player_color + ";");
-                                        });
-                                        break;
-                                    }
-                                }
-
-                                // On check s'il y a un vainqueur.
-                                if(!(victory_color.equals("null")))
-                                {
-                                    Platform.runLater(() -> {    
-                                        label_info.setText("Le joueur " + victory_color + " gagne.");
-                                    });
-                                    
-                                    //thread_attente_connexion.interrupt();
-                                    //thread_emission.interrupt();
-                                    //thread_reception.interrupt();
-                                    game_over = true;
-                                }
-                                else if(game_over == false)
-                                {
-                                    my_turn = true;
                                     Platform.runLater(() -> {
-                                        label_info.setText("VOTRE TOUR");
+                                        ((Label)node).setStyle("-fx-background-color: " + player_color + ";");
                                     });
+                                    break;
                                 }
-                            } 
-                        // ICI ANCIENNE FIN DU platform runlater        
+                            }
+
+                            // On check s'il y a un vainqueur.
+                            if(!(victory_color.equals("null")))
+                            {
+                                Platform.runLater(() -> {    
+                                    label_info.setText("Le joueur " + victory_color + " gagne.");
+                                });
+
+                                //thread_attente_connexion.interrupt();
+                                //thread_emission.interrupt();
+                                //thread_reception.interrupt();
+                                game_over = true;
+                            }
+                            else if(game_over == false)
+                            {
+                                my_turn = true;
+                                Platform.runLater(() -> {
+                                    label_info.setText("VOTRE TOUR");
+                                });
+                            }
+                        }        
 
                         // On fait une pause
                         try { Thread.sleep(1000); }

@@ -17,8 +17,8 @@
    <children>
       <TextField fx:id="textfield_adresse" layoutX="58.0" layoutY="21.0" prefHeight="25.0" prefWidth="100.0" promptText="Adresse" />
       <TextField fx:id="textfield_port" layoutX="170.0" layoutY="21.0" prefHeight="25.0" prefWidth="71.0" promptText="Port" />
-      <Button fx:id="button_connect" onAction="#btn_connect" layoutX="250.0" layoutY="21.0" mnemonicParsing="false" text="Connect" />
-      <Button fx:id="button_server" onAction="#btn_server" layoutX="320.0" layoutY="21.0" mnemonicParsing="false" text="Server" />
+      <Button fx:id="button_connect" onAction="#btn_connect" layoutX="250.0" layoutY="21.0" mnemonicParsing="false" text="Connect To Server" />
+      <Button fx:id="button_server" onAction="#btn_server" layoutX="380.0" layoutY="21.0" mnemonicParsing="false" text="Be Server" />
       <Label fx:id="label_info" onMouseClicked="#label_infoClick" layoutX="77.0" layoutY="57.0" prefHeight="17.0" prefWidth="383.0" text="Label" textAlignment="CENTER" />
       <GridPane fx:id="gp" gridLinesVisible="true" layoutX="20.0" layoutY="87.0" prefHeight="366.0" prefWidth="496.0">
         <columnConstraints>

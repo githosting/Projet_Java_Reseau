@@ -25,7 +25,7 @@ public class RUN_Connexion implements Runnable
     {	
         try 
         {
-            while(true)
+            while(FXMLDocumentController.client_connecte == false)
             {
                 socket = server_socket.accept();
                 System.out.println("En attente d'une connexion...  ");

@@ -1,8 +1,6 @@
 
 package puissance4;
 
-
-//import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import javafx.scene.Node;
@@ -22,7 +20,7 @@ public class RUN_Emission implements Runnable
     @Override
     public void run() 
     {
-        while(true)
+        while(FXMLDocumentController.game_over == false)
         {
             if(message != null && message.length() > 0)
             {

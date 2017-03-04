@@ -17,7 +17,6 @@ public class RUN_Reception implements Runnable
     private final BufferedReader in;
     public static String message;
     
-    
     @FXML
     private Label label_info;
 
@@ -28,9 +27,8 @@ public class RUN_Reception implements Runnable
 
     @Override
     public void run() 
-    {        
-       
-        while(true)
+    {          
+        while(FXMLDocumentController.game_over == false)
         {
             try 
             {
