@@ -29,6 +29,7 @@ public class RUN_Connexion implements Runnable
             {
                 socket = server_socket.accept();
                 System.out.println("En attente d'une connexion...  ");
+                FXMLDocumentController.client_connecte = true;
                 
                 out = new PrintWriter(socket.getOutputStream());
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

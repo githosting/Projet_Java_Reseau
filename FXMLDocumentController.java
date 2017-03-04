@@ -16,6 +16,7 @@ import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -34,8 +35,15 @@ public class FXMLDocumentController implements Initializable {
     public static Thread thread_attente_connexion;
     public static Thread thread_emission;
     public static Thread thread_reception;
+    public static RUN_Connexion runnable_connexion;
+    public static RUN_Emission runnable_emission;
+    public static RUN_Reception runnable_reception;
     public String player_color = "";
     public boolean my_turn = false;
+    public static String player_type;
+    public static boolean client_connecte = false;
+    public boolean game_start = false;
+    public boolean game_over = false;
     
     // La matrice représentant la grille de jeu et les pions dessus.
     public String grille_de_jeu [][] =   
@@ -54,7 +62,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField textfield_adresse; 
     @FXML
-    private TextField textfield_port; 
+    private TextField textfield_port;
+    @FXML
+    private Button button_server; 
+    @FXML
+    private Button button_connect;
     @FXML
     public Label label_info;
     @FXML
@@ -75,7 +87,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void btn_connect(ActionEvent event) 
     {
+        button_connect.setVisible(false);
+        button_server.setVisible(false);
+        textfield_adresse.setVisible(false);
+        textfield_port.setVisible(false);
+        
         player_color = "green";
+        player_type = "client";
+        
         try 
         {
             label_info.setText("Demande de connexion...");
@@ -83,10 +102,12 @@ public class FXMLDocumentController implements Initializable {
             String adresse_serveur = textfield_adresse.getText();
             int port_serveur = Integer.parseInt(textfield_port.getText());
             
-            socket = new Socket(adresse_serveur,port_serveur);
+            socket = new Socket(adresse_serveur, port_serveur);
 
             // Si ce message s'affiche c'est que je suis connecté
             label_info.setText("Connecté au serveur.");
+            label_info.setText("TOUR ADVERSE");
+            game_start = true;
 
             out = new PrintWriter(socket.getOutputStream());
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));	
@@ -103,7 +124,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void btn_server(ActionEvent event) 
     {
+        button_connect.setVisible(false);
+        button_server.setVisible(false);
+        textfield_adresse.setVisible(false);
+        textfield_port.setVisible(false);
+        
         player_color = "orange";
+        player_type = "server";
         my_turn = true;
         try 
         {
@@ -139,30 +166,43 @@ public class FXMLDocumentController implements Initializable {
     {
         Node source = (Node)event.getSource();
   
-        if(source.getStyle().length() == 0 /* AJOUTER CONDITION my_turn */)
+        if(source.getStyle().length() == 0 && my_turn == true && game_start == true && game_over == false)
         {
-            int colIndex;
-            colIndex = GridPane.getColumnIndex(source);
-            int rowIndex;
-            rowIndex = GridPane.getRowIndex(source);
+            int colIndex = GridPane.getColumnIndex(source);
+            int rowIndex = GridPane.getRowIndex(source);
             
-            // On actualise grille_de_jeu avec le coup du joueur.
-            grille_de_jeu[rowIndex][colIndex] = player_color;
-			
-            // On vérifie s'il y a un vainqueur.
-            // S'il y a un vainqueur, la fonction check_victory se charge de l'afficher au joueur et bloque le jeu.
-            String victory_color = check_victory();
-            if(victory_color != "null")
+            // On check si la case d'en dessous est bien occupée pour voir si le joueur peut effectivement poser son pion ici.
+            if  (
+                    (rowIndex == 5 || !grille_de_jeu[rowIndex+1][colIndex].equals("null"))
+                    && grille_de_jeu[rowIndex][colIndex].equals("null")
+                )
             {
-                label_info.setText("Le joueur " + victory_color + " gagne.");
+                // On actualise grille_de_jeu avec le coup du joueur.
+                grille_de_jeu[rowIndex][colIndex] = player_color;
+
+                // On vérifie s'il y a un vainqueur.
+                // S'il y a un vainqueur, la fonction check_victory se charge de l'afficher au joueur et bloque le jeu.
+                String victory_color = check_victory();
+                if(!(victory_color.equals("null")))
+                {
+                    label_info.setText("Le joueur " + victory_color + " gagne.");
+                }
+                else
+                {
+                    Platform.runLater(() -> {
+                        label_info.setText("TOUR ADVERSE");
+                    });
+                }
+
+                // On update le message à envoyer.
+                RUN_Emission.message = colIndex + ";" + rowIndex + ";" + player_color + ";" + victory_color;
+
+                Platform.runLater(() -> {
+                    source.setStyle("-fx-background-color: " + player_color + ";");
+                });
+
+                my_turn = false;
             }
-
-            // On update le message à envoyer.
-            RUN_Emission.message = colIndex + ";" + rowIndex + ";" + player_color + ";" + victory_color;
-
-            Platform.runLater(() -> {
-                source.setStyle("-fx-background-color: " + player_color + ";");
-            });
         }
 
     }
@@ -243,26 +283,44 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
-
+        
+        
+        
         // Le Thread qui va actualiser la gridPane.
             new Thread( new Runnable() 
             {
                 @Override
                 public void run() 
                 {
-                    while(true)
+                    String ancien_message = "";
+                    
+
+                    while(!game_over)
                     {  
-                        System.out.println("THREAD Refresh Grid...");
+                        // Pour le serveur à l'initialisation seulement.
+                        if(client_connecte == true)
+                        {
+                            Platform.runLater(() -> {
+                                label_info.setText("VOTRE TOUR");
+                            });
+                            game_start = true;
+                            client_connecte = false;
+                        }
                         
-                        Platform.runLater(() -> {
+                        System.out.println("THREAD Refresh Grid...");
+                        String nouveau_message = RUN_Reception.message;
+                        
+                        // ICI ANCIEN DEBUT DU platform runlater
                             
-                            int colIndex = 0;
-                            int rowIndex = 0;
+                            int colIndex;
+                            int rowIndex;
                             String player_color;
                             String victory_color;
 
-                            if(RUN_Reception.message != null && RUN_Reception.message.length() > 0)
+                            if(nouveau_message != null && nouveau_message.length() > 0 && !(nouveau_message.equals(ancien_message)))
                             {
+                                ancien_message = nouveau_message;
+                                
                                 colIndex = Integer.parseInt((RUN_Reception.message.split(";"))[0]);
                                 rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
                                 player_color = (RUN_Reception.message.split(";"))[2];
@@ -280,19 +338,34 @@ public class FXMLDocumentController implements Initializable {
                                     if (GridPane.getColumnIndex(node) == colIndex
                                         && GridPane.getRowIndex(node) == rowIndex) 
                                     {
+                                        Platform.runLater(() -> {
                                             ((Label)node).setStyle("-fx-background-color: " + player_color + ";");
-                                            break;
+                                        });
+                                        break;
                                     }
                                 }
-                                
+
                                 // On check s'il y a un vainqueur.
-                                if(victory_color != "null")
+                                if(!(victory_color.equals("null")))
                                 {
-                                    label_info.setText("Le joueur " + victory_color + " gagne.");
+                                    Platform.runLater(() -> {    
+                                        label_info.setText("Le joueur " + victory_color + " gagne.");
+                                    });
+                                    
+                                    //thread_attente_connexion.interrupt();
+                                    //thread_emission.interrupt();
+                                    //thread_reception.interrupt();
+                                    game_over = true;
                                 }
-    
+                                else if(game_over == false)
+                                {
+                                    my_turn = true;
+                                    Platform.runLater(() -> {
+                                        label_info.setText("VOTRE TOUR");
+                                    });
+                                }
                             } 
-                        });         
+                        // ICI ANCIENNE FIN DU platform runlater        
 
                         // On fait une pause
                         try { Thread.sleep(1000); }
