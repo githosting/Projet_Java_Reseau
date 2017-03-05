@@ -3,6 +3,7 @@ package puissance4;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
@@ -78,13 +79,6 @@ public class FXMLDocumentController implements Initializable
     // FXML Getters
     public Label getLabelInfo() { return label_info; }
     public GridPane getGridPane() { return gp; }
-
-    
-    @FXML
-    public void refreshGrid(String message) 
-    {
-        label_info.setText(label_info.getText()+" KIKOU !");
-    }
     
     
     @FXML
@@ -96,7 +90,7 @@ public class FXMLDocumentController implements Initializable
         textfield_port.setVisible(false);
         
         player_color = "blue";
-        File image = new File("blue.png");
+        File image = new File("pictures/blue.png");
         image_path = image.toURI().toURL().toString();
         
         player_type = "client";
@@ -136,7 +130,7 @@ public class FXMLDocumentController implements Initializable
         textfield_port.setVisible(false);
         
         player_color = "orange";
-        File image = new File("orange.png");
+        File image = new File("pictures/orange.png");
         image_path = image.toURI().toURL().toString();
         
         player_type = "server";
@@ -166,11 +160,6 @@ public class FXMLDocumentController implements Initializable
     {
         Node source = (Node)event.getSource();
         
-        System.out.println("IMAGE PATH : "+image_path);
-        Platform.runLater(() -> {
-                    source.setStyle("-fx-background-image: url(" + image_path + ");");
-                });
-
         if(source.getStyle().length() == 0 && my_turn == true && game_start == true && game_over == false)
         {
             int colIndex = GridPane.getColumnIndex(source);
@@ -200,8 +189,11 @@ public class FXMLDocumentController implements Initializable
                 }
 
                 // On update le message à envoyer.
-                RUN_Emission.message = colIndex + ";" + rowIndex + ";" + player_color + ";" + victory_color;
+                RUN_Emission.message = colIndex + ";" + rowIndex + ";" + image_path + ";" + victory_color;
 
+                System.out.println("OK OK OK OK OK OK");
+                
+                // On affiche le pion.
                 Platform.runLater(() -> {
                     source.setStyle("-fx-background-image: url(" + image_path + ");");
                 });
@@ -299,7 +291,7 @@ public class FXMLDocumentController implements Initializable
                             
                         int colIndex;
                         int rowIndex;
-                        String player_color;
+                        String path_image;
                         String victory_color;
 
                         if(nouveau_message != null && nouveau_message.length() > 0 && !(nouveau_message.equals(ancien_message)))
@@ -308,7 +300,7 @@ public class FXMLDocumentController implements Initializable
 
                             colIndex = Integer.parseInt((RUN_Reception.message.split(";"))[0]);
                             rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
-                            player_color = (RUN_Reception.message.split(";"))[2];
+                            path_image = (RUN_Reception.message.split(";"))[2];
                             victory_color = (RUN_Reception.message.split(";"))[3];
 
                             // On met à jour grille_de_jeu avec le coup de l'adversaire.
@@ -322,7 +314,7 @@ public class FXMLDocumentController implements Initializable
                                     && GridPane.getRowIndex(node) == rowIndex) 
                                 {
                                     Platform.runLater(() -> {
-                                        ((Label)node).setStyle("-fx-background-image: url(" + image_path + ");");
+                                        ((Label)node).setStyle("-fx-background-image: url(" + path_image + ");");
                                     });
                                     break;
                                 }
