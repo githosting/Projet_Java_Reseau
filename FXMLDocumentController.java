@@ -21,13 +21,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 
 public class FXMLDocumentController implements Initializable 
 {
+    // Attributes
     public static Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -59,7 +59,8 @@ public class FXMLDocumentController implements Initializable
             {"null", "null", "null", "null", "null", "null", "null"},
             {"null", "null", "null", "null", "null", "null", "null"}
         };
-     
+    
+    // FXML Controls
     @FXML
     private TextField textfield_pseudo;
     @FXML
@@ -80,6 +81,7 @@ public class FXMLDocumentController implements Initializable
     public GridPane getGridPane() { return gp; }
     
     
+    // Methods
     @FXML
     private void btn_connect(ActionEvent event) throws MalformedURLException 
     {
@@ -120,6 +122,7 @@ public class FXMLDocumentController implements Initializable
         catch (IOException e) { System.err.println("BUG : Pas de serveur à l'écoute du port "+socket.getLocalPort()); }
     }
     
+    
     @FXML
     private void btn_server(ActionEvent event) throws MalformedURLException 
     {
@@ -148,11 +151,6 @@ public class FXMLDocumentController implements Initializable
         catch (IOException e) { System.err.println("BUG : Port "+server_socket.getLocalPort()+" déjà utilisé."); }
     }
     
-    @FXML 
-    public void label_infoClick(MouseEvent event)
-    {
-        System.out.println("CLICK"); 
-    }
     
     @FXML 
     public void cellClick(MouseEvent event) throws MalformedURLException
@@ -189,8 +187,6 @@ public class FXMLDocumentController implements Initializable
 
                 // On update le message à envoyer.
                 RUN_Emission.message = colIndex + ";" + rowIndex + ";" + image_path + ";" + victory_color;
-
-                System.out.println("OK OK OK OK OK OK");
                 
                 // On affiche le pion.
                 Platform.runLater(() -> {
@@ -201,20 +197,7 @@ public class FXMLDocumentController implements Initializable
             }
         }
     }
-    
-    @FXML
-    public void fillGridWithLabels() 
-    {
-        for (int i = 0 ; i < 30 ; i++) 
-        {
-            for (int j = 0; j < 30; j++) 
-            {
-                Label label = new Label("-");
-                gp.add(label, i, j);
-            }
-        }
-    }
-    
+
     
     public String check_victory()
     {
@@ -229,25 +212,25 @@ public class FXMLDocumentController implements Initializable
 				
                 // Si une combinaison de 4 pions existe à partir du pion en cours d'analyse.  
                 if( 
-                    (actual_color != "null")
+                    (!(actual_color.equals("null")))
                     &&
                     (
                         // Par la droite.
-                        (j <= 3 && grille_de_jeu[i][j+1] == actual_color && grille_de_jeu[i][j+2] == actual_color && grille_de_jeu[i][j+3] == actual_color)
+                        (j <= 3 && grille_de_jeu[i][j+1].equals(actual_color) && grille_de_jeu[i][j+2].equals(actual_color) && grille_de_jeu[i][j+3].equals(actual_color))
                         || // Par la gauche.
-                        (j >= 3 && grille_de_jeu[i][j-1] == actual_color && grille_de_jeu[i][j-2] == actual_color && grille_de_jeu[i][j-3] == actual_color)
+                        (j >= 3 && grille_de_jeu[i][j-1].equals(actual_color) && grille_de_jeu[i][j-2].equals(actual_color) && grille_de_jeu[i][j-3].equals(actual_color))
                         || // Par le haut.
-                        (i >= 3 && grille_de_jeu[i-1][j] == actual_color && grille_de_jeu[i-2][j] == actual_color && grille_de_jeu[i-3][j] == actual_color)
+                        (i >= 3 && grille_de_jeu[i-1][j].equals(actual_color) && grille_de_jeu[i-2][j].equals(actual_color) && grille_de_jeu[i-3][j].equals(actual_color))
                         || // Par le bas.
-                        (i <= 2 && grille_de_jeu[i+1][j] == actual_color && grille_de_jeu[i+2][j] == actual_color && grille_de_jeu[i+3][j] == actual_color)
+                        (i <= 2 && grille_de_jeu[i+1][j].equals(actual_color) && grille_de_jeu[i+2][j].equals(actual_color) && grille_de_jeu[i+3][j].equals(actual_color))
                         || // En diagonale haut droit
-                        (i >= 3 && j <= 3 && grille_de_jeu[i-1][j+1] == actual_color && grille_de_jeu[i-2][j+2] == actual_color && grille_de_jeu[i-3][j+3] == actual_color)
+                        (i >= 3 && j <= 3 && grille_de_jeu[i-1][j+1].equals(actual_color) && grille_de_jeu[i-2][j+2].equals(actual_color) && grille_de_jeu[i-3][j+3].equals(actual_color))
                         || // En diagonale haut gauche
-                        (i >= 3 && j >= 3 && grille_de_jeu[i-1][j-1] == actual_color && grille_de_jeu[i-2][j-2] == actual_color && grille_de_jeu[i-3][j-3] == actual_color)
+                        (i >= 3 && j >= 3 && grille_de_jeu[i-1][j-1].equals(actual_color) && grille_de_jeu[i-2][j-2].equals(actual_color) && grille_de_jeu[i-3][j-3].equals(actual_color))
                         || // En diagonale bas droit
-                        (i <= 2 && j <= 3 && grille_de_jeu[i+1][j+1] == actual_color && grille_de_jeu[i+2][j+2] == actual_color && grille_de_jeu[i+3][j+3] == actual_color)
+                        (i <= 2 && j <= 3 && grille_de_jeu[i+1][j+1].equals(actual_color) && grille_de_jeu[i+2][j+2].equals(actual_color) && grille_de_jeu[i+3][j+3].equals(actual_color))
                         || // En diagonale bas gauche
-                        (i <= 2 && j >= 3 && grille_de_jeu[i+1][j-1] == actual_color && grille_de_jeu[i+2][j-2] == actual_color && grille_de_jeu[i+3][j-3] == actual_color)
+                        (i <= 2 && j >= 3 && grille_de_jeu[i+1][j-1].equals(actual_color) && grille_de_jeu[i+2][j-2].equals(actual_color) && grille_de_jeu[i+3][j-3].equals(actual_color))
                     )
                 )
                 {
@@ -286,6 +269,7 @@ public class FXMLDocumentController implements Initializable
                         }
                         
                         System.out.println("THREAD Refresh Grid...");
+                        
                         String nouveau_message = RUN_Reception.message;
                             
                         int colIndex;
@@ -330,9 +314,6 @@ public class FXMLDocumentController implements Initializable
                                     label_info.setText("Le joueur " + victory_color + " gagne.");
                                 });
 
-                                //thread_attente_connexion.interrupt();
-                                //thread_emission.interrupt();
-                                //thread_reception.interrupt();
                                 game_over = true;
                             }
                             else if(game_over == false)

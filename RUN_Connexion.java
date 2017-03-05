@@ -3,12 +3,11 @@ package puissance4;
 
 import java.io.*;
 import java.net.*;
-import static puissance4.FXMLDocumentController.socket;
 
 
 public class RUN_Connexion implements Runnable
 {
-    private ServerSocket server_socket;
+    private final ServerSocket server_socket;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;

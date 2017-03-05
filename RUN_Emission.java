@@ -3,7 +3,6 @@ package puissance4;
 
 import java.io.PrintWriter;
 import java.util.Scanner;
-import javafx.scene.Node;
 
 
 public class RUN_Emission implements Runnable 
