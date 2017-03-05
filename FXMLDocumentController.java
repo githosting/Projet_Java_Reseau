@@ -3,7 +3,6 @@ package puissance4;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
@@ -304,8 +303,12 @@ public class FXMLDocumentController implements Initializable
                             victory_color = (RUN_Reception.message.split(";"))[3];
 
                             // On met à jour grille_de_jeu avec le coup de l'adversaire.
-                            grille_de_jeu[rowIndex][colIndex] = player_color;
+                            if(player_color.equals("orange"))
+                                grille_de_jeu[rowIndex][colIndex] = "blue";
+                            else
+                                grille_de_jeu[rowIndex][colIndex] = "orange";
 
+                            
                             // On change la couleur du label concerné.
                             ObservableList<Node> childrens = gp.getChildren();
                             for (Node node : childrens) 
