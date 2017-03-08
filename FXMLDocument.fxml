@@ -15,11 +15,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.FXMLDocumentController">
    <children>
-      <TextField fx:id="textfield_adresse" layoutX="58.0" layoutY="21.0" prefHeight="25.0" prefWidth="100.0" promptText="Adresse" />
-      <TextField fx:id="textfield_port" layoutX="170.0" layoutY="21.0" prefHeight="25.0" prefWidth="71.0" promptText="Port" />
-      <Button fx:id="button_connect" onAction="#btn_connect" layoutX="250.0" layoutY="21.0" mnemonicParsing="false" text="Connect To Server" />
+      <TextField fx:id="textfield_pseudo" layoutX="20.0" layoutY="21.0" prefHeight="25.0" prefWidth="75.0" promptText="Pseudo" />
+      <TextField fx:id="textfield_adresse" layoutX="100.0" layoutY="21.0" prefHeight="25.0" prefWidth="75.0" promptText="Adresse" />
+      <TextField fx:id="textfield_port" layoutX="180.0" layoutY="21.0" prefHeight="25.0" prefWidth="75.0" promptText="Port" />
+      <Button fx:id="button_connect" onAction="#btn_connect" layoutX="260.0" layoutY="21.0" mnemonicParsing="false" text="Connect To Server" />
       <Button fx:id="button_server" onAction="#btn_server" layoutX="380.0" layoutY="21.0" mnemonicParsing="false" text="Be Server" />
-      <Label fx:id="label_info" layoutX="77.0" layoutY="57.0" prefHeight="17.0" prefWidth="383.0" text="Label" textAlignment="CENTER" />
+      <Label fx:id="label_info" layoutX="20.0" layoutY="57.0" prefHeight="17.0" prefWidth="383.0" text="Label" textAlignment="CENTER" />
       <GridPane fx:id="gp" gridLinesVisible="true" layoutX="20.0" layoutY="87.0" prefHeight="366.0" prefWidth="496.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

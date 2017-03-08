@@ -48,6 +48,7 @@ public class FXMLDocumentController implements Initializable
     public boolean game_start = false;
     public static boolean game_over = false;
     public String image_path;
+    public String pseudo;
     
     // La matrice représentant la grille de jeu et les pions dessus.
     public String grille_de_jeu [][] =   
@@ -87,13 +88,14 @@ public class FXMLDocumentController implements Initializable
     {
         button_connect.setVisible(false);
         button_server.setVisible(false);
+        textfield_pseudo.setVisible(false);
         textfield_adresse.setVisible(false);
         textfield_port.setVisible(false);
         
+        pseudo = textfield_pseudo.getText();
         player_color = "blue";
         File image = new File("pictures/blue.png");
         image_path = image.toURI().toURL().toString();
-        
         player_type = "client";
         
         try 
@@ -128,13 +130,14 @@ public class FXMLDocumentController implements Initializable
     {
         button_connect.setVisible(false);
         button_server.setVisible(false);
+        textfield_pseudo.setVisible(false);
         textfield_adresse.setVisible(false);
         textfield_port.setVisible(false);
         
+        pseudo = textfield_pseudo.getText();
         player_color = "orange";
         File image = new File("pictures/orange.png");
         image_path = image.toURI().toURL().toString();
-        
         player_type = "server";
         
         my_turn = true;
@@ -173,10 +176,11 @@ public class FXMLDocumentController implements Initializable
 
                 // On vérifie s'il y a un vainqueur.
                 // S'il y a un vainqueur, la fonction check_victory se charge de l'afficher au joueur et bloque le jeu.
+                
                 String victory_color = check_victory();
                 if(!(victory_color.equals("null")))
                 {
-                    label_info.setText("Le joueur " + victory_color + " gagne.");
+                    label_info.setText("Le joueur " + victory_color + " ("+pseudo+") gagne.");
                 }
                 else
                 {
@@ -186,7 +190,7 @@ public class FXMLDocumentController implements Initializable
                 }
 
                 // On update le message à envoyer.
-                RUN_Emission.message = colIndex + ";" + rowIndex + ";" + image_path + ";" + victory_color;
+                RUN_Emission.message = colIndex + ";" + rowIndex + ";" + image_path + ";" + victory_color + ";" + pseudo;
                 
                 // On affiche le pion.
                 Platform.runLater(() -> {
@@ -276,6 +280,7 @@ public class FXMLDocumentController implements Initializable
                         int rowIndex;
                         String path_image;
                         String victory_color;
+                        String pseudo_adversaire;
 
                         if(nouveau_message != null && nouveau_message.length() > 0 && !(nouveau_message.equals(ancien_message)))
                         {
@@ -285,6 +290,7 @@ public class FXMLDocumentController implements Initializable
                             rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
                             path_image = (RUN_Reception.message.split(";"))[2];
                             victory_color = (RUN_Reception.message.split(";"))[3];
+                            pseudo_adversaire = (RUN_Reception.message.split(";"))[4];
 
                             // On met à jour grille_de_jeu avec le coup de l'adversaire.
                             if(player_color.equals("orange"))
@@ -310,8 +316,14 @@ public class FXMLDocumentController implements Initializable
                             // On check s'il y a un vainqueur.
                             if(!(victory_color.equals("null")))
                             {
+                                String pseudo_vainqueur;
+                                if(victory_color.equals(player_color))
+                                    pseudo_vainqueur = pseudo;
+                                else
+                                    pseudo_vainqueur = pseudo_adversaire;
+                                
                                 Platform.runLater(() -> {    
-                                    label_info.setText("Le joueur " + victory_color + " gagne.");
+                                    label_info.setText("Le joueur " + victory_color + " ("+pseudo_vainqueur+") gagne.");
                                 });
 
                                 game_over = true;
