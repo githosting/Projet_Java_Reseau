@@ -181,6 +181,7 @@ public class FXMLDocumentController implements Initializable
                 if(!(victory_color.equals("null")))
                 {
                     label_info.setText("Le joueur " + victory_color + " ("+pseudo+") gagne.");
+                    //game_over = true;
                 }
                 else
                 {
@@ -190,7 +191,8 @@ public class FXMLDocumentController implements Initializable
                 }
 
                 // On update le message à envoyer.
-                RUN_Emission.message = colIndex + ";" + rowIndex + ";" + image_path + ";" + victory_color + ";" + pseudo;
+                Message le_message = new Message(colIndex, rowIndex, image_path, victory_color, pseudo);
+                RUN_Emission.message = le_message;
                 
                 // On affiche le pion.
                 Platform.runLater(() -> {
@@ -258,7 +260,7 @@ public class FXMLDocumentController implements Initializable
                 @Override
                 public void run() 
                 {
-                    String ancien_message = "";
+                    Message ancien_message = new Message();
                     
                     while(!game_over)
                     {  
@@ -274,7 +276,7 @@ public class FXMLDocumentController implements Initializable
                         
                         System.out.println("THREAD Refresh Grid...");
                         
-                        String nouveau_message = RUN_Reception.message;
+                        Message nouveau_message = RUN_Reception.message;
                             
                         int colIndex;
                         int rowIndex;
@@ -282,15 +284,18 @@ public class FXMLDocumentController implements Initializable
                         String victory_color;
                         String pseudo_adversaire;
 
-                        if(nouveau_message != null && nouveau_message.length() > 0 && !(nouveau_message.equals(ancien_message)))
+                        System.out.println(nouveau_message != ancien_message);
+                        if(nouveau_message != null && (!(nouveau_message.rowIndex == ancien_message.rowIndex) || !(nouveau_message.colIndex == ancien_message.colIndex)))
                         {
+                            
+                            
                             ancien_message = nouveau_message;
 
-                            colIndex = Integer.parseInt((RUN_Reception.message.split(";"))[0]);
-                            rowIndex = Integer.parseInt((RUN_Reception.message.split(";"))[1]);
-                            path_image = (RUN_Reception.message.split(";"))[2];
-                            victory_color = (RUN_Reception.message.split(";"))[3];
-                            pseudo_adversaire = (RUN_Reception.message.split(";"))[4];
+                            colIndex            = RUN_Reception.message.colIndex;
+                            rowIndex            = RUN_Reception.message.rowIndex;
+                            path_image          = RUN_Reception.message.imagePath;
+                            victory_color       = RUN_Reception.message.victoryColor;
+                            pseudo_adversaire   = RUN_Reception.message.pseudo;
 
                             // On met à jour grille_de_jeu avec le coup de l'adversaire.
                             if(player_color.equals("orange"))
@@ -330,6 +335,7 @@ public class FXMLDocumentController implements Initializable
                             }
                             else if(game_over == false)
                             {
+                                System.out.println("my turn = true");
                                 my_turn = true;
                                 Platform.runLater(() -> {
                                     label_info.setText("VOTRE TOUR");
