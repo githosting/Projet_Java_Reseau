@@ -48,6 +48,7 @@ public class FXMLDocumentController implements Initializable
     public boolean game_start = false;
     public static boolean game_over = false;
     public String image_path;
+    public String image_path_adversaire;
     public String pseudo;
     
     // La matrice représentant la grille de jeu et les pions dessus.
@@ -94,8 +95,9 @@ public class FXMLDocumentController implements Initializable
         
         pseudo = textfield_pseudo.getText();
         player_color = "blue";
-        File image = new File("pictures/blue.png");
+        File image = new File("./pictures/blue.png");
         image_path = image.toURI().toURL().toString();
+        image_path_adversaire = new File("./pictures/orange.png").toURI().toURL().toString();
         player_type = "client";
         
         try 
@@ -136,8 +138,9 @@ public class FXMLDocumentController implements Initializable
         
         pseudo = textfield_pseudo.getText();
         player_color = "orange";
-        File image = new File("pictures/orange.png");
+        File image = new File("./pictures/orange.png");
         image_path = image.toURI().toURL().toString();
+        image_path_adversaire = new File("./pictures/blue.png").toURI().toURL().toString();
         player_type = "server";
         
         my_turn = true;
@@ -312,7 +315,7 @@ public class FXMLDocumentController implements Initializable
                                     && GridPane.getRowIndex(node) == rowIndex) 
                                 {
                                     Platform.runLater(() -> {
-                                        ((Label)node).setStyle("-fx-background-image: url(" + path_image + ");");
+                                        ((Label)node).setStyle("-fx-background-image: url(" + image_path_adversaire + ");");
                                     });
                                     break;
                                 }
