@@ -31,9 +31,9 @@ public class FXMLDocumentController implements Initializable
     public static Socket socket;
     private PrintWriter out;
     private BufferedReader in;
-    private Scanner sc;
-    private String message;
-    private Scanner scanner;
+    //private Scanner sc;
+    //private String message;
+    //private Scanner scanner;
     public static ServerSocket server_socket;
     public static Thread thread_attente_connexion;
     public static Thread thread_emission;
