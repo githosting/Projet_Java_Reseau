@@ -177,11 +177,13 @@ public class FXMLDocumentController implements Initializable
                 // On actualise grille_de_jeu avec le coup du joueur.
                 grille_de_jeu[rowIndex][colIndex] = player_color;
 
-                // On vérifie s'il y a un vainqueur.
-                // S'il y a un vainqueur, la fonction check_victory se charge de l'afficher au joueur et bloque le jeu.
-                
+                // On vérifie s'il y a un vainqueur ou un match nul.
                 String victory_color = check_victory();
-                if(!(victory_color.equals("null")))
+                if(victory_color.equals("match_nul"))
+                {
+                    label_info.setText("Match Nul !");
+                }
+                else if(!(victory_color.equals("null")))
                 {
                     label_info.setText("Le joueur " + victory_color + " ("+pseudo+") gagne.");
                     //game_over = true;
@@ -211,6 +213,19 @@ public class FXMLDocumentController implements Initializable
     public String check_victory()
     {
         String actual_color;
+        
+        // S'il y a match nul.
+        if(!grille_de_jeu[0][0].equals("null")
+            && !grille_de_jeu[0][1].equals("null")
+            && !grille_de_jeu[0][2].equals("null")
+            && !grille_de_jeu[0][3].equals("null")
+            && !grille_de_jeu[0][4].equals("null")
+            && !grille_de_jeu[0][5].equals("null")
+            && !grille_de_jeu[0][6].equals("null")
+          )
+        {
+            return "match_nul";
+        }
         
         // Pour chaque élément de grille_de_jeu, on explore toutes les possibilités d'enchaînement de 4 pions à partir de lui.
         for(int i=0; i<6; i++)
@@ -321,8 +336,16 @@ public class FXMLDocumentController implements Initializable
                                 }
                             }
 
-                            // On check s'il y a un vainqueur.
-                            if(!(victory_color.equals("null")))
+                            // On check s'il y a un vainqueur ou si match nul.
+                            if(victory_color.equals("match_nul"))
+                            {
+                                Platform.runLater(() -> {    
+                                    label_info.setText("Match Nul !");
+                                });
+
+                                game_over = true;
+                            }
+                            else if(!(victory_color.equals("null")))
                             {
                                 String pseudo_vainqueur;
                                 if(victory_color.equals(player_color))
