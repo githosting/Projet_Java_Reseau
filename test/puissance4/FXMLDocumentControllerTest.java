@@ -1,14 +1,8 @@
 
 package puissance4;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import java.io.File;
+import java.net.MalformedURLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,91 +11,245 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class FXMLDocumentControllerTest {
+public class FXMLDocumentControllerTest 
+{
     
-    public FXMLDocumentControllerTest() {
-    }
+    public FXMLDocumentControllerTest() {}
     
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() 
+    {
+        
+        System.out.println("Avant tous les tests.");
+        
     }
     
     @AfterClass
-    public static void tearDownClass() {
+    public static void tearDownClass() 
+    {
+        
+        System.out.println("Après tous les tests.");
+        
     }
     
     @Before
-    public void setUp() {
+    public void setUp() 
+    {
+        
+        System.out.println("Avant chaque test.");
+        
+        // Réinitialisation de la grille de jeu.
+        for(int i=0 ; i<FXMLDocumentController.grille_de_jeu.length ; i++)
+        {
+            for(int y=0 ; y<FXMLDocumentController.grille_de_jeu[i].length ; y++)
+                FXMLDocumentController.grille_de_jeu[i][y] = "null";
+        }
     }
     
     @After
-    public void tearDown() {
+    public void tearDown() 
+    {
+        
+        System.out.println("Après chaque test.");
+        
     }
-
+    
+    
     /**
-     * Test of getLabelInfo method, of class FXMLDocumentController.
-     * @throws java.io.IOException
+     * Test Pas Victoire & Pas Match Nul
+     * Method : check_victory
+     * Class : FXMLDocumentController
      */
     @Test
-    public void testGetLabelInfo() throws IOException {
-        System.out.println("getLabelInfo");
-        Label result = FXMLDocumentController.getLabelInfo();
-        assertNull(result);
-    }
+    public void test_pas_victoire() 
+    {
+        
+        System.out.println("test_pas_victoire");
 
+        String expected = "null";
+        String result = FXMLDocumentController.check_victory();
+        assertEquals(expected, result);
+    }
+    
+    
     /**
-     * Test of getGridPane method, of class FXMLDocumentController.
+     * Test Match Nul
+     * Method : check_victory
+     * Class : FXMLDocumentController
      */
     @Test
-    public void testGetGridPane() {
-        System.out.println("getGridPane");
-        FXMLDocumentController instance = new FXMLDocumentController();
-        GridPane expResult = null;
-        GridPane result = instance.getGridPane();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void test_match_nul() 
+    {
+        
+        System.out.println("test_match_nul");
+        
+        FXMLDocumentController.grille_de_jeu[0][0]= "1";
+        FXMLDocumentController.grille_de_jeu[0][1]= "1";
+        FXMLDocumentController.grille_de_jeu[0][2]= "1";
+        FXMLDocumentController.grille_de_jeu[0][3]= "1";
+        FXMLDocumentController.grille_de_jeu[0][4]= "1";
+        FXMLDocumentController.grille_de_jeu[0][5]= "1";
+        FXMLDocumentController.grille_de_jeu[0][6]= "1";
+ 
+        String expected = "match_nul";
+        String result = FXMLDocumentController.check_victory();
+        assertEquals(expected, result);
     }
-
+    
+    
     /**
-     * Test of cellClick method, of class FXMLDocumentController.
+     * Test Victoire Horizontale
+     * Method : check_victory
+     * Class : FXMLDocumentController
      */
     @Test
-    public void testCellClick() throws Exception {
-        System.out.println("cellClick");
-        MouseEvent event = null;
-        FXMLDocumentController instance = new FXMLDocumentController();
-        instance.cellClick(event);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void test_victoire_horizontale() 
+    {
+        
+        System.out.println("test_victoire_horizontale");
+        
+        FXMLDocumentController.grille_de_jeu[5][0]= "blue";
+        FXMLDocumentController.grille_de_jeu[5][1]= "blue";
+        FXMLDocumentController.grille_de_jeu[5][2]= "blue";
+        FXMLDocumentController.grille_de_jeu[5][3]= "blue";
+ 
+        String expected = "blue";
+        String result = FXMLDocumentController.check_victory();
+        assertEquals(expected, result);
     }
 
+    
     /**
-     * Test of check_victory method, of class FXMLDocumentController.
+     * Test Victoire Verticale
+     * Method : check_victory
+     * Class : FXMLDocumentController
      */
     @Test
-    public void testCheck_victory() {
-        System.out.println("check_victory");
-        FXMLDocumentController instance = new FXMLDocumentController();
-        String expResult = "";
-        String result = instance.check_victory();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void test_victoire_verticale() 
+    {
+        
+        System.out.println("test_victoire_verticale");
+        
+        FXMLDocumentController.grille_de_jeu[0][0]= "blue";
+        FXMLDocumentController.grille_de_jeu[1][0]= "blue";
+        FXMLDocumentController.grille_de_jeu[2][0]= "blue";
+        FXMLDocumentController.grille_de_jeu[3][0]= "blue";
+ 
+        String expected = "blue";
+        String result = FXMLDocumentController.check_victory();
+        assertEquals(expected, result);
     }
+    
+    
+    /**
+     * Test Victoire diagonale bas haut
+     * Method : check_victory
+     * Class : FXMLDocumentController
+     */
+    @Test
+    public void test_victoire_diagonale_bas_haut() 
+    {
+        
+        System.out.println("test_victoire_diagonale_bas_haut");
+        
+        FXMLDocumentController.grille_de_jeu[0][6]= "blue";
+        FXMLDocumentController.grille_de_jeu[1][5]= "blue";
+        FXMLDocumentController.grille_de_jeu[2][4]= "blue";
+        FXMLDocumentController.grille_de_jeu[3][3]= "blue";
+ 
+        String expected = "blue";
+        String result = FXMLDocumentController.check_victory();
+        assertEquals(expected, result);
+    }
+  
+    
+    /**
+     * Test Victoire diagonale haut bas
+     * Method : check_victory
+     * Class : FXMLDocumentController
+     */
+    @Test
+    public void test_victoire_diagonale_haut_bas() 
+    {
+        
+        System.out.println("test_victoire_diagonale_haut_bas");
+        
+        FXMLDocumentController.grille_de_jeu[0][0]= "blue";
+        FXMLDocumentController.grille_de_jeu[1][1]= "blue";
+        FXMLDocumentController.grille_de_jeu[2][2]= "blue";
+        FXMLDocumentController.grille_de_jeu[3][3]= "blue";
+ 
+        String expected = "blue";
+        String result = FXMLDocumentController.check_victory();
+        assertEquals(expected, result);
+    }
+    
 
     /**
-     * Test of initialize method, of class FXMLDocumentController.
+     * Test Images Existent
+     * Method : btn_connect, btn_server
+     * Class : FXMLDocumentController
      */
     @Test
-    public void testInitialize() {
-        System.out.println("initialize");
-        URL url = null;
-        ResourceBundle rb = null;
-        FXMLDocumentController instance = new FXMLDocumentController();
-        instance.initialize(url, rb);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void test_images_existent() throws MalformedURLException 
+    {
+        
+        System.out.println("test_images_existent");
+        
+        File image = new File("./pictures/blue.png");
+        File image2 = new File("./pictures/orange.png");
+        
+        assertTrue(image.exists());
+        assertTrue(image2.exists());
     }
+    
+    
+    /**
+     * Test Réinitialisation du jeu
+     * Method : 
+     * Class : FXMLDocumentController
+     */
+    @Test
+    public void test_reinitialisation_jeu() 
+    {
+        
+        System.out.println("test_reinitialisation_jeu");
+        
+        // A FAIRE PLUS TARD
+        
+    }    
+    
+    
+    /**
+     * Test Fichier Scores Existe
+     * Method : 
+     * Class : FXMLDocumentController
+     */
+    @Test
+    public void test_fichier_scores_existe() 
+    {
+        
+        System.out.println("test_fichier_scores_existe");
+        
+        // A FAIRE PLUS TARD
+        
+    }
+    
+    
+    /**
+     * Test Fichier Sauvegardes Existe
+     * Method : 
+     * Class : FXMLDocumentController
+     */
+    @Test
+    public void test_fichier_sauvegardes_existe() 
+    {
+        
+        System.out.println("test_fichier_sauvegardes_existe");
+        
+        // A FAIRE PLUS TARD
+        
+    }
+    
     
 }
