@@ -50,9 +50,10 @@ public class FXMLDocumentController implements Initializable
     public String image_path;
     public String image_path_adversaire;
     public String pseudo;
+    public static boolean check_end_thread_refresh = false;
     
     // La matrice représentant la grille de jeu et les pions dessus.
-    public String grille_de_jeu [][] =   
+    public static String grille_de_jeu [][] =   
         {
             {"null", "null", "null", "null", "null", "null", "null"}, 
             {"null", "null", "null", "null", "null", "null", "null"}, 
@@ -74,13 +75,13 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private Button button_connect;
     @FXML
-    public Label label_info;
+    public static Label label_info;
     @FXML
-    private GridPane gp;
+    private static GridPane gp;
     
     // FXML Getters
-    public Label getLabelInfo() { return label_info; }
-    public GridPane getGridPane() { return gp; }
+    public static Label getLabelInfo() { return label_info; }
+    public static GridPane getGridPane() { return gp; }
     
     
     // Methods
@@ -210,7 +211,7 @@ public class FXMLDocumentController implements Initializable
     }
 
     
-    public String check_victory()
+    public static String check_victory()
     {
         String actual_color;
         
@@ -376,6 +377,8 @@ public class FXMLDocumentController implements Initializable
                     } 
                 }
             }).start();
+            
+            check_end_thread_refresh = true;
  
     }    
 }
