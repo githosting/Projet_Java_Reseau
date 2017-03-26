@@ -75,13 +75,13 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private Button button_connect;
     @FXML
-    public static Label label_info;
+    public Label label_info;
     @FXML
-    private static GridPane gp;
+    private GridPane gp;
     
     // FXML Getters
-    public static Label getLabelInfo() { return label_info; }
-    public static GridPane getGridPane() { return gp; }
+    public Label getLabelInfo() { return label_info; }
+    public GridPane getGridPane() { return gp; }
     
     
     // Methods
