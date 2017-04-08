@@ -1,11 +1,10 @@
-
+//package
 package puissance4;
 
+// les importations
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,24 +12,34 @@ import javafx.stage.WindowEvent;
 
 public class Puissance4 extends Application 
 {
+    // ecran principal
     public static final String MAIN_SCREEN = "main"; 
-    public static final String MAIN_SCREEN_FXML = "main.fxml"; 
+    public static final String MAIN_SCREEN_FXML = "main.fxml";
+    
+    // ecran de connection pour le serveur
     public static final String SERVER_CONNECT_SCREEN = "serverconnect"; 
     public static final String SERVER_CONNECT_SCREEN_FXML = "ServerConnect.fxml";
+
+    // ecran de connexion pour le client
     public static final String CLIENT_CONNECT_SCREEN = "clientconnect"; 
     public static final String CLIENT_CONNECT_SCREEN_FXML = "ClientConnect.fxml";
+    
+    // ecran pour le deroulement du jeu 
     public static final String GAME_SCREEN = "jeu"; 
     public static final String GAME_SCREEN_FXML = "jeu.fxml"; 
     
     @Override
+    /*
+    * @return void
+    * @params Stage stage
+    * throws exception 
+    * lors du lancement on lance start pour charger les interfaces et démarrer les sessions
+    */
     public void start(Stage stage) throws Exception 
     {
-        /*FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("main.fxml"));
-        Parent root = loader.load();
-        FXMLDocumentController controller = loader.getController();*/
-        
+    
         ScreensController mainContainer = new ScreensController(); 
+        // nous chargeons les différents ecrans en mémoire 
         mainContainer.loadScreen(Puissance4.MAIN_SCREEN, 
                                  Puissance4.MAIN_SCREEN_FXML); 
         mainContainer.loadScreen(Puissance4.GAME_SCREEN, 
@@ -43,18 +52,12 @@ public class Puissance4 extends Application
 
         Group root2 = new Group(); 
         root2.getChildren().addAll(mainContainer); 
-        Scene scene = new Scene(root2); 
+        Scene scene = new Scene(root2);
+        
+        // ajout du titre sur la fenetre
         stage.setTitle("Puissance 4 Net");
         stage.setScene(scene); 
         stage.show(); 
-        /*
-        Scene scene = new Scene(root);
-        stage.setTitle("Puissance 4 Net");
-        stage.setScene(scene);
-        stage.show();
-        
-        controller.getLabelInfo().setText("Connectez-vous en tant que serveur ou client !");
-        */
         // Lorsque le user quitte l'application on stop tout.
         stage.setOnCloseRequest((WindowEvent we) -> {
             System.out.println("Closing...");
@@ -63,8 +66,11 @@ public class Puissance4 extends Application
         });
     }
 
-    
-    // @param args the command line arguments
+    /*
+    *@params args the command line arguments
+    *@return void
+    * lancement du jeu 
+    */
     public static void main(String[] args) 
     {
         launch(args);

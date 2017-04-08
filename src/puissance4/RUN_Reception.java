@@ -1,6 +1,7 @@
-
+// package 
 package puissance4;
 
+//imporations
 import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +32,8 @@ public class RUN_Reception implements Runnable
     @Override
     public void run() 
     {          
-        while(FXMLDocumentController.game_over == false)
+        //while(FXMLDocumentController.game_over == false)
+        while (GameScreen.game_over == false)
         {
             try 
             {

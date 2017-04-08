@@ -23,7 +23,8 @@ public class RUN_Emission implements Runnable
     @Override
     public void run() 
     {
-        while(FXMLDocumentController.game_over == false)
+        //while(FXMLDocumentController.game_over == false)
+        while (GameScreen.game_over == false)
         {
             if(message.pseudo != null)
             {

@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//package
 package puissance4;
 
+//importations
 import javafx.util.Duration;
 import java.util.HashMap;
 import javafx.animation.*;
@@ -17,23 +14,32 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 
-/**
- *
- * @author Kevin Araba
- */
 public class ScreensController extends StackPane {
-    //creation hashmap to manage screens
+    //creation hashmap pour manageer les différents écrans 
     private HashMap<String, Node> screens= new HashMap<>();
     
- // method 
+ // methodes
+    
+    /*
+     ajout d'un ecran 
+     @retrun void 
+     @params String name nom de l'ecran
+     @params Node screen noeud de l'ecran
+    */
     public void addScreen(String name, Node screen){
         screens.put(name, screen);
     }
     
+    // on obtient le nom de l'ecran
     public Node getScreen(String name){
         return screens.get(name);
     }
     
+    /* on demande un chargement d'ecran 
+     @return boolean
+     @params String name nom de l'ecran sur lequel on veut rediriger
+     @params String resource
+    */
     public boolean loadScreen(String name, String resource){
         try{
             FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource)); 
@@ -92,6 +98,11 @@ public class ScreensController extends StackPane {
     }
   }
      
+  /*
+   Lors d'un changement d'ecran on veriife que ce dernier n'a pas rencontre de probleme
+   @return boolean true si tout s'est bien passe
+   @params nom de l'ecran 
+  */
   public boolean unloadScreen(String name) { 
     if(screens.remove(name) == null) { 
         System.out.println("Screen didn't exist"); 

@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="563.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.FXMLDocumentController">
-   <children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="563.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.GameScreen">
+    <children>
+      <Label fx:id="label_info" layoutX="20.0" layoutY="57.0" prefHeight="17.0" prefWidth="383.0" text="Label" textAlignment="CENTER" />
       <GridPane fx:id="gp" gridLinesVisible="true" layoutX="34.0" layoutY="94.0" prefHeight="366.0" prefWidth="496.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
