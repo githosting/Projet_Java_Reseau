@@ -11,6 +11,8 @@ import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.*;
@@ -85,35 +87,10 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void btn_reset(ActionEvent event) throws MalformedURLException 
     {
-        label_info.setText("RESET !");
-        System.out.println("RESET");
-        
-        button_connect.setVisible(true);
-        button_server.setVisible(true);
-        textfield_pseudo.setVisible(true);
-        textfield_adresse.setVisible(true);
-        textfield_port.setVisible(true);
-        
-        
-        //RUN_Emission.message = new Message(true);
-       
-        // Les Threads ne font plus aucun traitement.
-        game_over = true;
-        
-        // On réinitialise tout.
-        player_color = "";
-        my_turn = false;
-        player_type = null;
-        client_connecte = false;
-        game_start = false;
-        
-        
-        for(int i=0 ; i<grille_de_jeu.length ; i++)
-        {
-            for(int y=0 ; y<grille_de_jeu[i].length ; y++)
-                grille_de_jeu[i][y] = "null";
-        }
-
+        try {Process process = Runtime.getRuntime().exec("java -jar ./dist/Puissance4.jar");} 
+        catch (IOException ex) {Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);}
+        Platform.exit();
+        System.exit(0);
     }
     
     
@@ -304,6 +281,8 @@ public class FXMLDocumentController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         
         // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
+        textfield_adresse.setText("127.0.0.1");
+        textfield_port.setText("1");
         
         // Le Thread qui va actualiser la gridPane.
             new Thread( new Runnable() 

@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import static puissance4.RUN_Emission.message;
@@ -41,13 +43,14 @@ public class RUN_Reception implements Runnable
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
                 message = objectMapper.readValue(message_JSON_string, Message.class);
-
-                
-                
-                //System.out.println(mapper.readValue(message_JSON_string, Message.class));
-                
-                //message = A FAIRE
             } 
+            catch (SocketException e) 
+            {
+                try {Process process = Runtime.getRuntime().exec("java -jar ./dist/Puissance4.jar");} 
+                catch (IOException ex) {Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);}
+                Platform.exit();
+                System.exit(0);
+            }
             catch (IOException ex) { Logger.getLogger(RUN_Reception.class.getName()).log(Level.SEVERE, null, ex); }
             
             System.out.println(message);
