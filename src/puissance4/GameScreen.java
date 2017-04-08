@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//package
 package puissance4;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,11 +14,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-//import static puissance4.ConnectScreenClient.player_type;
-//import  puissance4.FXMLDocumentController.client_connecte;
-//import static puissance4.FXMLDocumentController.game_over;
-//import static puissance4.FXMLDocumentController.player_type;
 import puissance4.ScreensController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 
 /**
  *
@@ -32,7 +28,7 @@ public class GameScreen implements Initializable,ControlledScreen {
     ScreensController mycontroller;
     
      // La matrice représentant la grille de jeu et les pions dessus.
-    public String grille_de_jeu [][] =   
+    public static String grille_de_jeu [][] =   
         {
             {"null", "null", "null", "null", "null", "null", "null"}, 
             {"null", "null", "null", "null", "null", "null", "null"}, 
@@ -68,11 +64,6 @@ public class GameScreen implements Initializable,ControlledScreen {
     @FXML 
     public void cellClick(MouseEvent event) throws MalformedURLException
     {
-     System.out.println ("ok on y est ");
-     System.out.println("my turn "+my_turn);
-     System.out.println("game_start"+game_start);
-     System.out.println("game_over"+game_over);
-     System.out.println("player_type "+ player_type);
         Node source = (Node)event.getSource();
         
         if(source.getStyle().length() == 0 && my_turn == true && game_start == true && game_over == false)
@@ -120,8 +111,8 @@ public class GameScreen implements Initializable,ControlledScreen {
             }
         }
     }
-     public String check_victory()
-    {
+     public static String check_victory()
+ {
         String actual_color;
         
         // S'il y a match nul.
@@ -175,8 +166,7 @@ public class GameScreen implements Initializable,ControlledScreen {
         }
         return "null";
     }
-    
-    
+            
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -291,6 +281,15 @@ public class GameScreen implements Initializable,ControlledScreen {
     }
     public static void setTurn(boolean rep) {
         my_turn = rep;
+    }
+    
+    @FXML
+    private void btn_reset(ActionEvent event) throws MalformedURLException 
+    {
+        try {Process process = Runtime.getRuntime().exec("java -jar ./dist/Puissance4.jar");} 
+        catch (IOException ex) {Logger.getLogger(GameScreen.class.getName()).log(Level.SEVERE, null, ex);}
+        Platform.exit();
+        System.exit(0);
     }
     
     public static void setInformationPlayer (String type_player, String pseudo_name)throws MalformedURLException {

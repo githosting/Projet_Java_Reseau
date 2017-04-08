@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Puissance4.jar" size="14448" download="eager" />
+    <jar href="Puissance4.jar" size="24408" download="eager" />
     <jar href="lib\jackson-annotations-2.4.1.jar" size="38604" download="eager" />
     <jar href="lib\jackson-core-2.4.1.1.jar" size="225356" download="eager" />
     <jar href="lib\jackson-databind-2.4.1.3.jar" size="1074135" download="eager" />

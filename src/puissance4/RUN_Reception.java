@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import static puissance4.RUN_Emission.message;
+import java.net.SocketException;
+import javafx.application.Platform;
 
 
 public class RUN_Reception implements Runnable 
@@ -50,6 +52,13 @@ public class RUN_Reception implements Runnable
                 
                 //message = A FAIRE
             } 
+            catch (SocketException e) 
+            {
+                try {Process process = Runtime.getRuntime().exec("java -jar ./dist/Puissance4.jar");} 
+                catch (IOException ex) {String io_Exception = "IO Exception";}
+                Platform.exit();
+                System.exit(0);
+            }
             catch (IOException ex) { Logger.getLogger(RUN_Reception.class.getName()).log(Level.SEVERE, null, ex); }
             
             System.out.println(message);

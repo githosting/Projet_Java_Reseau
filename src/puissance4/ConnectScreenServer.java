@@ -27,6 +27,7 @@ import puissance4.ScreensController;
  */
 public class ConnectScreenServer implements Initializable,ControlledScreen {
     
+    
     public static Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -76,6 +77,8 @@ public class ConnectScreenServer implements Initializable,ControlledScreen {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        textfield_adresse.setText("127.0.0.1");
+        textfield_port.setText("1");
     }
 
     @Override

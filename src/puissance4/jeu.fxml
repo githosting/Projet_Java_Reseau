@@ -73,7 +73,7 @@
             <Label onMouseClicked="#cellClick" prefHeight="112.0" prefWidth="86.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button layoutX="132.0" layoutY="478.0" mnemonicParsing="false" text="Réinitialiser" />
+      <Button fx:id="button_reset" onAction="#btn_reset" layoutX="132.0" layoutY="478.0" mnemonicParsing="false" text="Réinitialiser" />
       <Button layoutX="318.0" layoutY="478.0" mnemonicParsing="false" text="Sauvegarder" />
       <Button layoutX="517.0" layoutY="478.0" mnemonicParsing="false" text="?" />
    </children>

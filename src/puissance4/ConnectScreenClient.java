@@ -88,6 +88,8 @@ public class ConnectScreenClient implements Initializable,ControlledScreen {
     //@params  ResourceBundle resources
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        textfield_adresse.setText("127.0.0.1");
+        textfield_port.setText("1");
     }
 
     // setScreenParent
