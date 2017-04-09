@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Puissance4.jnlp">
+  <information>
+    <title>Puissance4</title>
+    <vendor>Bettinger</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Puissance4.jar" size="24693" download="eager" />
+    <jar href="lib\jackson-annotations-2.4.1.jar" size="38604" download="eager" />
+    <jar href="lib\jackson-core-2.4.1.1.jar" size="225356" download="eager" />
+    <jar href="lib\jackson-databind-2.4.1.3.jar" size="1074135" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Puissance4" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="puissance4.Puissance4"  name="Puissance4" />
+  <update check="always"/>
+</jnlp>
