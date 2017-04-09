@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.MainScreen">
+   <children>
+      <Button layoutX="125.0" layoutY="118.0" mnemonicParsing="false" onAction="#goToConnectScreenServer" prefHeight="6.0" prefWidth="306.0" text="Nouvelle partie" />
+      <Button layoutX="125.0" layoutY="265.0" mnemonicParsing="false" onAction="#goToConnectScreenClient" prefHeight="6.0" prefWidth="306.0" text="Rejoindre partie" />
+      <Button layoutX="125.0" layoutY="192.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="306.0" text="Charger partie" />
+      <Button layoutX="125.0" layoutY="341.0" mnemonicParsing="false" onAction="#goToConnectScreenClient" prefHeight="6.0" prefWidth="306.0" text="Consulter score" />
+   </children>
+</AnchorPane>
