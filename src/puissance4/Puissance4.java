@@ -52,9 +52,11 @@ public class Puissance4 extends Application
 
         Group root2 = new Group(); 
         root2.getChildren().addAll(mainContainer); 
-        Scene scene = new Scene(root2);
+        Scene scene = new Scene(root2, 600, 570);
+        //Scene scene = new Scene(root2);
         
         // ajout du titre sur la fenetre
+       
         stage.setTitle("Puissance 4 Net");
         stage.setScene(scene); 
         stage.show(); 

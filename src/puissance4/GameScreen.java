@@ -171,7 +171,7 @@ public class GameScreen implements Initializable,ControlledScreen {
     public void initialize(URL url, ResourceBundle rb) {
         
         // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
-        
+        label_info.setText("En attente d'un autre joueur");
         // Le Thread qui va actualiser la gridPane.
             new Thread( new Runnable() 
             {
