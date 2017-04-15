@@ -42,11 +42,14 @@ public class ValidationTest {
         //ip non correctes
         ips.add("256.0.0.0");
         ips.add("");
+        ips.add("<!&-");
         //ports non correctes
         ports.add("0");
         ports.add("80");
         ports.add("65600");
         ports.add("");
+        ports.add("4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444");
+        ports.add("<'9&!");
     }
     
     @After

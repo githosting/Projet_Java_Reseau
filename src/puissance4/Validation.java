@@ -18,17 +18,17 @@ public class Validation {
      * @param pseudo  le pseudo renseigné par le joueur     
      */
     public static void validationPseudo(String pseudo){
-        if(!pseudo.trim().isEmpty())
+        if(!pseudo.trim().isEmpty() && pseudo.length()<15)
         {
             if(pseudo.matches("[a-zA-Z0-9]+")){
                 ERREURS.remove("pseudo");
             }else{
-                ERREURS.put("pseudo","Veuillez renseigner un pseudo correct \n");
+                ERREURS.put("pseudo","Caractères spéciaux non autorisés \n");
             }
         }
         else
         {
-           ERREURS.put("pseudo","Veuillez renseigner un pseudo correct \n");
+           ERREURS.put("pseudo","Champ obligatoire, 15 caractères maximum \n");
         }
     }//fin validationPseudo
     
@@ -42,10 +42,10 @@ public class Validation {
             if(InetAddressValidator.getInstance().isValid(ip)){
                 ERREURS.remove("ip");
             }else{
-                ERREURS.put("ip","Veuillez renseigner une ip correcte \n");
+                ERREURS.put("ip","IP incorrecte \n");
             }
         }else{
-            ERREURS.put("ip","Veuillez renseigner une ip correcte \n");
+            ERREURS.put("ip","Champ obligatoire \n");
         }
     }//fin validationIp
     
@@ -54,14 +54,14 @@ public class Validation {
      * @param port le port renseigné par le joueur        
      */
     public static void validationPort(String port){
-        if(!port.trim().isEmpty()){
-            if(Integer.parseInt(port)>=1024 && Integer.parseInt(port)<65535){ 
+        if(!port.trim().isEmpty() && port.length()<6 && port.matches("([0-9]{4})+")){
+            if(Integer.parseInt(port)>=1024 && Integer.parseInt(port)<65535 ){ 
                 ERREURS.remove("port");
             }else{
                 ERREURS.put("port","Veuillez renseigner un port entre 1024 et 65 535 \n");
             }
         }else{
-            ERREURS.put("port","Veuillez renseigner un port entre 1024 et 65 535 \n");
+            ERREURS.put("port","Champ obligatoire, 5 caractères maximum, caractères spéciaux non autorisés \n");
         }
     }//fin validationPort
     
