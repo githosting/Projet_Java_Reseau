@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -47,7 +48,12 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     // FXML textField qui recupere le port ou va se deroule la partie 
     @FXML
     private TextField textfield_port;
-    // FXML on recuepere le bouton pour lancer la conncexion
+    /**
+     * emplacement pour l'affichage des erreurs
+     */
+    @FXML
+    protected  Label label_erreurs;
+    // FXML on recuepere le bouton pour lancer la connexion
     @FXML
     private Button button_server; 
     @FXML
@@ -75,7 +81,8 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         textfield_adresse.setText("127.0.0.1");
-        textfield_port.setText("1");
+        textfield_port.setText("4200");
+       
     }
 
     @Override
@@ -93,32 +100,42 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     @FXML
     private void btn_server(ActionEvent event) throws MalformedURLException 
     {
-        // on indique le pseudo du joueur serveur 
-        pseudo = textfield_pseudo.getText();
-       //on indique le type de joueur 
-        player_type = "server";
-        // on indique ici que cest au joueur serveur de jouer en premier 
-        my_turn = true;
+        //on teste les inputs renseignés par l'utilisateur,
+        Validation.validationPseudo(textfield_pseudo.getText());
+        Validation.validationIp(textfield_adresse.getText());
+        Validation.validationPort(textfield_port.getText());
+        //s'il n'y a pas d'erreur
+        if(Validation.afficheErreur().isEmpty()){   
+           // on indique le pseudo du joueur serveur 
+           pseudo = textfield_pseudo.getText();
+           //on indique le type de joueur 
+           player_type = "server";
+           // on indique ici que cest au joueur serveur de jouer en premier 
+           my_turn = true;
+           // ici on indique au jeu que cest au joueur serveur a jouer le premier 
+           CONTROLLER_Jeu.setTurn(my_turn);
+           // ici on transmet au jeu le pseudo et le type de joueur 
+           CONTROLLER_Jeu.setInformationPlayer("server", pseudo);
         
-        // ici on indique au jeu que cest au joueur serveur a jouer le premier 
-        CONTROLLER_Jeu.setTurn(my_turn);
-        // ici on transmet au jeu le pseudo et le type de joueur 
-        CONTROLLER_Jeu.setInformationPlayer("server", pseudo);
-        
-        try 
-        {
-            int port_serveur = Integer.parseInt(textfield_port.getText());
-            server_socket = new ServerSocket(port_serveur);
-            label_info.setText("Port "+server_socket.getLocalPort()+" écouté...");
+           try 
+            {
+                int port_serveur = Integer.parseInt(textfield_port.getText());
+                server_socket = new ServerSocket(port_serveur);
+                label_info.setText("Port "+server_socket.getLocalPort()+" écouté...");
 
-            thread_attente_connexion = new Thread(new RUN_Connexion(server_socket));
-            thread_attente_connexion.start(); 
-            CONTROLLER_Jeu.setInformationPlayer("server", pseudo);
-        }
-        catch (IOException e) { 
-            System.err.println("BUG : Port "+server_socket.getLocalPort()+" déjà utilisé."); 
-        }
-        // on redirige ée joueur serveur vers le gamescreen 
-        this.mycontroller.setScreen(Puissance4.GAME_SCREEN);
+                thread_attente_connexion = new Thread(new RUN_Connexion(server_socket));
+                thread_attente_connexion.start(); 
+                CONTROLLER_Jeu.setInformationPlayer("server", pseudo);
+            }
+            catch (IOException e) { 
+                System.err.println("BUG : Port "+server_socket.getLocalPort()+" déjà utilisé."); 
+            }
+            // on redirige ée joueur serveur vers le gamescreen 
+            this.mycontroller.setScreen(Puissance4.GAME_SCREEN);
+        
+        } else{
+            //on affiche les erreurs de saisies
+            label_erreurs.setText(Validation.afficheErreur());
+      } 
     }
 }

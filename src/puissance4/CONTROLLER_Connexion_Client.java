@@ -64,7 +64,11 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
     // quel joueur a gangne
     @FXML
     public Label label_info;
-    
+    /**
+     * emplacement pour l'affichage des erreurs
+     */
+    @FXML
+    protected  Label label_erreurs;
     // dans cet attribut private on recupere la grille de jeu du puissance 4
     @FXML
     private GridPane gp;
@@ -90,7 +94,7 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         textfield_adresse.setText("127.0.0.1");
-        textfield_port.setText("1");
+        textfield_port.setText("4200");
     }
 
     // setScreenParent
@@ -118,42 +122,53 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
     private void btn_connect(ActionEvent event) throws MalformedURLException 
     {
         
-        // on recupere le pseudo
-        pseudo = textfield_pseudo.getText();
-        // on indique que le joueur est de type serveur
-        player_type = "client";
-        // on appelle le gamescreen pour lui transmettre le type de joueur et le pseudo que le joueur est 
-        CONTROLLER_Jeu.setInformationPlayer(player_type, pseudo);
+        //on teste les inputs renseignés par l'utilisateur,
+        Validation.validationPseudo(textfield_pseudo.getText());
+        Validation.validationIp(textfield_adresse.getText());
+        Validation.validationPort(textfield_port.getText());
+        //s'il n'y a pas d'erreur
+        if(Validation.afficheErreur().isEmpty()){
+            // on recupere le pseudo
+            pseudo = textfield_pseudo.getText();
+            // on indique que le joueur est de type serveur
+            player_type = "client";
+            // on appelle le gamescreen pour lui transmettre le type de joueur et le pseudo que le joueur est 
+            CONTROLLER_Jeu.setInformationPlayer(player_type, pseudo);
         
-        try 
-        {
-            label_info.setText("Demande de connexion...");
-            
-            String adresse_serveur = textfield_adresse.getText();
-            int port_serveur = Integer.parseInt(textfield_port.getText());
-            
-            socket = new Socket(adresse_serveur, port_serveur);
+            try 
+            {
+                label_info.setText("Demande de connexion...");
 
-            // Si ce message s'affiche c'est que je suis connecté
-            label_info.setText("Connecté au serveur.");
-            //label_info.setText("TOUR ADVERSE");
-            game_start = true;
-            CONTROLLER_Jeu.setGame(game_start);
-            out = new PrintWriter(socket.getOutputStream());
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));	
+                String adresse_serveur = textfield_adresse.getText();
+                int port_serveur = Integer.parseInt(textfield_port.getText());
 
-            thread_emission = new Thread(new RUN_Emission(out));
-            thread_emission.start();
-            thread_reception = new Thread(new RUN_Reception(in));
-            thread_reception.start();
-        } 
-        catch (UnknownHostException e) { 
-            System.err.println("BUG : Connexion impossible à l'adresse "+socket.getLocalAddress()); 
-        } 
-        catch (IOException e) { 
-            System.err.println("BUG : Pas de serveur à l'écoute du port "+socket.getLocalPort()); 
+                socket = new Socket(adresse_serveur, port_serveur);
+
+                // Si ce message s'affiche c'est que je suis connecté
+                label_info.setText("Connecté au serveur.");
+                //label_info.setText("TOUR ADVERSE");
+                game_start = true;
+                CONTROLLER_Jeu.setGame(game_start);
+                out = new PrintWriter(socket.getOutputStream());
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));	
+
+                thread_emission = new Thread(new RUN_Emission(out));
+                thread_emission.start();
+                thread_reception = new Thread(new RUN_Reception(in));
+                thread_reception.start();
+            } 
+            catch (UnknownHostException e) { 
+                System.err.println("BUG : Connexion impossible à l'adresse "+socket.getLocalAddress()); 
+            } 
+            catch (IOException e) { 
+                System.err.println("BUG : Pas de serveur à l'écoute du port "+socket.getLocalPort()); 
+            }
+            this.mycontroller.setScreen(Puissance4.GAME_SCREEN);
+        }else{
+            //on affiche les erreurs de saisies
+            label_erreurs.setText(Validation.afficheErreur());
         }
-        this.mycontroller.setScreen(Puissance4.GAME_SCREEN);
       
-    }
+}
+    
 }
