@@ -3,7 +3,6 @@ package puissance4;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.commons.validator.routines.InetAddressValidator;
 
 /**
  * 
@@ -37,9 +36,16 @@ public class Validation {
      * @param ip l'adresse ip saisie par le joueur       
      */
     public static void validationIp(String ip){
+        
+        String ip_pattern =
+		"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+        
         if(!ip.trim().isEmpty())
         {
-            if(InetAddressValidator.getInstance().isValid(ip)){
+            if(ip.matches(ip_pattern)){
                 ERREURS.remove("ip");
             }else{
                 ERREURS.put("ip","IP incorrecte \n");
