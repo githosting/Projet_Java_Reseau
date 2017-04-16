@@ -51,4 +51,16 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
     private void goToConnectScreenClient (ActionEvent event){
         mycontroller.setScreen(Puissance4.CLIENT_CONNECT_SCREEN);
     } 
+    
+    /*
+        Redirige vers l'écran historique des parties.
+        @return void
+        @params ActionEvent event lorsque l'on appuie sur un bouton
+    */
+    @FXML
+    private void goToHistorique (ActionEvent event){
+        mycontroller.setScreen(Puissance4.HISTORIQUE_SCREEN);
+        System.out.println("KIKOU");
+        
+    } 
 }

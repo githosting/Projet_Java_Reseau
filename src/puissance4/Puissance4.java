@@ -12,21 +12,26 @@ import javafx.stage.WindowEvent;
 
 public class Puissance4 extends Application 
 {
-    // Écran principal
+    // Écran Principal.
     public static final String MAIN_SCREEN = "main"; 
     public static final String MAIN_SCREEN_FXML = "VUE_Accueil.fxml";
     
-    // ecran de connection pour le serveur
+    // Écran pour la connection en tant que serveur.
     public static final String SERVER_CONNECT_SCREEN = "serverconnect"; 
     public static final String SERVER_CONNECT_SCREEN_FXML = "VUE_Connexion_Server.fxml";
 
-    // ecran de connexion pour le client
+    // Écran pour la connexion à un serveur en tant que client.
     public static final String CLIENT_CONNECT_SCREEN = "clientconnect"; 
     public static final String CLIENT_CONNECT_SCREEN_FXML = "VUE_Connexion_Client.fxml";
     
-    // ecran pour le deroulement du jeu 
+    // Écran de jeu. 
     public static final String GAME_SCREEN = "jeu"; 
-    public static final String GAME_SCREEN_FXML = "VUE_Jeu.fxml"; 
+    public static final String GAME_SCREEN_FXML = "VUE_Jeu.fxml";
+    
+    // Écran pour la consultation de l'historique des parties. 
+    public static final String HISTORIQUE_SCREEN = "historique"; 
+    public static final String HISTORIQUE_SCREEN_FXML = "VUE_Historique.fxml"; 
+    
     
     @Override
     /*
@@ -47,12 +52,14 @@ public class Puissance4 extends Application
         mainContainer.loadScreen(Puissance4.SERVER_CONNECT_SCREEN, 
                                  Puissance4.SERVER_CONNECT_SCREEN_FXML); 
         mainContainer.loadScreen(Puissance4.CLIENT_CONNECT_SCREEN, 
-                                 Puissance4.CLIENT_CONNECT_SCREEN_FXML); 
+                                 Puissance4.CLIENT_CONNECT_SCREEN_FXML);
+        mainContainer.loadScreen(Puissance4.HISTORIQUE_SCREEN, 
+                                 Puissance4.HISTORIQUE_SCREEN_FXML);
         mainContainer.setScreen(Puissance4.MAIN_SCREEN); 
 
         Group root2 = new Group(); 
         root2.getChildren().addAll(mainContainer); 
-        Scene scene = new Scene(root2, 600, 570);
+        Scene scene = new Scene(root2, 560, 530);
         //Scene scene = new Scene(root2);
         
         // ajout du titre sur la fenetre

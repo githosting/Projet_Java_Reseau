@@ -2,10 +2,20 @@
 
 package puissance4;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -19,6 +29,7 @@ import puissance4.CONTROLLER_Super;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import static puissance4.RUN_Emission.message;
 
 
 public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
@@ -45,6 +56,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     public static String image_path;
     public static String image_path_adversaire;
     public static String pseudo;
+    public static String pseudo_adversaire;
     
     @FXML
     public Label label_info;
@@ -83,11 +95,18 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                 if(victory_color.equals("match_nul"))
                 {
                     label_info.setText("Match Nul !");
+                    
+                    // On historise la partie dans un fichier txt au format JSON.
+                    historiser_partie(pseudo, pseudo_adversaire, "Match Nul", grille_de_jeu, "");
                 }
                 else if(!(victory_color.equals("null")))
                 {
                     label_info.setText("Le joueur " + victory_color + " ("+pseudo+") gagne.");
                     //game_over = true;
+
+                    // On historise la partie dans un fichier txt au format JSON.
+                    historiser_partie(pseudo, pseudo_adversaire, "Victoire", grille_de_jeu, "");
+                 
                 }
                 else
                 {
@@ -109,8 +128,10 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
             }
         }
     }
-     public static String check_victory()
- {
+    
+    
+    public static String check_victory()
+    {
         String actual_color;
         
         // S'il y a match nul.
@@ -164,7 +185,47 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         }
         return "null";
     }
-            
+    
+    
+    public void historiser_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur)
+    {
+        if(param_victoire_defaite.equals("Défaite"))
+        {
+            if(param_pseudo_vainqueur.equals(pseudo))
+                param_victoire_defaite = "Victoire";
+        }
+        
+        
+        // Création de l'objet Partie_History.
+        Partie_History save = new Partie_History(param_pseudo_moi, param_pseudo_adversaire, param_victoire_defaite, param_grille_de_jeu);
+        // On sauvegarde l'objet save au format JSON dans un fichier sur le disque du joueur.
+        String save_JSON = "";
+        ObjectMapper mapper = new ObjectMapper();
+        try 
+        {
+            // Transformation au format JSON.
+            save_JSON = mapper.writeValueAsString(save);
+            // Création du nom du fichier de sauvegarde : save_ suivi d'un timestamp.
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
+            String timestamp = ts.toString().replace(':', '-').replace('.', '_');
+            String nom_fichier = "save_" + timestamp + ".txt";
+            // Sauvegarde sur le disque uniquement si le fichier n'existe pas déjà.
+            File f = new File("./saves/" + nom_fichier);
+            if(!f.exists()) 
+            { 
+                List<String> lines = Arrays.asList(save_JSON);
+                Path file = Paths.get("./saves/" + nom_fichier);
+                try 
+                {
+                    Files.write(file, lines, Charset.forName("UTF-8"));
+                } catch (IOException ex) {Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);}
+            }
+        } 
+        catch (JsonProcessingException ex) { Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex); }
+    }
+        
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -196,7 +257,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                         int rowIndex;
                         String path_image;
                         String victory_color;
-                        String pseudo_adversaire;
+                        //String pseudo_adversaire;
 
                         System.out.println(nouveau_message != ancien_message);
                         if(nouveau_message != null && (!(nouveau_message.rowIndex == ancien_message.rowIndex) || !(nouveau_message.colIndex == ancien_message.colIndex)))
@@ -239,6 +300,9 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                                     label_info.setText("Match Nul !");
                                 });
 
+                                // On historise la partie dans un fichier txt au format JSON.
+                                historiser_partie(pseudo, pseudo_adversaire, "Match Nul", grille_de_jeu, "");
+                                
                                 game_over = true;
                             }
                             else if(!(victory_color.equals("null")))
@@ -252,7 +316,10 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                                 Platform.runLater(() -> {    
                                     label_info.setText("Le joueur " + victory_color + " ("+pseudo_vainqueur+") gagne.");
                                 });
-
+                                
+                                // On historise la partie dans un fichier txt au format JSON.
+                                historiser_partie(pseudo, pseudo_adversaire, "Défaite", grille_de_jeu, pseudo_vainqueur);
+                                          
                                 game_over = true; 
                             }
                             else if(game_over == false)
