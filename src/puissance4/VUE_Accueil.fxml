@@ -8,6 +8,6 @@
       <Button layoutX="125.0" layoutY="118.0" mnemonicParsing="false" onAction="#goToConnectScreenServer" prefHeight="6.0" prefWidth="306.0" text="Nouvelle partie" />
       <Button layoutX="125.0" layoutY="265.0" mnemonicParsing="false" onAction="#goToConnectScreenClient" prefHeight="6.0" prefWidth="306.0" text="Rejoindre partie" />
       <Button layoutX="125.0" layoutY="192.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="306.0" text="Charger partie" />
-      <Button layoutX="125.0" layoutY="341.0" mnemonicParsing="false" onAction="#goToConnectScreenClient" prefHeight="6.0" prefWidth="306.0" text="Consulter score" />
+      <Button layoutX="125.0" layoutY="341.0" mnemonicParsing="false" onAction="#goToHistorique" prefHeight="6.0" prefWidth="306.0" text="Historique" />
    </children>
 </AnchorPane>
