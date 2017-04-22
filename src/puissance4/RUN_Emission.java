@@ -1,4 +1,3 @@
-// Runnable gérant l'envoi de messages sur le réseau
 
 package puissance4;
 
@@ -9,18 +8,39 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+/**
+    * Classe implémentant Runnable et gérant l'émission de messages sur le réseau.
+    * @author Bettinger
+    * @version 3.0
+    */
 public class RUN_Emission implements Runnable 
 {
     private final PrintWriter out;
     public String message_JSON_string;
     public static Message message;
 
+    /**
+        * Constructeur de la classe RUN_Emission.
+        * @author Bettinger
+        * @version 2.0
+        * @param PrintWriter out
+        *       Attribut de la classe pour l'émission de contenu sur le réseau.
+        * @return Une instance de RUN_Emission
+        */
     public RUN_Emission(PrintWriter out) 
     {
         this.out = out;
         message = new Message();
     }
 
+    
+    /**
+        * Démarre le runnable RUN_Emission.
+        * @author Bettinger
+        * @version 3.0
+        * @param No Parameters
+        * @return void
+        */
     @Override
     public void run() 
     {

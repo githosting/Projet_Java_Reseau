@@ -1,4 +1,3 @@
-// Contrôleur de la vue VUE_Connexion_Server
 
 package puissance4;
 
@@ -23,9 +22,14 @@ import puissance4.INTERFACE_Screen;
 import puissance4.CONTROLLER_Super;
 
 
+/**
+    * Classe agissant comme controller des événements de la vue VUE_Connexion_Server.
+    * @author Kessler, Araba, Bettinger
+    * @version 1.0
+    */
 public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Screen {
     
-    
+    // Attributes
     public static Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -38,7 +42,7 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     public static RUN_Emission runnable_emission;
     public static RUN_Reception runnable_reception;
     
-     // FXML Controls
+    // FXML Controls
     // FXML du textfield qui recupere le pseudo du serveur
     @FXML
     private TextField textfield_pseudo;
@@ -48,9 +52,7 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     // FXML textField qui recupere le port ou va se deroule la partie 
     @FXML
     private TextField textfield_port;
-    /**
-     * emplacement pour l'affichage des erreurs
-     */
+    // emplacement pour l'affichage des erreurs
     @FXML
     protected  Label label_erreurs;
     // FXML on recuepere le bouton pour lancer la connexion
@@ -74,29 +76,51 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     
     CONTROLLER_Super mycontroller;
     
-    // FXML Getters
+    // FXML Accessors
     public Label getLabelInfo() { return label_info; }
     public GridPane getGridPane() { return gp; }
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        textfield_adresse.setText("127.0.0.1");
-        textfield_port.setText("4200");
-       
-    }
-
     @Override
     public void setScreenParent(CONTROLLER_Super screenParent) {
         mycontroller = screenParent;
     }
     
-    // retourne a l'ecran de démarrage lors d'un action event 
+    
+    /**
+        * Execute du code à l'initialisation de la vue.
+        * @author Bettinger
+        * @version 1.0
+        * @param URL location
+        * @param ResourceBundle resources
+        * @return void
+        */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        textfield_adresse.setText("127.0.0.1");
+        textfield_port.setText("4200");
+    }
+
+    
+    /**
+        * Redirige vers l'interface principale.
+        * @author Araba, Kessler
+        * @version 1.0
+        * @param ActionEvent event
+        * @return void
+        */ 
     @FXML
     private void goToHome (ActionEvent event){
         mycontroller.setScreen(Puissance4.MAIN_SCREEN);
     }
     
     
+    /**
+        * Gère la création d'une partie par un joueur serveur.
+        * @author Bettinger, Kessler, Araba
+        * @version 2.0
+        * @param ActionEvent event
+        * @return void
+        * @throws MalformedURLException
+        */
     @FXML
     private void btn_server(ActionEvent event) throws MalformedURLException 
     {

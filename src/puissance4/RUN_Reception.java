@@ -1,4 +1,3 @@
-// Runnable gérant la réception de messages sur le réseau
 
 package puissance4;
 
@@ -16,6 +15,11 @@ import java.net.SocketException;
 import javafx.application.Platform;
 
 
+/**
+    * Classe implémentant Runnable et gérant la réception de messages en provenance du réseau.
+    * @author Bettinger
+    * @version 3.0
+    */
 public class RUN_Reception implements Runnable 
 {
     private final BufferedReader in;
@@ -25,12 +29,28 @@ public class RUN_Reception implements Runnable
     @FXML
     private Label label_info;
 
+    /**
+        * Constructeur de la classe RUN_Reception.
+        * @author Bettinger
+        * @version 2.0
+        * @param BufferedReader in
+        *       Attribut de la classe pour la réception de contenu en provenance du réseau.
+        * @return Une instance de RUN_Reception
+        */
     public RUN_Reception(BufferedReader in)
     {
         this.in = in;
         message = new Message();
     }
 
+    
+    /**
+        * Démarre le runnable RUN_Reception.
+        * @author Bettinger
+        * @version 3.0
+        * @param No Parameters
+        * @return void
+        */
     @Override
     public void run() 
     {          

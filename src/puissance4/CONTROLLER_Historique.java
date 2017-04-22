@@ -1,4 +1,3 @@
-// Contrôleur de la vue VUE_Historique
 
 package puissance4;
 
@@ -35,8 +34,15 @@ import javafx.scene.control.ListView;
 import static puissance4.RUN_Reception.message;
 
 
+/**
+    * Classe agissant comme controller des événements de la vue VUE_Historique.
+    * @author Bettinger
+    * @version 1.0
+    */
 public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
 
+    // Attributes
+    
     CONTROLLER_Super mycontroller;
     
      // La matrice représentant la grille de jeu et les pions dessus.
@@ -64,7 +70,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     @FXML
     private GridPane gp;
     
-    // FXML Getters 
+    // FXML Accessors
     public Label getLabelInfo() { return label_info; }
     public GridPane getGridPane() { return gp; }
     
@@ -74,6 +80,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     }
     
     
+    // Inutilisée
     @FXML 
     public void cellClick(MouseEvent event) throws MalformedURLException
     {
@@ -81,16 +88,26 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     }
     
     
-    // goToHome
-    // @return void 
-    // @params event lorsque l'on appuie sur un bouton ici
-    // on retourne vers le screen de lancement 
+    /**
+        * Redirige vers l'interface principale.
+        * @author Bettinger
+        * @version 1.0
+        * @param ActionEvent event
+        * @return void
+        */
     @FXML
     private void goToHome (ActionEvent event){
         mycontroller.setScreen(Puissance4.MAIN_SCREEN);
     }
     
     
+    /**
+        * Dans la listview, au click sur une partie historisée, on affiche les informations associées.
+        * @author Bettinger
+        * @version 1.0
+        * @param MouseEvent arg0
+        * @return void
+        */
     @FXML 
     public void handleMouseClick(MouseEvent arg0) 
     {
@@ -134,6 +151,14 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     }
     
     
+    /**
+        * Execute du code à l'initialisation de la vue.
+        * @author Bettinger
+        * @version 1.0
+        * @param URL location
+        * @param ResourceBundle rb
+        * @return void
+        */
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {

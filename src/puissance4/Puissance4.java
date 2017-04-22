@@ -1,4 +1,3 @@
-// Point d'entrée de l'application
 
 package puissance4;
 
@@ -10,6 +9,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+
+/**
+    * Classe étendant Application et constituant le point d'entrée de l'application.
+    * @author Bettinger, Araba, Kessler
+    * @version 2.0
+    */
 public class Puissance4 extends Application 
 {
     // Écran Principal.
@@ -33,16 +38,18 @@ public class Puissance4 extends Application
     public static final String HISTORIQUE_SCREEN_FXML = "VUE_Historique.fxml"; 
     
     
+    /**
+        * Démarre l'application.
+        * @author Bettinger, Araba, Kessler
+        * @version 2.0
+        * @param Stage stage
+        *       L'interface principale de l'application.
+        * @return void
+        * @throws Exception
+        */
     @Override
-    /*
-    * @return void
-    * @params Stage stage
-    * throws exception 
-    * lors du lancement on lance start pour charger les interfaces et démarrer les sessions
-    */
     public void start(Stage stage) throws Exception 
     {
-    
         CONTROLLER_Super mainContainer = new CONTROLLER_Super(); 
         // nous chargeons les différents ecrans en mémoire 
         mainContainer.loadScreen(Puissance4.MAIN_SCREEN, 
@@ -75,10 +82,14 @@ public class Puissance4 extends Application
         });
     }
 
-    /*
-    *@params args the command line arguments
-    *@return void
-    * lancement du jeu 
+
+    /**
+    * Lance le démarrage de l'application.
+    * @author Automatic Generation
+    * @version 1.0
+    * @param args 
+    * 		The command line arguments.
+    * @return void
     */
     public static void main(String[] args) 
     {

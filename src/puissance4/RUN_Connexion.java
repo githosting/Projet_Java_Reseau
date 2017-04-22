@@ -1,4 +1,3 @@
-// Runnable gérant l'attente de connexion d'un client au serveur
 
 package puissance4;
 
@@ -6,15 +5,15 @@ import java.io.*;
 import java.net.*;
 
 
+/**
+    * Classe implémentant Runnable et gérant l'attente de connexion d'un client au serveur.
+    * @author Bettinger
+    * @version 1.0
+    */
 public class RUN_Connexion implements Runnable
 {
   
-// attributs 
-    /*
-    * attribut private
-    * l'attribut est final 
-    * elle définit le ServerSocket de la connexion
-    */
+    // Attributs 
     private final ServerSocket server_socket;
     private Socket socket;
     private PrintWriter out;
@@ -24,22 +23,29 @@ public class RUN_Connexion implements Runnable
     // attribut public il indique le thread serveur qui emet
     public Thread thread_attente_Emission;
 
-    /*
-        * Constructeur
-        * @params ServerSocket ss
-        * insert the socket server in run connexion
-         
-    */
+
+    /**
+        * Constructeur de la classe RUN_Connexion.
+        * @author Bettinger
+        * @version 1.0
+        * @param ServerSocket ss
+        *       La socket réseau du joueur serveur.
+        * @return Une instance de RUN_Connexion
+        */
     public RUN_Connexion(ServerSocket ss)
     {
         server_socket = ss;
     }
 
+    
+    /**
+        * Démarre le runnable RUN_Connexion.
+        * @author Bettinger
+        * @version 1.0
+        * @param No Parameters
+        * @return void
+        */
     @Override
-    /*
-    *   @return void
-    *   The run method is used to start the server connection
-    */
     public void run() 
     {	
         try 

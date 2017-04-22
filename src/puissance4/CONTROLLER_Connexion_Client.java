@@ -1,4 +1,3 @@
-// Contrôleur de la vue VUE_Connexion_Client
 
 package puissance4;
 
@@ -15,7 +14,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-// Importations qui concernent le jeu et les informations nécessaires
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,13 +23,17 @@ import puissance4.INTERFACE_Screen;
 import puissance4.CONTROLLER_Super;
 
 
+/**
+    * Classe agissant comme controller des événements de la vue VUE_Connexion_Client.
+    * @author Kessler, Araba, Bettinger
+    * @version 1.0
+    */
 public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Screen {
     
-    // attributs 
+    // Attributes 
     public static Socket socket;
     private PrintWriter out;
     private BufferedReader in;
-    // public indique le type du joueur 
     public static String player_type;
     public static ServerSocket server_socket;
     public static Thread thread_attente_connexion;
@@ -41,20 +43,20 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
     public static RUN_Emission runnable_emission;
     public static RUN_Reception runnable_reception;
     
-    // attributs FXML
-    // on creer un attribut qui va nous renseigner sur le pseudo coter client
+    // FXML Attributes
     @FXML
+    // Control FXML pour la saisie du pseudo du joueur serveur.
     private TextField textfield_pseudo;
     
     @FXML
-    // on a un attribut private qui nous renseigne sur l'adresse du serveur 
+    // Control FXML pour la saisie de l'adresse du serveur.
     private TextField textfield_adresse; 
     
     @FXML
-    // on a un attribut private pour recuperer le port du serveur 
+    // Control FXML pour la saisie du port du serveur.
     private TextField textfield_port;
     
-    // on recupere avec cet attribut private le bouton connecte cote client
+    // Control FXML pour engager la connexion.
     @FXML
     private Button button_connect;
     
@@ -82,43 +84,54 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
     
     CONTROLLER_Super mycontroller;
     
-        // FXML Getters
+    // Accessors
     // ono recupere le label info 
     public Label getLabelInfo() { return label_info; }
     // on nous retourne la grille de jeu
     public GridPane getGridPane() { return gp; }
     
-    // methode d'initialisation
-    //@params Url de serveur
-    //@params  ResourceBundle resources
+    @Override
+    public void setScreenParent(CONTROLLER_Super screenParent) {
+        mycontroller = screenParent;
+    }
+    
+    /**
+        * Execute du code à l'initialisation de la vue.
+        * @author Bettinger
+        * @version 1.0
+        * @param URL location
+        * @param ResourceBundle resources
+        * @return void
+        */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         textfield_adresse.setText("127.0.0.1");
         textfield_port.setText("4200");
     }
 
-    // setScreenParent
-    //@return void
-    // dans cette methode on redirige notre ecran 
-    @Override
-    public void setScreenParent(CONTROLLER_Super screenParent) {
-        mycontroller = screenParent;
-    }
-  
-    // goToHome
-    // @return void 
-    // @params event lorsque l'on appuie sur un bouton ici
-    // on retourne vers le screen de lancement 
+    
+    /**
+        * Redirige vers l'interface principale.
+        * @author Araba, Kessler
+        * @version 1.0
+        * @param ActionEvent event
+        * @return void
+        */
     @FXML
     private void goToHome (ActionEvent event){
         mycontroller.setScreen(Puissance4.MAIN_SCREEN);
     }
     
-    // btn_connect 
-    //@return void 
-    //@ params event si on clique sur le bouton connecte la procedure de lancemenmt se met en place 
-    //throws si l'url n'est pas valide 
-     @FXML
+    
+    /**
+        * Gère la connexion d'un client à une partie.
+        * @author Bettinger, Kessler, Araba
+        * @version 2.0
+        * @param ActionEvent event
+        * @return void
+        * @throws MalformedURLException
+        */
+    @FXML
     private void btn_connect(ActionEvent event) throws MalformedURLException 
     {
         

@@ -5,17 +5,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
- * @author ck
- */
-
+    * Classe contenant les méthodes permettant la validation des saisies de l'utilisateur.
+    * Permet de s'assurer que le programme gère tous les cas d'erreur possible liés aux saisies des utilisateurs.
+    * @author Kessler
+    * @version 2.0
+    */
 public class Validation {
+    
+    // Collection contenant la liste des erreurs détectées.
     public static final Map<String, String> ERREURS = new HashMap<>();
     
     /**
-     * Vérifie que le pseudo comporte des lettres, chiffres et quelques caractères précis
-     * @param pseudo  le pseudo renseigné par le joueur     
-     */
+        * Vérifie l'intégrité de la saisie du champ pseudo.
+        * @author Kessler
+        * @version 2.0
+        * @param pseudo
+        *       Le pseudo renseigné par le joueur. 
+        * @return void
+        */
     public static void validationPseudo(String pseudo){
         if(!pseudo.trim().isEmpty() && pseudo.length()<15)
         {
@@ -29,12 +36,17 @@ public class Validation {
         {
            ERREURS.put("pseudo","Champ obligatoire, 15 caractères maximum \n");
         }
-    }//fin validationPseudo
+    } // Fin validationPseudo
+    
     
     /**
-     * Vérifie si l'adresse internet renseignée est valide (IPv4)
-     * @param ip l'adresse ip saisie par le joueur       
-     */
+        * Vérifie l'intégrité de la saisie du champ adresse.
+        * @author Kessler
+        * @version 2.0
+        * @param ip
+        *       L'adresse IP saisie par le joueur.
+        * @return void
+        */
     public static void validationIp(String ip){
         
         String ip_pattern =
@@ -53,12 +65,17 @@ public class Validation {
         }else{
             ERREURS.put("ip","Champ obligatoire \n");
         }
-    }//fin validationIp
+    } // Fin validationIp
     
+
     /**
-     * Vérifie si le port est bien compris entre l'interval 1024 et 65 535
-     * @param port le port renseigné par le joueur        
-     */
+        * Vérifie l'intégrité de la saisie du champ port.
+        * @author Kessler
+        * @version 2.0
+        * @param port
+        *       Le port renseigné par le joueur. 
+        * @return void
+        */
     public static void validationPort(String port){
         if(!port.trim().isEmpty() && port.length()<6 && port.matches("([0-9]{4})+")){
             if(Integer.parseInt(port)>=1024 && Integer.parseInt(port)<65535 ){ 
@@ -69,12 +86,16 @@ public class Validation {
         }else{
             ERREURS.put("port","Champ obligatoire, 5 caractères maximum, caractères spéciaux non autorisés \n");
         }
-    }//fin validationPort
+    } // Fin validationPort
     
+
     /**
-     * Affiche les erreurs de saisie du joueur
-     * @return listeErreur les erreurs de saisies du joueur      
-     */
+        * Affiche au joueur les erreurs de saisie détectées.
+        * @author Kessler
+        * @version 2.0
+        * @param No Parameters
+        * @return String contenant les messages d'erreur concaténés.
+        */
     public static String afficheErreur(){
         String listeErreur = ""; 
         if(!ERREURS.isEmpty())

@@ -1,4 +1,3 @@
-// Contrôleur de la vue VUE_Jeu
 
 package puissance4;
 
@@ -32,8 +31,14 @@ import javafx.event.ActionEvent;
 import static puissance4.RUN_Emission.message;
 
 
+/**
+    * Classe agissant comme controller des événements de la vue VUE_Jeu.
+    * @author Araba, Kessler, Bettinger
+    * @version 4.0
+    */
 public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
 
+    // Attributes
     CONTROLLER_Super mycontroller;
     
      // La matrice représentant la grille de jeu et les pions dessus.
@@ -63,7 +68,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     @FXML
     private GridPane gp;
     
-    // FXML Getters 
+    // Accessors
     public Label getLabelInfo() { return label_info; }
     public GridPane getGridPane() { return gp; }
     
@@ -71,6 +76,58 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     public void setScreenParent(CONTROLLER_Super screenParent) {
         mycontroller = screenParent;
     }
+    
+    public static void setGame(boolean rep){
+        game_start = rep;
+    }
+    public static void setTurn(boolean rep) {
+        my_turn = rep;
+    }
+    
+    
+    /**
+        * Initialise le jeux de variables d'un joueur en fonction de son type.
+        * @author Araba, Kessler
+        * @version 1.0
+        * @param String type_player
+        * 	Le type du joueur : client ou server.
+        * @param String pseudo_name
+        * 	Le pseudo du joueur.
+        * @return void
+        * @throws MalformedURLException
+        */
+    public static void setInformationPlayer (String type_player, String pseudo_name)throws MalformedURLException {
+        if(type_player == "client"){
+            System.out.println("cest un client");
+            pseudo = pseudo_name;
+            player_color = "blue";
+            File image = new File("./pictures/blue.png");
+            image_path = image.toURI().toURL().toString();
+            image_path_adversaire = new File("./pictures/orange.png").toURI().toURL().toString();
+            player_type = "client";
+        }
+        if (type_player == "server"){
+            System.out.println("cest un serveur");
+            System.out.println("player type"+ player_type);
+            pseudo = pseudo_name;
+            player_color = "orange";
+            File image = new File("./pictures/orange.png");
+            image_path = image.toURI().toURL().toString();
+            image_path_adversaire = new File("./pictures/blue.png").toURI().toURL().toString();
+            player_type = "server";
+            System.out.println("changement de player type "+player_type );
+        }
+    }
+    
+    
+    /**
+        * Gère le click d'un joueur sur une cellule de la grille de jeu.
+        * @author Bettinger
+        * @version 2.0
+        * @param MouseEvent event
+        * @return void
+        * @throws MalformedURLException
+        */
     @FXML 
     public void cellClick(MouseEvent event) throws MalformedURLException
     {
@@ -130,6 +187,13 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     }
     
     
+    /**
+        * Vérifie si les conditions de victoire sont remplies suite à un coup joué.
+        * @author Bettinger
+        * @version 3.0
+        * @param No Parameters
+        * @return String informant sur l'état de la partie ou sur la couleur du gagnant suite au coup joué.
+        */
     public static String check_victory()
     {
         String actual_color;
@@ -187,6 +251,22 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     }
     
     
+    /**
+        * Gère l'historisation automatique d'une partie qui se termine complètement.
+        * @author Bettinger
+        * @version 1.0
+        * @param String param_pseudo_moi
+        * 	Le pseudo du joueur qui enregistre la partie.
+        * @param String param_pseudo_adversaire
+        * 	Le pseudo de l'adversaire du joueur qui enregistre la partie.
+        * @param String param_victoire_defaite
+        * 	Le résultat de la partie pour le joueur qui enregistre la partie.
+        * @param String[][] param_grille_de_jeu
+        * 	La configuration de la grille de jeu en fin de partie.
+        * @param String param_pseudo_vainqueur
+        * 	Le pseudo du vainqueur.
+        * @return void
+        */
     public void historiser_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur)
     {
         if(param_victoire_defaite.equals("Défaite"))
@@ -223,9 +303,35 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         } 
         catch (JsonProcessingException ex) { Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex); }
     }
+    
+    
+    /**
+        * Gère la réinitialisation de la partie.
+        * @author Bettinger
+        * @version 1.0
+        * @param ActionEvent event
+        * @return void
+        * @throws MalformedURLException
+        */
+    @FXML
+    private void btn_reset(ActionEvent event) throws MalformedURLException 
+    {
+        try {Process process = Runtime.getRuntime().exec("java -jar ./dist/Puissance4.jar");} 
+        catch (IOException ex) {Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);}
+        Platform.exit();
+        System.exit(0);
+    }
         
     
-    
+    /**
+        * Execute du code à l'initialisation de la vue.
+        * Contient le Thread de rafraichissement de la grille de jeu.
+        * @author Bettinger
+        * @version 4.0
+        * @param URL url
+        * @param ResourceBundle rb
+        * @return void
+        */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -341,42 +447,4 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
             }).start();
     }  
     
-    public static void setGame(boolean rep){
-        game_start = rep;
-    }
-    public static void setTurn(boolean rep) {
-        my_turn = rep;
-    }
-    
-    @FXML
-    private void btn_reset(ActionEvent event) throws MalformedURLException 
-    {
-        try {Process process = Runtime.getRuntime().exec("java -jar ./dist/Puissance4.jar");} 
-        catch (IOException ex) {Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);}
-        Platform.exit();
-        System.exit(0);
-    }
-    
-    public static void setInformationPlayer (String type_player, String pseudo_name)throws MalformedURLException {
-        if(type_player == "client"){
-            System.out.println("cest un client");
-            pseudo = pseudo_name;
-            player_color = "blue";
-            File image = new File("./pictures/blue.png");
-            image_path = image.toURI().toURL().toString();
-            image_path_adversaire = new File("./pictures/orange.png").toURI().toURL().toString();
-            player_type = "client";
-        }
-        if (type_player == "server"){
-            System.out.println("cest un serveur");
-            System.out.println("player type"+ player_type);
-            pseudo = pseudo_name;
-            player_color = "orange";
-            File image = new File("./pictures/orange.png");
-            image_path = image.toURI().toURL().toString();
-            image_path_adversaire = new File("./pictures/blue.png").toURI().toURL().toString();
-            player_type = "server";
-            System.out.println("changement de player type "+player_type );
-        }
-    }
 }
