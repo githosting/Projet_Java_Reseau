@@ -35,7 +35,7 @@ import static puissance4.RUN_Reception.message;
 
 
 /**
-    * Classe agissant comme controller des événements de la vue VUE_Historique.
+    * Class acting as a controller for view VUE_Historique events.
     * @author Bettinger
     * @version 1.0
     */
@@ -89,7 +89,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Redirige vers l'interface principale.
+        * Redirect to the main interface.
         * @author Bettinger
         * @version 1.0
         * @param ActionEvent event
@@ -102,7 +102,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Dans la listview, au click sur une partie historisée, on affiche les informations associées.
+        * Inside the listview, when a click occurs on a game, associated information are displayed.
         * @author Bettinger
         * @version 1.0
         * @param MouseEvent arg0
@@ -152,7 +152,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Execute du code à l'initialisation de la vue.
+        * Execute code when the view is displayed.
         * @author Bettinger
         * @version 1.0
         * @param URL location

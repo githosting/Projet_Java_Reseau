@@ -5,7 +5,7 @@ import puissance4.CONTROLLER_Super;
 
 
 /**
-    * Interface pour la gestion des vues.
+    * Interface for views management.
     * @author Araba, Kessler
     * @version 1.0
     */

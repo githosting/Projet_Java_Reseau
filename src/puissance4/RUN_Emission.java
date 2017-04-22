@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 
 /**
-    * Classe implémentant Runnable et gérant l'émission de messages sur le réseau.
+    * Class implementing Runnable and managing message broadcasts on the network.
     * @author Bettinger
     * @version 3.0
     */
@@ -20,12 +20,12 @@ public class RUN_Emission implements Runnable
     public static Message message;
 
     /**
-        * Constructeur de la classe RUN_Emission.
+        * Constructor for RUN_Emission class.
         * @author Bettinger
         * @version 2.0
         * @param PrintWriter out
-        *       Attribut de la classe pour l'émission de contenu sur le réseau.
-        * @return Une instance de RUN_Emission
+        *       Class attribute to broadcast content on the network.
+        * @return A RUN_Emission instance
         */
     public RUN_Emission(PrintWriter out) 
     {
@@ -35,7 +35,7 @@ public class RUN_Emission implements Runnable
 
     
     /**
-        * Démarre le runnable RUN_Emission.
+        * Start the RUN_Emission runnable.
         * @author Bettinger
         * @version 3.0
         * @param No Parameters

@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 
 
 /**
-    * Classe agissant comme controller général des autres controllers.
+    * Class acting as a general controller for other controllers.
     * @author Kessler, Araba
     * @version 1.0
     */
@@ -42,8 +42,8 @@ public class CONTROLLER_Super extends StackPane {
         * @author Kessler, Araba
         * @version 1.0
         * @param final String name
-        * 	Le nom du screen à loader.
-        * @return boolean informant sur la réussite ou l'échec du load.
+        * 	The screen name we have to load.
+        * @return boolean representing the loading success or failure.
         */
     public boolean setScreen(final String name) { 
         if(screens.get(name) != null) { //screen loaded 
@@ -91,13 +91,13 @@ public class CONTROLLER_Super extends StackPane {
     
     
     /**
-        * Gère la redirection vers un screen.
+        * Manage the redirection to a screen.
         * @author Kessler, Araba
         * @version 1.0
         * @param String name
-        * 	Le nom du screen vers lequel on redirige.
+        * 	The screen name we have to redirect to.
         * @param String resource
-        * @return boolean informant sur le succès ou l'échec de la redirection.
+        * @return boolean representing redirection success or failure.
         */
     public boolean loadScreen(String name, String resource){
         try{
@@ -116,12 +116,12 @@ public class CONTROLLER_Super extends StackPane {
     
      
     /**
-        * Verifie le bon déroulement du unload d'un screen.
+        * Check if a screen unload gone well.
         * @author Kessler, Araba
         * @version 1.0
         * @param String name
-        * 	Le nom du screen.
-        * @return boolean informant sur le succès ou l'échec du unload.
+        * 	The screen name.
+        * @return boolean representing unload success or failure.
         */
     public boolean unloadScreen(String name) { 
         if(screens.remove(name) == null) { 

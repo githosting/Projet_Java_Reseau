@@ -3,7 +3,7 @@ package puissance4;
 
 
 /**
-    * Classe permettant la création d'objets Message qui seront échangés entre les joueurs.
+    * Class allowing creation of Message objects which are exchanged between players.
     * @author Bettinger
     * @version 2.0
     */
@@ -24,11 +24,11 @@ public class Message
     public String get_pseudo() { return pseudo; }
     
     /**
-        * Constructeur sans paramètres de la classe Message.
+        * Constructor without parameters for Message class.
         * @author Bettinger
         * @version 2.0
         * @param No Parameters
-        * @return Une instance de Message
+        * @return A Message instance.
         */
     public Message()
     {
@@ -40,20 +40,20 @@ public class Message
     }
     
     /**
-        * Constructeur avec paramètres de la classe Message.
+        * Constructor with parameters for Message class.
         * @author Bettinger
         * @version 2.0
         * @param int un_colIndex
-        *       Indice de la colonne de la grille tout juste modifiée.
+        *       Game grid column index just modified.
         * @param int un_rowIndex
-        *       Indice de la ligne de la grille tout juste modifiée.
+        *       Game grid row index just modified.
         * @param String un_imagePath
-        *       Chemin vers l'image à insérer.
+        *       Path to the picture we have to display.
         * @param String un_victoryColor
-        *       Retour de la fonction de vérification de victoire.
+        *       Return from the checkVictory function.
         * @param String un_pseudo
-        *       Pseudo du joueur envoyant le message.
-        * @return Une instance de Message
+        *       Pseudo of the player sending the message.
+        * @return A Message instance
         */
     public Message(int un_colIndex, int un_rowIndex, String un_imagePath, String un_victoryColor, String un_pseudo)
     {

@@ -6,7 +6,7 @@ import java.net.*;
 
 
 /**
-    * Classe implémentant Runnable et gérant l'attente de connexion d'un client au serveur.
+    * Class implementing Runnable and managing the "wait for a client connection" step for the server.
     * @author Bettinger
     * @version 1.0
     */
@@ -25,12 +25,12 @@ public class RUN_Connexion implements Runnable
 
 
     /**
-        * Constructeur de la classe RUN_Connexion.
+        * Constructor for RUN_Connexion class.
         * @author Bettinger
         * @version 1.0
         * @param ServerSocket ss
-        *       La socket réseau du joueur serveur.
-        * @return Une instance de RUN_Connexion
+        *       The server player's network socket.
+        * @return A RUN_Connexion instance
         */
     public RUN_Connexion(ServerSocket ss)
     {
@@ -39,7 +39,7 @@ public class RUN_Connexion implements Runnable
 
     
     /**
-        * Démarre le runnable RUN_Connexion.
+        * Start the RUN_Connexion runnable.
         * @author Bettinger
         * @version 1.0
         * @param No Parameters

@@ -24,7 +24,7 @@ import puissance4.CONTROLLER_Super;
 
 
 /**
-    * Classe agissant comme controller des événements de la vue VUE_Connexion_Client.
+    * Class acting as a controller for view VUE_Connexion_Client events.
     * @author Kessler, Araba, Bettinger
     * @version 1.0
     */
@@ -96,7 +96,7 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
     }
     
     /**
-        * Execute du code à l'initialisation de la vue.
+        * Execute code when the view is displayed.
         * @author Bettinger
         * @version 1.0
         * @param URL location
@@ -111,7 +111,7 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
 
     
     /**
-        * Redirige vers l'interface principale.
+        * Redirect to the main interface.
         * @author Araba, Kessler
         * @version 1.0
         * @param ActionEvent event
@@ -124,7 +124,7 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
     
     
     /**
-        * Gère la connexion d'un client à une partie.
+        * Manage a client connection to a game.
         * @author Bettinger, Kessler, Araba
         * @version 2.0
         * @param ActionEvent event

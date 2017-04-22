@@ -10,7 +10,7 @@ import puissance4.CONTROLLER_Super;
 
 
 /**
-    * Classe agissant comme controller des événements de la vue VUE_Accueil.
+    * Class acting as a controller for view VUE_Accueil events.
     * @author Kessler, Araba
     * @version 1.0
     */
@@ -27,7 +27,7 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
     
 
     /**
-        * Execute du code à l'initialisation de la vue.
+        * Execute code when the view is displayed.
         * @author Kessler, Araba
         * @version 1.0
         * @param URL location
@@ -40,7 +40,7 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
 
     
     /**
-        * Redirige vers l'interface de connexion pour le joueur serveur.
+        * Redirect to the server player connection interface.
         * @author Kessler, Araba
         * @version 1.0
         * @param ActionEvent event
@@ -53,7 +53,7 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Redirige vers l'interface de connexion pour le joueur client.
+        * Redirect to the client player connection interface.
         * @author Kessler, Araba
         * @version 1.0
         * @param ActionEvent event
@@ -66,7 +66,7 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Redirige vers l'interface de consultation de l'historique des parties.
+        * Redirect to the history interface.
         * @author Bettinger
         * @version 1.0
         * @param ActionEvent event

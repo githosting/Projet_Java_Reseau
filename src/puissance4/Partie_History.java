@@ -3,7 +3,7 @@ package puissance4;
 
 
 /**
-    * Classe permettant la création d'objets Partie_History représentant les parties que l'on souhaite historiser.
+    * Class allowing the creation of Partie_History objects representing games we want to save in the history.
     * @author Bettinger
     * @version 1.0
     */
@@ -24,28 +24,28 @@ public class Partie_History
     
     
     /**
-        * Constructeur sans paramètres de la classe Partie_History.
+        * Constructor without parameters for Partie_History class.
         * @author Bettinger
         * @version 1.0
         * @param No Parameters
-        * @return Une instance de Partie_History
+        * @return A Partie_History instance
         */
     public Partie_History(){}
             
     
     /**
-        * Constructeur avec paramètres de la classe Partie_History.
+        * Constructor with parameters for Partie_History class.
         * @author Bettinger
         * @version 1.0
         * @param String un_pseudo_moi
-        * 	Le pseudo du joueur historisant cette partie.
+        * 	The pseudo of the player who save the game in history.
         * @param String un_pseudo_adversaire
-        * 	Le pseudo de l'adversaire du joueur historisant cette partie.
+        * 	The pseudo of the player opponent.
         * @param String un_victoire_defaite
-        * 	Le résultat de la partie pour le joueur historisant cette partie.
+        * 	The game result for the player who save the game in history.
         * @param String[][] un_grille_de_jeu
-        * 	La configuration de la grille de jeu en fin de partie.
-        * @return Une instance de Partie_History
+        * 	The game grid configuration at game end.
+        * @return A Partie_History instance
         */
     public Partie_History(String un_pseudo_moi, String un_pseudo_adversaire, String un_victoire_defaite, String[][] un_grille_de_jeu)
     {

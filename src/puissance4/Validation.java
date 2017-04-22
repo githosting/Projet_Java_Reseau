@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-    * Classe contenant les méthodes permettant la validation des saisies de l'utilisateur.
-    * Permet de s'assurer que le programme gère tous les cas d'erreur possible liés aux saisies des utilisateurs.
+    * Class containing methods to validate user inputs.
+    * Ensure that the program manages all error cases linked to user inputs.
     * @author Kessler
     * @version 2.0
     */
@@ -16,11 +16,11 @@ public class Validation {
     public static final Map<String, String> ERREURS = new HashMap<>();
     
     /**
-        * Vérifie l'intégrité de la saisie du champ pseudo.
+        * Check the input integrity from pseudo field.
         * @author Kessler
         * @version 2.0
         * @param pseudo
-        *       Le pseudo renseigné par le joueur. 
+        *       The pseudo given by the player. 
         * @return void
         */
     public static void validationPseudo(String pseudo){
@@ -40,11 +40,11 @@ public class Validation {
     
     
     /**
-        * Vérifie l'intégrité de la saisie du champ adresse.
+        * Check the input integrity from adresse field.
         * @author Kessler
         * @version 2.0
         * @param ip
-        *       L'adresse IP saisie par le joueur.
+        *       The IP address given by the player.
         * @return void
         */
     public static void validationIp(String ip){
@@ -69,11 +69,11 @@ public class Validation {
     
 
     /**
-        * Vérifie l'intégrité de la saisie du champ port.
+        * Check the input integrity from port field.
         * @author Kessler
         * @version 2.0
         * @param port
-        *       Le port renseigné par le joueur. 
+        *       The port given by the player. 
         * @return void
         */
     public static void validationPort(String port){
@@ -90,11 +90,11 @@ public class Validation {
     
 
     /**
-        * Affiche au joueur les erreurs de saisie détectées.
+        * Display detected errors to the player.
         * @author Kessler
         * @version 2.0
         * @param No Parameters
-        * @return String contenant les messages d'erreur concaténés.
+        * @return String containing concatenated error messages.
         */
     public static String afficheErreur(){
         String listeErreur = ""; 

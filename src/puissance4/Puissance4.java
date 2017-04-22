@@ -11,7 +11,7 @@ import javafx.stage.WindowEvent;
 
 
 /**
-    * Classe étendant Application et constituant le point d'entrée de l'application.
+    * Class extending Application and being the application entry point.
     * @author Bettinger, Araba, Kessler
     * @version 2.0
     */
@@ -39,11 +39,11 @@ public class Puissance4 extends Application
     
     
     /**
-        * Démarre l'application.
+        * Start the application.
         * @author Bettinger, Araba, Kessler
         * @version 2.0
         * @param Stage stage
-        *       L'interface principale de l'application.
+        *       The main application interface.
         * @return void
         * @throws Exception
         */
@@ -84,7 +84,7 @@ public class Puissance4 extends Application
 
 
     /**
-    * Lance le démarrage de l'application.
+    * Launch the application.
     * @author Automatic Generation
     * @version 1.0
     * @param args 

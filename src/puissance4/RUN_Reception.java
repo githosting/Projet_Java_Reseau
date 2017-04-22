@@ -16,7 +16,7 @@ import javafx.application.Platform;
 
 
 /**
-    * Classe implémentant Runnable et gérant la réception de messages en provenance du réseau.
+    * Class implementing Runnable and managing message receptions from the network.
     * @author Bettinger
     * @version 3.0
     */
@@ -30,12 +30,12 @@ public class RUN_Reception implements Runnable
     private Label label_info;
 
     /**
-        * Constructeur de la classe RUN_Reception.
+        * Constructor for RUN_Reception class.
         * @author Bettinger
         * @version 2.0
         * @param BufferedReader in
-        *       Attribut de la classe pour la réception de contenu en provenance du réseau.
-        * @return Une instance de RUN_Reception
+        *       Class attribute to receive content from the network.
+        * @return A RUN_Reception instance
         */
     public RUN_Reception(BufferedReader in)
     {
@@ -45,7 +45,7 @@ public class RUN_Reception implements Runnable
 
     
     /**
-        * Démarre le runnable RUN_Reception.
+        * Start the RUN_Reception runnable.
         * @author Bettinger
         * @version 3.0
         * @param No Parameters

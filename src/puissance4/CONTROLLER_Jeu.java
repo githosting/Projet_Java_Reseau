@@ -32,7 +32,7 @@ import static puissance4.RUN_Emission.message;
 
 
 /**
-    * Classe agissant comme controller des événements de la vue VUE_Jeu.
+    * Class acting as a controller for view VUE_Jeu events.
     * @author Araba, Kessler, Bettinger
     * @version 4.0
     */
@@ -86,13 +86,13 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Initialise le jeux de variables d'un joueur en fonction de son type.
+        * Initialise a player variables considering his type.
         * @author Araba, Kessler
         * @version 1.0
         * @param String type_player
-        * 	Le type du joueur : client ou server.
+        * 	The player type : client or server.
         * @param String pseudo_name
-        * 	Le pseudo du joueur.
+        * 	The player pseudo.
         * @return void
         * @throws MalformedURLException
         */
@@ -121,7 +121,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Gère le click d'un joueur sur une cellule de la grille de jeu.
+        * Manage the click on a game grid cell.
         * @author Bettinger
         * @version 2.0
         * @param MouseEvent event
@@ -188,11 +188,11 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Vérifie si les conditions de victoire sont remplies suite à un coup joué.
+        * Check victory conditions after a player move.
         * @author Bettinger
         * @version 3.0
         * @param No Parameters
-        * @return String informant sur l'état de la partie ou sur la couleur du gagnant suite au coup joué.
+        * @return String representing game state or winner color after a player move.
         */
     public static String check_victory()
     {
@@ -252,19 +252,19 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Gère l'historisation automatique d'une partie qui se termine complètement.
+        * Manage the automatic game save into history when it ends.
         * @author Bettinger
         * @version 1.0
         * @param String param_pseudo_moi
-        * 	Le pseudo du joueur qui enregistre la partie.
+        * 	The pseudo of the player saving the game.
         * @param String param_pseudo_adversaire
-        * 	Le pseudo de l'adversaire du joueur qui enregistre la partie.
+        * 	The pseudo of his opponent.
         * @param String param_victoire_defaite
-        * 	Le résultat de la partie pour le joueur qui enregistre la partie.
+        * 	The game result for the player saving the game.
         * @param String[][] param_grille_de_jeu
-        * 	La configuration de la grille de jeu en fin de partie.
+        * 	The game grid configuration at game end.
         * @param String param_pseudo_vainqueur
-        * 	Le pseudo du vainqueur.
+        * 	The winner pseudo.
         * @return void
         */
     public void historiser_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur)
@@ -306,7 +306,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Gère la réinitialisation de la partie.
+        * Manage a game reinitialisation.
         * @author Bettinger
         * @version 1.0
         * @param ActionEvent event
@@ -324,8 +324,8 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         
     
     /**
-        * Execute du code à l'initialisation de la vue.
-        * Contient le Thread de rafraichissement de la grille de jeu.
+        * Execute code when the view is displayed.
+        * Contains the Thread which refreshes the game grid.
         * @author Bettinger
         * @version 4.0
         * @param URL url
