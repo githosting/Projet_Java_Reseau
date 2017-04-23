@@ -17,23 +17,23 @@ import javafx.stage.WindowEvent;
     */
 public class Puissance4 extends Application 
 {
-    // Écran Principal.
+    // Main screen.
     public static final String MAIN_SCREEN = "main"; 
     public static final String MAIN_SCREEN_FXML = "VUE_Accueil.fxml";
     
-    // Écran pour la connection en tant que serveur.
+    // Server player connection screen.
     public static final String SERVER_CONNECT_SCREEN = "serverconnect"; 
     public static final String SERVER_CONNECT_SCREEN_FXML = "VUE_Connexion_Server.fxml";
 
-    // Écran pour la connexion à un serveur en tant que client.
+    // Client player connection screen.
     public static final String CLIENT_CONNECT_SCREEN = "clientconnect"; 
     public static final String CLIENT_CONNECT_SCREEN_FXML = "VUE_Connexion_Client.fxml";
     
-    // Écran de jeu. 
+    // Game screen. 
     public static final String GAME_SCREEN = "jeu"; 
     public static final String GAME_SCREEN_FXML = "VUE_Jeu.fxml";
     
-    // Écran pour la consultation de l'historique des parties. 
+    // Historic screen. 
     public static final String HISTORIQUE_SCREEN = "historique"; 
     public static final String HISTORIQUE_SCREEN_FXML = "VUE_Historique.fxml"; 
     
@@ -51,7 +51,8 @@ public class Puissance4 extends Application
     public void start(Stage stage) throws Exception 
     {
         CONTROLLER_Super mainContainer = new CONTROLLER_Super(); 
-        // nous chargeons les différents ecrans en mémoire 
+        
+        // Loading all screens on memory.
         mainContainer.loadScreen(Puissance4.MAIN_SCREEN, 
                                  Puissance4.MAIN_SCREEN_FXML); 
         mainContainer.loadScreen(Puissance4.GAME_SCREEN, 
@@ -64,17 +65,15 @@ public class Puissance4 extends Application
                                  Puissance4.HISTORIQUE_SCREEN_FXML);
         mainContainer.setScreen(Puissance4.MAIN_SCREEN); 
 
+        // Preparing main interface.
         Group root2 = new Group(); 
         root2.getChildren().addAll(mainContainer); 
         Scene scene = new Scene(root2, 560, 530);
-        //Scene scene = new Scene(root2);
-        
-        // ajout du titre sur la fenetre
-       
         stage.setTitle("Puissance 4 Net");
         stage.setScene(scene); 
-        stage.show(); 
-        // Lorsque le user quitte l'application on stop tout.
+        stage.show();
+        
+        // When the user leaves the application, stop everything.
         stage.setOnCloseRequest((WindowEvent we) -> {
             System.out.println("Closing...");
             Platform.exit();

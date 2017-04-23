@@ -42,10 +42,9 @@ import static puissance4.RUN_Reception.message;
 public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
 
     // Attributes
-    
     CONTROLLER_Super mycontroller;
     
-     // La matrice représentant la grille de jeu et les pions dessus.
+     // The game matrix.
     public static String grille_de_jeu [][] =   
         {
             {"null", "null", "null", "null", "null", "null", "null"}, 
@@ -56,7 +55,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
             {"null", "null", "null", "null", "null", "null", "null"}
         };
    
-    
+    // FXML Attributes
     @FXML
     public Label label_info;
     @FXML
@@ -70,7 +69,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     @FXML
     private GridPane gp;
     
-    // FXML Accessors
+    // Accessors
     public Label getLabelInfo() { return label_info; }
     public GridPane getGridPane() { return gp; }
     
@@ -80,7 +79,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     }
     
     
-    // Inutilisée
+    // Used for tests only.
     @FXML 
     public void cellClick(MouseEvent event) throws MalformedURLException
     {
@@ -111,23 +110,25 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     @FXML 
     public void handleMouseClick(MouseEvent arg0) 
     {
+        // Get the information displayed in the listview selected index.
         String file_selected = listview.getSelectionModel().getSelectedItem().toString();
         
-        // On ouvre le fichier sélectionné dans la listview et on récupère la chaîne JSON.
+        // Open the associated file.
         Path path = Paths.get("./saves/" + file_selected);
+        
         try 
         {
-            // On récupère le contenu du fichier.    
+            //  Get the JSON string that the file contains.
                 List<String> les_lignes = Files.readAllLines(path, StandardCharsets.UTF_8);
                 String JSON_string = les_lignes.get(0);
             
-            // Désérialisation de la JSON string en un objet Partie_History.
+            // Deserialisation of the JSON string into a proper Partie_History object.
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
                 Partie_History partie = new Partie_History();
                 partie = objectMapper.readValue(JSON_string, Partie_History.class);
             
-            // Affichage des informations dans la vue.
+            // Display Partie_History object information on the view.
                 label_pseudo_moi.setText("Moi : " + partie.pseudo_moi);
                 label_pseudo_adversaire.setText("Adversaire : " + partie.pseudo_adversaire);
                 label_victoire_defaite.setText("Résultat : " + partie.victoire_defaite);
@@ -162,18 +163,15 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
+        // The code here execute before the interface is shown.
 
-        // On charge les saves dans la listview.
+        // Load game historic inside the listview.
             ObservableList data = FXCollections.observableArrayList();
 
             File dossier = new File("./saves");  
             File[] les_files = dossier.listFiles();  
-            for (File f : les_files)  
-            {  
-                //data.add(f.getAbsolutePath());
+            for (File f : les_files)   
                 data.add(f.getName());
-            } 
 
             listview.setItems(data);
     }  

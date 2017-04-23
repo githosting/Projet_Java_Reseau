@@ -21,14 +21,14 @@ import javafx.scene.layout.StackPane;
     */
 public class CONTROLLER_Super extends StackPane {
     
-    //creation hashmap pour manageer les différents écrans 
+    // Hashmap to manage the different screens. 
     private HashMap<String, Node> screens= new HashMap<>();
     
     // Accessors
-    
-    // name : nom de l'ecran
-    // screen : noeud de l'ecran
+
     public void addScreen(String name, Node screen){
+        // @param name : screen name
+        // @param screen : screen node
         screens.put(name, screen);
     }
     
@@ -46,39 +46,42 @@ public class CONTROLLER_Super extends StackPane {
         * @return boolean representing the loading success or failure.
         */
     public boolean setScreen(final String name) { 
-        if(screens.get(name) != null) { //screen loaded 
+        
+        // If the screen is loaded.
+        if(screens.get(name) != null) {  
             final DoubleProperty opacity = opacityProperty(); 
-            //Is there is more than one screen 
+            // If there is more than one screen. 
             if(!getChildren().isEmpty()){ 
                 Timeline fade = new Timeline( 
                                 new KeyFrame(Duration.ZERO, 
                                 new KeyValue(opacity,1.0)), 
                                 new KeyFrame(new Duration(50), 
                                 new EventHandler() { 
-                    @Override
-                    public void handle(Event event) {
-                  //remove displayed screen 
-                                    getChildren().remove(0); 
-                                    //add new screen 
-                                    getChildren().add(0, screens.get(name)); 
-                                    Timeline fadeIn = new Timeline( 
-                                                      new KeyFrame(Duration.ZERO, 
-                                                      new KeyValue(opacity, 0.0)), 
-                                                      new KeyFrame(new Duration(50), 
-                                                      new KeyValue(opacity, 1.0))); 
-                                                      fadeIn.play(); 
-                                } 
-                             }, new KeyValue(opacity, 0.0))); 
+                                    @Override
+                                    public void handle(Event event) {
+                                        // Remove displayed screen.
+                                        getChildren().remove(0); 
+                                        // Add new screen.
+                                        getChildren().add(0, screens.get(name)); 
+                                        Timeline fadeIn = new Timeline( 
+                                                          new KeyFrame(Duration.ZERO, 
+                                                          new KeyValue(opacity, 0.0)), 
+                                                          new KeyFrame(new Duration(50), 
+                                                          new KeyValue(opacity, 1.0))); 
+                                                          fadeIn.play(); 
+                                    } 
+                                }, new KeyValue(opacity, 0.0))); 
                 fade.play();             
-            } else { 
-                //no one else been displayed, then just show 
+            } 
+            else { 
+                // No one else has been displayed so just show.
                 setOpacity(0.0); 
                 getChildren().add(screens.get(name)); 
                 Timeline fadeIn = new Timeline( 
-                    new KeyFrame(Duration.ZERO, 
-                                 new KeyValue(opacity, 0.0)), 
-                                 new KeyFrame(new Duration(50), 
-                                 new KeyValue(opacity, 1.0))); 
+                                    new KeyFrame(Duration.ZERO, 
+                                    new KeyValue(opacity, 0.0)), 
+                                    new KeyFrame(new Duration(50), 
+                                    new KeyValue(opacity, 1.0))); 
                 fadeIn.play(); 
             } 
             return true; 
@@ -100,15 +103,16 @@ public class CONTROLLER_Super extends StackPane {
         * @return boolean representing redirection success or failure.
         */
     public boolean loadScreen(String name, String resource){
-        try{
+        try
+        {
             FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource)); 
-            
             Parent loadScreen = (Parent) myLoader.load();
             INTERFACE_Screen myScreenController = ((INTERFACE_Screen) myLoader.getController());
             myScreenController.setScreenParent(this);
             this.addScreen(name, loadScreen);
             return true;
-        }catch(Exception e ){
+        }
+        catch(Exception e ){
             System.out.println(e.getMessage());
             return false;
         }

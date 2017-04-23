@@ -41,44 +41,34 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     public static RUN_Connexion runnable_connexion;
     public static RUN_Emission runnable_emission;
     public static RUN_Reception runnable_reception;
+    public String image_path;
+    public String image_path_adversaire;
+    public String pseudo;
+    public String player_color = "";
+    public boolean my_turn = false;
+    CONTROLLER_Super mycontroller;
     
-    // FXML Controls
-    // FXML du textfield qui recupere le pseudo du serveur
+    // FXML Attributes
     @FXML
     private TextField textfield_pseudo;
-    // FXML textfield qui recupere l'adresse ip du serveur
     @FXML
     private TextField textfield_adresse; 
-    // FXML textField qui recupere le port ou va se deroule la partie 
     @FXML
     private TextField textfield_port;
-    // emplacement pour l'affichage des erreurs
     @FXML
     protected  Label label_erreurs;
-    // FXML on recuepere le bouton pour lancer la connexion
     @FXML
     private Button button_server; 
     @FXML
-    // FXML label qui informe des donnees du jeu 
     public Label label_info;
-    //FXML la grille de jeu 
     @FXML
     private GridPane gp;
     
-    public String image_path;
-    public String image_path_adversaire;
-    // public string cest le pseudo du joueur serveur 
-    public String pseudo;
-    // public string cest la couleur du joueur serveur 
-    public String player_color = "";
-    // boolean qui indique qui doit jouer ici false donc ce nest pas au joueur serveur a jouer
-    public boolean my_turn = false;
     
-    CONTROLLER_Super mycontroller;
-    
-    // FXML Accessors
+    // Accessors
     public Label getLabelInfo() { return label_info; }
     public GridPane getGridPane() { return gp; }
+    
     @Override
     public void setScreenParent(CONTROLLER_Super screenParent) {
         mycontroller = screenParent;
@@ -124,21 +114,16 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     @FXML
     private void btn_server(ActionEvent event) throws MalformedURLException 
     {
-        //on teste les inputs renseignés par l'utilisateur,
+        // Check user inputs.
         Validation.validationPseudo(textfield_pseudo.getText());
         Validation.validationIp(textfield_adresse.getText());
         Validation.validationPort(textfield_port.getText());
-        //s'il n'y a pas d'erreur
+        // If no errors detected.
         if(Validation.afficheErreur().isEmpty()){   
-           // on indique le pseudo du joueur serveur 
            pseudo = textfield_pseudo.getText();
-           //on indique le type de joueur 
            player_type = "server";
-           // on indique ici que cest au joueur serveur de jouer en premier 
            my_turn = true;
-           // ici on indique au jeu que cest au joueur serveur a jouer le premier 
            CONTROLLER_Jeu.setTurn(my_turn);
-           // ici on transmet au jeu le pseudo et le type de joueur 
            CONTROLLER_Jeu.setInformationPlayer("server", pseudo);
         
            try 
@@ -147,6 +132,7 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
                 server_socket = new ServerSocket(port_serveur);
                 label_info.setText("Port "+server_socket.getLocalPort()+" écouté...");
 
+                // Launch broadcast and reception Threads.
                 thread_attente_connexion = new Thread(new RUN_Connexion(server_socket));
                 thread_attente_connexion.start(); 
                 CONTROLLER_Jeu.setInformationPlayer("server", pseudo);
@@ -154,12 +140,13 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
             catch (IOException e) { 
                 System.err.println("BUG : Port "+server_socket.getLocalPort()+" déjà utilisé."); 
             }
-            // on redirige ée joueur serveur vers le gamescreen 
+            // Redirect the player to the game screen. 
             this.mycontroller.setScreen(Puissance4.GAME_SCREEN);
         
-        } else{
-            //on affiche les erreurs de saisies
+        } 
+        else{
+            // Display detected errors.
             label_erreurs.setText(Validation.afficheErreur());
-      } 
+        } 
     }
 }

@@ -9,6 +9,7 @@ package puissance4;
     */
 public class Partie_History 
 {
+    // Attributes
     public String pseudo_moi;
     public String pseudo_adversaire;
     public String victoire_defaite;

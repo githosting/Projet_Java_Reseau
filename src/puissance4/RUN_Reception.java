@@ -54,26 +54,22 @@ public class RUN_Reception implements Runnable
     @Override
     public void run() 
     {          
-        //while(FXMLDocumentController.game_over == false)
+        // While the game is running.
         while (CONTROLLER_Jeu.game_over == false)
         {
             try 
             {
+                // Listen the network and get Message string from it.
                 message_JSON_string = in.readLine();
                 
-                // Désérialisation du message en un objet Message.
+                // Deserialisation of the string Message into a proper Message object.
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
                 message = objectMapper.readValue(message_JSON_string, Message.class);
-
-                
-                
-                //System.out.println(mapper.readValue(message_JSON_string, Message.class));
-                
-                //message = A FAIRE
             } 
             catch (SocketException e) 
             {
+                // Means that the other player has gone offline so we restart the application.
                 try {Process process = Runtime.getRuntime().exec("java -jar ./dist/Puissance4.jar");} 
                 catch (IOException ex) {String io_Exception = "IO Exception";}
                 Platform.exit();
@@ -83,7 +79,7 @@ public class RUN_Reception implements Runnable
             
             System.out.println(message);
             
-            // On fait une pause
+            // Make a brief pause.
             try { Thread.sleep(100); }
             catch (Exception e) {  }
         }

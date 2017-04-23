@@ -12,7 +12,7 @@ import java.util.Map;
     */
 public class Validation {
     
-    // Collection contenant la liste des erreurs détectées.
+    // Collection containing the detected errors list.
     public static final Map<String, String> ERREURS = new HashMap<>();
     
     /**
@@ -24,19 +24,24 @@ public class Validation {
         * @return void
         */
     public static void validationPseudo(String pseudo){
+        // If the pseudo is not empty and contains less than 15 characters.
         if(!pseudo.trim().isEmpty() && pseudo.length()<15)
         {
+            // If the pseudo contains only numerics and letters.
             if(pseudo.matches("[a-zA-Z0-9]+")){
                 ERREURS.remove("pseudo");
-            }else{
+            }
+            // If not, the associated error is added to the errors collection.
+            else{
                 ERREURS.put("pseudo","Caractères spéciaux non autorisés \n");
             }
         }
+        // If not, the associated error is added to the errors collection.
         else
         {
            ERREURS.put("pseudo","Champ obligatoire, 15 caractères maximum \n");
         }
-    } // Fin validationPseudo
+    } // End validationPseudo
     
     
     /**
@@ -49,23 +54,30 @@ public class Validation {
         */
     public static void validationIp(String ip){
         
+        // The REGEX pattern the IP must stick to.
         String ip_pattern =
 		"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
 		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
 		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
 		"([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
         
+        // If the IP is not empty.
         if(!ip.trim().isEmpty())
         {
+            // If the IP stick to the REGEX pattern.
             if(ip.matches(ip_pattern)){
                 ERREURS.remove("ip");
-            }else{
+            }
+            // If not, the associated error is added to the errors collection.
+            else{
                 ERREURS.put("ip","IP incorrecte \n");
             }
-        }else{
+        }
+        // If not, the associated error is added to the errors collection.
+        else{
             ERREURS.put("ip","Champ obligatoire \n");
         }
-    } // Fin validationIp
+    } // End validationIp
     
 
     /**
@@ -77,16 +89,23 @@ public class Validation {
         * @return void
         */
     public static void validationPort(String port){
-        if(!port.trim().isEmpty() && port.length()<6 && port.matches("([0-9]{4})+")){
+        
+        // If the port is not empty and contains 6 numeric characters maximum.
+        if(!port.trim().isEmpty() && port.length() < 6 && port.matches("[0-9]+")){
+            // If the port stands between 1024 and 65535. Authorised port range.
             if(Integer.parseInt(port)>=1024 && Integer.parseInt(port)<65535 ){ 
                 ERREURS.remove("port");
-            }else{
+            }
+            // If not, the associated error is added to the errors collection.
+            else{
                 ERREURS.put("port","Veuillez renseigner un port entre 1024 et 65 535 \n");
             }
-        }else{
+        }
+        // If not, the associated error is added to the errors collection.
+        else{
             ERREURS.put("port","Champ obligatoire, 5 caractères maximum, caractères spéciaux non autorisés \n");
         }
-    } // Fin validationPort
+    } // End validationPort
     
 
     /**
@@ -98,13 +117,13 @@ public class Validation {
         */
     public static String afficheErreur(){
         String listeErreur = ""; 
+        // If the errors list is not empty.
         if(!ERREURS.isEmpty())
         {
+            // Concatenate all errors into the string listeErreur.
             for(Map.Entry<String, String> erreur: ERREURS.entrySet()){
                 listeErreur = listeErreur.concat(erreur.getKey().concat(" : ").concat(erreur.getValue()));
-            
             }
-            
         }
         return listeErreur;
     }

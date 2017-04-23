@@ -35,7 +35,9 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
         * @return void
         */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) 
+    {
+        
     }
 
     

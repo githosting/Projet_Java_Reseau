@@ -15,6 +15,7 @@ import java.util.logging.Logger;
     */
 public class RUN_Emission implements Runnable 
 {
+    // Attributes
     private final PrintWriter out;
     public String message_JSON_string;
     public static Message message;
@@ -44,12 +45,12 @@ public class RUN_Emission implements Runnable
     @Override
     public void run() 
     {
-        //while(FXMLDocumentController.game_over == false)
+        // While game is running.
         while (CONTROLLER_Jeu.game_over == false)
         {
             if(message.pseudo != null)
             {
-                // Sérialisation de l'objet message en JSON_string.
+                // Serialisation of the Message object into a JSON_string.
                 ObjectMapper mapper = new ObjectMapper();
                 try 
                 {
@@ -57,12 +58,12 @@ public class RUN_Emission implements Runnable
                 } 
                 catch (JsonProcessingException ex) { Logger.getLogger(RUN_Emission.class.getName()).log(Level.SEVERE, null, ex); }
                 
-                // Envoi du message.
+                // Sending the serialised Message object.
                 out.println(message_JSON_string);
                 out.flush();
             }
             
-            // On fait une pause
+            // Make a brief pause.
             try { Thread.sleep(100); }
             catch (Exception e) {  }
         }

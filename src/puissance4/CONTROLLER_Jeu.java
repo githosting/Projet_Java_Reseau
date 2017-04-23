@@ -39,19 +39,6 @@ import static puissance4.RUN_Emission.message;
 public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
 
     // Attributes
-    CONTROLLER_Super mycontroller;
-    
-     // La matrice représentant la grille de jeu et les pions dessus.
-    public static String grille_de_jeu [][] =   
-        {
-            {"null", "null", "null", "null", "null", "null", "null"}, 
-            {"null", "null", "null", "null", "null", "null", "null"}, 
-            {"null", "null", "null", "null", "null", "null", "null"},
-            {"null", "null", "null", "null", "null", "null", "null"},
-            {"null", "null", "null", "null", "null", "null", "null"},
-            {"null", "null", "null", "null", "null", "null", "null"}
-        };
-   
     public static String player_color = "";
     public static boolean my_turn = false;
     public static String player_type;
@@ -62,6 +49,17 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     public static String image_path_adversaire;
     public static String pseudo;
     public static String pseudo_adversaire;
+    CONTROLLER_Super mycontroller;
+    // The game matrix.
+    public static String grille_de_jeu [][] =   
+        {
+            {"null", "null", "null", "null", "null", "null", "null"}, 
+            {"null", "null", "null", "null", "null", "null", "null"}, 
+            {"null", "null", "null", "null", "null", "null", "null"},
+            {"null", "null", "null", "null", "null", "null", "null"},
+            {"null", "null", "null", "null", "null", "null", "null"},
+            {"null", "null", "null", "null", "null", "null", "null"}
+        };
     
     @FXML
     public Label label_info;
@@ -138,32 +136,30 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
             int colIndex = GridPane.getColumnIndex(source);
             int rowIndex = GridPane.getRowIndex(source);
             
-            // On check si la case d'en dessous est bien occupée pour voir si le joueur peut effectivement poser son pion ici.
+            // Check if the cell under the clicked one contains a piece in order to know if the player can perform this action.
             if  (
                     (rowIndex == 5 || !grille_de_jeu[rowIndex+1][colIndex].equals("null"))
                     && grille_de_jeu[rowIndex][colIndex].equals("null")
                 )
             {
-                // On actualise grille_de_jeu avec le coup du joueur.
+                // Refresh the game matrix with the player move.
                 grille_de_jeu[rowIndex][colIndex] = player_color;
 
-                // On vérifie s'il y a un vainqueur ou un match nul.
+                // Check if there is a winner or a draw match.
                 String victory_color = check_victory();
                 if(victory_color.equals("match_nul"))
                 {
                     label_info.setText("Match Nul !");
                     
-                    // On historise la partie dans un fichier txt au format JSON.
+                    // Save the game in history.
                     historiser_partie(pseudo, pseudo_adversaire, "Match Nul", grille_de_jeu, "");
                 }
                 else if(!(victory_color.equals("null")))
                 {
                     label_info.setText("Le joueur " + victory_color + " ("+pseudo+") gagne.");
-                    //game_over = true;
-
-                    // On historise la partie dans un fichier txt au format JSON.
+                    
+                    // Save the game in history.
                     historiser_partie(pseudo, pseudo_adversaire, "Victoire", grille_de_jeu, "");
-                 
                 }
                 else
                 {
@@ -172,11 +168,11 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                     });
                 }
 
-                // On update le message à envoyer.
+                // Update the message sent by the broadcast Thread.
                 Message le_message = new Message(colIndex, rowIndex, image_path, victory_color, pseudo);
                 RUN_Emission.message = le_message;
                 
-                // On affiche le pion.
+                // Display the player move on the grid.
                 Platform.runLater(() -> {
                     source.setStyle("-fx-background-image: url(" + image_path + ");");
                 });
@@ -198,7 +194,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     {
         String actual_color;
         
-        // S'il y a match nul.
+        // If there is a draw match.
         if(!grille_de_jeu[0][0].equals("null")
             && !grille_de_jeu[0][1].equals("null")
             && !grille_de_jeu[0][2].equals("null")
@@ -211,38 +207,38 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
             return "match_nul";
         }
         
-        // Pour chaque élément de grille_de_jeu, on explore toutes les possibilités d'enchaînement de 4 pions à partir de lui.
+        // For each grid element, explore all possibilities of 4 consecutives pieces from it.
         for(int i=0; i<6; i++)
         { 
             for(int j = 0; j < 7; j++)
             { 
                 actual_color = grille_de_jeu[i][j];
 				
-                // Si une combinaison de 4 pions existe à partir du pion en cours d'analyse.  
+                // If 4 consecutives pieces are found from the current grid element.  
                 if( 
                     (!(actual_color.equals("null")))
                     &&
                     (
-                        // Par la droite.
+                        // To the right.
                         (j <= 3 && grille_de_jeu[i][j+1].equals(actual_color) && grille_de_jeu[i][j+2].equals(actual_color) && grille_de_jeu[i][j+3].equals(actual_color))
-                        || // Par la gauche.
+                        || // To the left.
                         (j >= 3 && grille_de_jeu[i][j-1].equals(actual_color) && grille_de_jeu[i][j-2].equals(actual_color) && grille_de_jeu[i][j-3].equals(actual_color))
-                        || // Par le haut.
+                        || // To top.
                         (i >= 3 && grille_de_jeu[i-1][j].equals(actual_color) && grille_de_jeu[i-2][j].equals(actual_color) && grille_de_jeu[i-3][j].equals(actual_color))
-                        || // Par le bas.
+                        || // To bottom.
                         (i <= 2 && grille_de_jeu[i+1][j].equals(actual_color) && grille_de_jeu[i+2][j].equals(actual_color) && grille_de_jeu[i+3][j].equals(actual_color))
-                        || // En diagonale haut droit
+                        || // To diagonal top right.
                         (i >= 3 && j <= 3 && grille_de_jeu[i-1][j+1].equals(actual_color) && grille_de_jeu[i-2][j+2].equals(actual_color) && grille_de_jeu[i-3][j+3].equals(actual_color))
-                        || // En diagonale haut gauche
+                        || // To diagonal top left.
                         (i >= 3 && j >= 3 && grille_de_jeu[i-1][j-1].equals(actual_color) && grille_de_jeu[i-2][j-2].equals(actual_color) && grille_de_jeu[i-3][j-3].equals(actual_color))
-                        || // En diagonale bas droit
+                        || // To diagonal bottom right.
                         (i <= 2 && j <= 3 && grille_de_jeu[i+1][j+1].equals(actual_color) && grille_de_jeu[i+2][j+2].equals(actual_color) && grille_de_jeu[i+3][j+3].equals(actual_color))
-                        || // En diagonale bas gauche
+                        || // To diagonal bottom left.
                         (i <= 2 && j >= 3 && grille_de_jeu[i+1][j-1].equals(actual_color) && grille_de_jeu[i+2][j-2].equals(actual_color) && grille_de_jeu[i+3][j-3].equals(actual_color))
                     )
                 )
                 {
-                    // On retourne la couleur du joueur qui gagne.
+                    // Return the winner player color.
                     return actual_color;
                 }  
             } 
@@ -275,21 +271,21 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                 param_victoire_defaite = "Victoire";
         }
         
-        
-        // Création de l'objet Partie_History.
+        // Create the Partie_History object we want to save.
         Partie_History save = new Partie_History(param_pseudo_moi, param_pseudo_adversaire, param_victoire_defaite, param_grille_de_jeu);
-        // On sauvegarde l'objet save au format JSON dans un fichier sur le disque du joueur.
+        
+        // Save the object, serialised with JSON, in a file on the player computer.
         String save_JSON = "";
         ObjectMapper mapper = new ObjectMapper();
         try 
         {
-            // Transformation au format JSON.
+            // Serialisation JSON.
             save_JSON = mapper.writeValueAsString(save);
-            // Création du nom du fichier de sauvegarde : save_ suivi d'un timestamp.
+            // Create the file name : save_ followed by a timestamp.
             Timestamp ts = new Timestamp(System.currentTimeMillis());
             String timestamp = ts.toString().replace(':', '-').replace('.', '_');
             String nom_fichier = "save_" + timestamp + ".txt";
-            // Sauvegarde sur le disque uniquement si le fichier n'existe pas déjà.
+            // Save the file on disk if it doesn't already exist.
             File f = new File("./saves/" + nom_fichier);
             if(!f.exists()) 
             { 
@@ -335,9 +331,11 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        // LE CODE ICI S'EXECUTE AVANT LE SHOW DE L'INTERFACE GRAPHIQUE.
+        // Code here executes before the interface is shown.
+        
         label_info.setText("En attente d'un autre joueur");
-        // Le Thread qui va actualiser la gridPane.
+        
+        // Thread refreshing the grid.
             new Thread( new Runnable() 
             {
                 @Override
@@ -346,7 +344,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                     Message ancien_message = new Message();
                     while(!game_over)
                     {  
-                        // Pour le serveur à l'initialisation seulement.
+                        // For the server player and at initialisation only.
                         if(client_connecte == true)
                         {
                             Platform.runLater(() -> {
@@ -363,29 +361,23 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                         int rowIndex;
                         String path_image;
                         String victory_color;
-                        //String pseudo_adversaire;
 
-                        System.out.println(nouveau_message != ancien_message);
                         if(nouveau_message != null && (!(nouveau_message.rowIndex == ancien_message.rowIndex) || !(nouveau_message.colIndex == ancien_message.colIndex)))
                         {
-                            
-                            System.out.println("coucou ca passe");
-                            ancien_message = nouveau_message;
-
+                            ancien_message      = nouveau_message;
                             colIndex            = RUN_Reception.message.colIndex;
                             rowIndex            = RUN_Reception.message.rowIndex;
                             path_image          = RUN_Reception.message.imagePath;
                             victory_color       = RUN_Reception.message.victoryColor;
                             pseudo_adversaire   = RUN_Reception.message.pseudo;
 
-                            // On met à jour grille_de_jeu avec le coup de l'adversaire.
+                            // Refresh the grid with the opponent move.
                             if(player_color.equals("orange"))
                                 grille_de_jeu[rowIndex][colIndex] = "blue";
                             else
                                 grille_de_jeu[rowIndex][colIndex] = "orange";
 
-                            
-                            // On change la couleur du label concerné.
+                            // Change the picture of associated grid cell.
                             ObservableList<Node> childrens = gp.getChildren();
                             for (Node node : childrens) 
                             {
@@ -399,14 +391,14 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                                 }
                             }
 
-                            // On check s'il y a un vainqueur ou si match nul.
+                            // Check if there is a winner or a draw match.
                             if(victory_color.equals("match_nul"))
                             {
                                 Platform.runLater(() -> {    
                                     label_info.setText("Match Nul !");
                                 });
 
-                                // On historise la partie dans un fichier txt au format JSON.
+                                // Save the game in history.
                                 historiser_partie(pseudo, pseudo_adversaire, "Match Nul", grille_de_jeu, "");
                                 
                                 game_over = true;
@@ -423,7 +415,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                                     label_info.setText("Le joueur " + victory_color + " ("+pseudo_vainqueur+") gagne.");
                                 });
                                 
-                                // On historise la partie dans un fichier txt au format JSON.
+                                // Save the game in history.
                                 historiser_partie(pseudo, pseudo_adversaire, "Défaite", grille_de_jeu, pseudo_vainqueur);
                                           
                                 game_over = true; 
@@ -438,7 +430,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                             }
                         }        
 
-                        // On fait une pause
+                        // Make a brief pause.
                         try { Thread.sleep(100); }
                         catch (Exception e) {  }
                     
