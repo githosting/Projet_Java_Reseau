@@ -5,7 +5,6 @@ import javafx.util.Duration;
 import java.util.HashMap;
 import javafx.animation.*;
 import javafx.beans.property.DoubleProperty;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;

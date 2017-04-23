@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -24,11 +23,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import puissance4.CONTROLLER_Super;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import static puissance4.RUN_Emission.message;
 
 
 /**
@@ -64,10 +61,13 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     @FXML
     public Label label_info;
     @FXML
+    public Label label_versus;
+    @FXML
     private GridPane gp;
     
     // Accessors
     public Label getLabelInfo() { return label_info; }
+    public Label getLabelVersus() { return label_versus; }
     public GridPane getGridPane() { return gp; }
     
     @Override
@@ -96,7 +96,6 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         */
     public static void setInformationPlayer (String type_player, String pseudo_name)throws MalformedURLException {
         if(type_player == "client"){
-            System.out.println("cest un client");
             pseudo = pseudo_name;
             player_color = "blue";
             File image = new File("./pictures/blue.png");
@@ -105,15 +104,12 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
             player_type = "client";
         }
         if (type_player == "server"){
-            System.out.println("cest un serveur");
-            System.out.println("player type"+ player_type);
             pseudo = pseudo_name;
             player_color = "orange";
             File image = new File("./pictures/orange.png");
             image_path = image.toURI().toURL().toString();
             image_path_adversaire = new File("./pictures/blue.png").toURI().toURL().toString();
             player_type = "server";
-            System.out.println("changement de player type "+player_type );
         }
     }
     
@@ -370,6 +366,11 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                             path_image          = RUN_Reception.message.imagePath;
                             victory_color       = RUN_Reception.message.victoryColor;
                             pseudo_adversaire   = RUN_Reception.message.pseudo;
+                            
+                            // Display the versus information.
+                            Platform.runLater(() -> {
+                                label_versus.setText("> " + pseudo + " <  VS  > " + pseudo_adversaire + " <");
+                            });
 
                             // Refresh the grid with the opponent move.
                             if(player_color.equals("orange"))
@@ -422,7 +423,6 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                             }
                             else if(game_over == false)
                             {
-                                System.out.println("my turn = true");
                                 my_turn = true;
                                 Platform.runLater(() -> {
                                     label_info.setText("VOTRE TOUR");

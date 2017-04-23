@@ -1,8 +1,6 @@
 
 package puissance4;
 
-import puissance4.CONTROLLER_Super;
-
 
 /**
     * Interface for views management.
