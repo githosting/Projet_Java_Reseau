@@ -98,17 +98,16 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         if(type_player == "client"){
             pseudo = pseudo_name;
             player_color = "blue";
-            File image = new File("./pictures/blue.png");
-            image_path = image.toURI().toURL().toString();
-            image_path_adversaire = new File("./pictures/orange.png").toURI().toURL().toString();
+            image_path_adversaire = new Object(){}.getClass().getResource("/resources/orange.png").toExternalForm();
+            image_path =  new Object(){}.getClass().getResource("/resources/blue.png").toExternalForm();
             player_type = "client";
         }
         if (type_player == "server"){
             pseudo = pseudo_name;
             player_color = "orange";
-            File image = new File("./pictures/orange.png");
-            image_path = image.toURI().toURL().toString();
-            image_path_adversaire = new File("./pictures/blue.png").toURI().toURL().toString();
+           
+            image_path = new Object(){}.getClass().getResource("/resources/orange.png").toExternalForm();
+            image_path_adversaire =  new Object(){}.getClass().getResource("/resources/blue.png").toExternalForm();
             player_type = "server";
         }
     }
@@ -243,7 +242,75 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     }
     
     
-    /**
+   
+    
+     /**
+        * wrapper for evolution of the system of save
+        * @author Milev
+        * @version 1.0
+        *  * @param EnumSauvegarde type
+        * 	The pseudo of the player saving the game.
+        * @param String param_pseudo_moi
+        * 	The pseudo of the player saving the game.
+        * @param String param_pseudo_adversaire
+        * 	The pseudo of his opponent.
+        * @param String param_victoire_defaite
+        * 	The game result for the player saving the game.
+        * @param String[][] param_grille_de_jeu
+        * 	The game grid configuration at game end.
+        * @param String param_pseudo_vainqueur
+        * 	The winner pseudo.
+        * @return void
+        */
+    public void sauvegarde(EnumSauvegarde type, String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur){
+        if(type == EnumSauvegarde.Historisation){
+            historiser_partie(param_pseudo_moi, param_pseudo_adversaire, param_victoire_defaite, param_grille_de_jeu, param_pseudo_vainqueur);
+        }else{
+            sauvegarde_partie(param_pseudo_moi, param_pseudo_adversaire, param_victoire_defaite, param_grille_de_jeu, param_pseudo_vainqueur);
+        }
+    }
+    public void sauvegarde_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur)
+    {
+        if(param_victoire_defaite.equals("Défaite"))
+        {
+            if(param_pseudo_vainqueur.equals(pseudo))
+                param_victoire_defaite = "Victoire";
+        }
+        
+        // Create the Partie_History object we want to save.
+        Partie_Save save = new Partie_Save(param_pseudo_moi, param_pseudo_adversaire, param_victoire_defaite, param_grille_de_jeu, "4200");
+        
+        // Save the object, serialised with JSON, in a file on the player computer.
+        String save_JSON = "";
+        ObjectMapper mapper = new ObjectMapper();
+        try 
+        {
+            // Serialisation JSON.
+            save_JSON = mapper.writeValueAsString(save);
+            // Create the file name : save_ followed by a timestamp.
+            Timestamp ts = new Timestamp(System.currentTimeMillis());
+            String timestamp = ts.toString().replace(':', '-').replace('.', '_');
+            String nom_fichier = "game_" + timestamp + ".txt";
+            // Save the file on disk if it doesn't already exist.
+            File repertoire = new File("./games");
+            if(!repertoire.exists()){
+                repertoire.mkdir();
+            }
+            File f = new File("./games/" + nom_fichier);
+            if(!f.exists()) 
+            { 
+                List<String> lines = Arrays.asList(save_JSON);
+                Path file = Paths.get("./games/" + nom_fichier);
+                try 
+                {
+                    Files.write(file, lines, Charset.forName("UTF-8"));
+                } catch (IOException ex) {Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);}
+            }
+        } 
+        catch (JsonProcessingException ex) { Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex); }
+    }
+    
+     /**
         * Manage the automatic game save into history when it ends.
         * @author Bettinger
         * @version 1.0
@@ -282,6 +349,10 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
             String timestamp = ts.toString().replace(':', '-').replace('.', '_');
             String nom_fichier = "save_" + timestamp + ".txt";
             // Save the file on disk if it doesn't already exist.
+            File repertoire = new File("./saves");
+            if(!repertoire.exists()){
+                repertoire.mkdir();
+            }
             File f = new File("./saves/" + nom_fichier);
             if(!f.exists()) 
             { 
@@ -313,7 +384,12 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         Platform.exit();
         System.exit(0);
     }
-        
+    
+     @FXML
+     private void btn_save(ActionEvent event) throws MalformedURLException 
+    {
+        sauvegarde(EnumSauvegarde.Sauvegarde,pseudo, pseudo_adversaire, "Match en cours", grille_de_jeu, "");
+    }    
     
     /**
         * Execute code when the view is displayed.
@@ -328,9 +404,29 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     public void initialize(URL url, ResourceBundle rb) {
         
         // Code here executes before the interface is shown.
-        
+        if(CONTROLLER_Chargement.charger != null && CONTROLLER_Chargement.charger){
+            try{
+               ObservableList<Node> childrens = gp.getChildren();
+               for (int i = 0 ; i < 6 ; i++) 
+               {
+                   for (int j = 0; j < 7; j++) 
+                   {
+                       File image = new File("./pictures/"+CONTROLLER_Chargement.grille_de_jeu[i][j]+".png");
+                       String image_path = image.toURI().toURL().toString();
+                       for (Node node : childrens) {
+                           if(gp.getRowIndex(node) == i && gp.getColumnIndex(node) == j) {
+                               node.setStyle("-fx-background-image: url(" + image_path + ");");
+                               break;
+                           }
+                       }
+                   }
+               }
+            }catch(Exception ex){
+                System.err.println(ex.getMessage());
+            }
+        }
         label_info.setText("En attente d'un autre joueur");
-        
+        System.out.println("ça marche");
         // Thread refreshing the grid.
             new Thread( new Runnable() 
             {
@@ -348,6 +444,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                             });
                             game_start = true;
                             client_connecte = false;
+                            
                         }
                         System.out.println("THREAD Refresh Grid...");
                         
@@ -400,7 +497,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                                 });
 
                                 // Save the game in history.
-                                historiser_partie(pseudo, pseudo_adversaire, "Match Nul", grille_de_jeu, "");
+                                sauvegarde(EnumSauvegarde.Historisation,pseudo, pseudo_adversaire, "Match Nul", grille_de_jeu, "");
                                 
                                 game_over = true;
                             }
@@ -417,7 +514,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                                 });
                                 
                                 // Save the game in history.
-                                historiser_partie(pseudo, pseudo_adversaire, "Défaite", grille_de_jeu, pseudo_vainqueur);
+                                sauvegarde(EnumSauvegarde.Historisation,pseudo, pseudo_adversaire, "Défaite", grille_de_jeu, pseudo_vainqueur);
                                           
                                 game_over = true; 
                             }

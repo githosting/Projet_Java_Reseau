@@ -147,6 +147,7 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
             }
             
             // Redirect the player to the game screen. 
+            this.mycontroller.loadScreen(Puissance4.GAME_SCREEN, Puissance4.GAME_SCREEN_FXML); 
             this.mycontroller.setScreen(Puissance4.GAME_SCREEN);
         }
         else{

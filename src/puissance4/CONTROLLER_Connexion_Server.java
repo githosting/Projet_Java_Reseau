@@ -37,6 +37,7 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     public static RUN_Connexion runnable_connexion;
     public static RUN_Emission runnable_emission;
     public static RUN_Reception runnable_reception;
+    public static String port_serveur;
     public String image_path;
     public String image_path_adversaire;
     public String pseudo;
@@ -125,6 +126,7 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
            try 
             {
                 int port_serveur = Integer.parseInt(textfield_port.getText());
+                CONTROLLER_Connexion_Server.port_serveur = textfield_port.getText();
                 server_socket = new ServerSocket(port_serveur);
                 label_info.setText("Port "+server_socket.getLocalPort()+" écouté...");
 
@@ -137,6 +139,7 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
                 System.err.println("BUG : Port "+server_socket.getLocalPort()+" déjà utilisé."); 
             }
             // Redirect the player to the game screen. 
+            this.mycontroller.loadScreen(Puissance4.GAME_SCREEN, Puissance4.GAME_SCREEN_FXML); 
             this.mycontroller.setScreen(Puissance4.GAME_SCREEN);
         
         } 

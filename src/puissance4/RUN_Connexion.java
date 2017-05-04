@@ -13,7 +13,7 @@ import java.net.*;
 public class RUN_Connexion implements Runnable
 {
     // Attributes 
-    private final ServerSocket server_socket;
+    public final ServerSocket server_socket;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -66,6 +66,6 @@ public class RUN_Connexion implements Runnable
                 thread_attente_Emission.start();
             }
         } 
-        catch (IOException e) { System.err.println("Erreur serveur"); }	
+        catch (IOException e) { System.err.println(e.getMessage()); }	
     }
 }

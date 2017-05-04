@@ -86,7 +86,7 @@ public class CONTROLLER_Super extends StackPane {
             return true; 
         } 
         else { 
-            System.out.println("screen hasn't been loaded!\n"); 
+            System.out.println("screen hasn't been loaded " + name + " " + screens.get(name) + "!\n"); 
             return false; 
         }
     }

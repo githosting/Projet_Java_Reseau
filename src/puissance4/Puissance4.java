@@ -37,6 +37,10 @@ public class Puissance4 extends Application
     public static final String HISTORIQUE_SCREEN = "historique"; 
     public static final String HISTORIQUE_SCREEN_FXML = "VUE_Historique.fxml"; 
     
+    // Sauvegarde screen screen. 
+    public static final String CHARGEMENT_SCREEN = "Chargement"; 
+    public static final String CHARGEMENT_SCREEN_FXML = "VUE_Chargement.fxml"; 
+    
     
     /**
         * Start the application.
@@ -55,14 +59,18 @@ public class Puissance4 extends Application
         // Loading all screens on memory.
         mainContainer.loadScreen(Puissance4.MAIN_SCREEN, 
                                  Puissance4.MAIN_SCREEN_FXML); 
-        mainContainer.loadScreen(Puissance4.GAME_SCREEN, 
-                                 Puissance4.GAME_SCREEN_FXML); 
+      //  mainContainer.loadScreen(Puissance4.GAME_SCREEN, 
+       //                          Puissance4.GAME_SCREEN_FXML); 
         mainContainer.loadScreen(Puissance4.SERVER_CONNECT_SCREEN, 
                                  Puissance4.SERVER_CONNECT_SCREEN_FXML); 
         mainContainer.loadScreen(Puissance4.CLIENT_CONNECT_SCREEN, 
                                  Puissance4.CLIENT_CONNECT_SCREEN_FXML);
         mainContainer.loadScreen(Puissance4.HISTORIQUE_SCREEN, 
                                  Puissance4.HISTORIQUE_SCREEN_FXML);
+        
+        mainContainer.loadScreen(Puissance4.CHARGEMENT_SCREEN, 
+                                 Puissance4.CHARGEMENT_SCREEN_FXML);
+        
         mainContainer.setScreen(Puissance4.MAIN_SCREEN); 
 
         // Preparing main interface.

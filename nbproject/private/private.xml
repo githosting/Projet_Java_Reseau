@@ -3,20 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/ConnectScreenServer.java</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/RUN_Connexion.java</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/Puissance4.java</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/jeu.fxml</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/RUN_Reception.java</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/Message.java</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/GameScreen.java</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/MainScreen.java</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/ServerConnect.fxml</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/FXMLDocument.fxml</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/ClientConnect.fxml</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/ScreensController.java</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/ConnectScreenClient.java</file>
-            <file>file:/C:/Users/Kevin%20Araba/Documents/Projet_Java_Reseau/src/puissance4/RUN_Emission.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/CONTROLLER_Jeu.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/CONTROLLER_Connexion_Server.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/Puissance4.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/RUN_Connexion.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/Message.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/VUE_Chargement.fxml</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/CONTROLLER_Chargement.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/CONTROLLER_Main.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/CONTROLLER_Connexion_Client.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/RUN_Emission.java</file>
+            <file>file:/C:/Users/Alex/Documents/NetBeansProject/Projet_Java_Reseau/src/puissance4/CONTROLLER_Super.java</file>
         </group>
     </open-files>
 </project-private>

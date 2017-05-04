@@ -76,5 +76,10 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
     @FXML
     private void goToHistorique (ActionEvent event){
         mycontroller.setScreen(Puissance4.HISTORIQUE_SCREEN);        
-    } 
+    }
+    
+     @FXML
+     private void goToSauvegarde (ActionEvent event){
+        mycontroller.setScreen(Puissance4.CHARGEMENT_SCREEN);        
+    }
 }
