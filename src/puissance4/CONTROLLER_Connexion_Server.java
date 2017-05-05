@@ -120,9 +120,10 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
            pseudo = textfield_pseudo.getText();
            player_type = "server";
            my_turn = true;
-           CONTROLLER_Jeu.setTurn(my_turn);
-           CONTROLLER_Jeu.setInformationPlayer("server", pseudo);
-        
+          // CONTROLLER_Jeu.setTurn(my_turn);
+          // CONTROLLER_Jeu.setInformationPlayer("server", pseudo);
+             CONTROLLER_Jeu.game.setMy_turn(my_turn);
+             CONTROLLER_Jeu.game.setInformationPlayer("server", pseudo);
            try 
             {
                 int port_serveur = Integer.parseInt(textfield_port.getText());
@@ -133,7 +134,7 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
                 // Launch broadcast and reception Threads.
                 thread_attente_connexion = new Thread(new RUN_Connexion(server_socket));
                 thread_attente_connexion.start(); 
-                CONTROLLER_Jeu.setInformationPlayer("server", pseudo);
+                CONTROLLER_Jeu.game.setInformationPlayer("server", pseudo);
             }
             catch (IOException e) { 
                 System.err.println("BUG : Port "+server_socket.getLocalPort()+" déjà utilisé."); 

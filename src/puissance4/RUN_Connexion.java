@@ -48,12 +48,12 @@ public class RUN_Connexion implements Runnable
         try 
         {
             // While no client connected, wait for a client connection to launch the game. 
-            while (CONTROLLER_Jeu.client_connecte == false)
+            while (!CONTROLLER_Jeu.game.isClient_connecte())
             {
                 // Listen to connection requests. While no connection, code blocks here.
                 socket = server_socket.accept();
                 System.out.println("En attente d'une connexion...  ");
-                CONTROLLER_Jeu.client_connecte = true;
+                CONTROLLER_Jeu.game.setClient_connecte(true);
                 
                 // Variables for emitting and receiving messages.
                 out = new PrintWriter(socket.getOutputStream());

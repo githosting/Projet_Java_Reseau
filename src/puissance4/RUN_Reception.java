@@ -29,7 +29,6 @@ public class RUN_Reception implements Runnable
 
     /**
         * Constructor for RUN_Reception class.
-        * @author Bettinger
         * @version 2.0
         * @param BufferedReader in
         *       Class attribute to receive content from the network.
@@ -44,7 +43,6 @@ public class RUN_Reception implements Runnable
     
     /**
         * Start the RUN_Reception runnable.
-        * @author Bettinger
         * @version 3.0
         * @param No Parameters
         * @return void
@@ -53,7 +51,7 @@ public class RUN_Reception implements Runnable
     public void run() 
     {          
         // While the game is running.
-        while (CONTROLLER_Jeu.game_over == false)
+        while (!CONTROLLER_Jeu.game.isGame_over())
         {
             try 
             {

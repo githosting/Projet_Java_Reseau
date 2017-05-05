@@ -46,7 +46,7 @@ public class RUN_Emission implements Runnable
     public void run() 
     {
         // While game is running.
-        while (CONTROLLER_Jeu.game_over == false)
+        while (!CONTROLLER_Jeu.game.isGame_over())
         {
             if(message.pseudo != null)
             {

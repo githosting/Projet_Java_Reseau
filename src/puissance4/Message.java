@@ -15,6 +15,7 @@ public class Message
     public String imagePath = null;
     public String victoryColor = null;
     public String pseudo = null;
+    public String[][] grille_de_jeu = null;
     
     // Accessors
     public int get_colIndex() { return colIndex; }
@@ -37,11 +38,11 @@ public class Message
         this.imagePath = null;
         this.victoryColor = null;
         this.pseudo = null;
+        this.grille_de_jeu = null;
     }
     
     /**
         * Constructor with parameters for Message class.
-        * @author Bettinger
         * @version 2.0
         * @param int un_colIndex
         *       Game grid column index just modified.
@@ -62,5 +63,17 @@ public class Message
         this.imagePath = un_imagePath;
         this.victoryColor = un_victoryColor;
         this.pseudo = un_pseudo;
+        System.out.println(colIndex + "  " + rowIndex + "  " + imagePath + "  " + victoryColor + "  " + pseudo + "  " );
+    }
+    public Message(int un_colIndex, int un_rowIndex, String un_imagePath, String un_victoryColor, String un_pseudo, String[][] grille_de_jeu)
+    {
+        this.colIndex = un_colIndex;
+        this.rowIndex = un_rowIndex;
+        this.imagePath = un_imagePath;
+        this.victoryColor = un_victoryColor;
+        this.pseudo = un_pseudo;
+        this.grille_de_jeu = grille_de_jeu;
+        
+        System.out.println(colIndex + "  " + rowIndex + "  " + imagePath + "  " + victoryColor + "  " + pseudo + "  " );
     }
 }

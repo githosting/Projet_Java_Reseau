@@ -29,7 +29,6 @@ import javafx.scene.control.ListView;
 
 /**
     * Class acting as a controller for view VUE_Historique events.
-    * @author Bettinger
     * @version 1.0
     */
 public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
@@ -82,7 +81,6 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     
     /**
         * Redirect to the main interface.
-        * @author Bettinger
         * @version 1.0
         * @param ActionEvent event
         * @return void
@@ -95,7 +93,6 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     
     /**
         * Inside the listview, when a click occurs on a game, associated information are displayed.
-        * @author Bettinger
         * @version 1.0
         * @param MouseEvent arg0
         * @return void
@@ -146,8 +143,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     
     
     /**
-        * Execute code when the view is displayed.
-        * @author Bettinger
+        * Execute code when the view is displaye
         * @version 1.0
         * @param URL location
         * @param ResourceBundle rb

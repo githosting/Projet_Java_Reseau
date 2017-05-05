@@ -118,7 +118,7 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
         if(Validation.afficheErreur().isEmpty()){
             pseudo = textfield_pseudo.getText();
             player_type = "client";
-            CONTROLLER_Jeu.setInformationPlayer(player_type, pseudo);
+            CONTROLLER_Jeu.game.setInformationPlayer(player_type, pseudo);
         
             try 
             {
@@ -129,7 +129,7 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
                 // If this message is displayed, then the client is connected to the server.
                 label_info.setText("Connecté au serveur.");
                 game_start = true;
-                CONTROLLER_Jeu.setGame(game_start);
+                CONTROLLER_Jeu.game.setGame_start(game_start);
                 out = new PrintWriter(socket.getOutputStream());
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));	
 
