@@ -92,16 +92,11 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
 
     @FXML
     private void handleMouseClick(MouseEvent event) throws URISyntaxException {
-         String file_selected = listview.getSelectionModel().getSelectedItem().toString();
         
+         String file_selected = listview.getSelectionModel().getSelectedItem().toString();     
         // Open the associated file.
-        Path path = Paths.get("./games/" + file_selected);
-        
-         
+        Path path = Paths.get("./games/" + file_selected);     
         // If no errors detected.
-       
-      
-    
         try 
         {
             //  Get the JSON string that the file contains.
@@ -123,19 +118,13 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
                     for (int j = 0; j < 7; j++) 
                     {
                         CONTROLLER_Chargement.grille_de_jeu[i][j] = partie.grille_de_jeu[i][j];
-                        
-                           // classLoader.getResource("DBase.dat").getPath()
-                           //File image = new File(getClass().getResource("/resources/" + partie.grille_de_jeu[i][j] + ".png").getFile());
-                           //String image_path = image.toURI().toURL().toString();
-                            for (Node node : childrens) {
-                                if(gp.getRowIndex(node) == i && gp.getColumnIndex(node) == j) {
-                                    String img = partie.grille_de_jeu[i][j];
-                                 
-                                    node.setStyle("-fx-background-image: url(" + getClass().getResource("/resources/"+img + ".png").toExternalForm() + ");");
-                                    break;
-
-                                }
+                        for (Node node : childrens) {
+                            if(gp.getRowIndex(node) == i && gp.getColumnIndex(node) == j) {
+                                String img = partie.grille_de_jeu[i][j];
+                                node.setStyle("-fx-background-image: url(" + getClass().getResource("/resources/"+img + ".png").toExternalForm() + ");");
+                                break;
                             }
+                        }
                        
                     }
                 }

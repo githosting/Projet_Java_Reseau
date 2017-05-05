@@ -90,7 +90,6 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
             if  ((rowIndex == 5 || !grille_de_jeu[rowIndex+1][colIndex].equals("null")) && grille_de_jeu[rowIndex][colIndex].equals("null"))
             {
                 // Refresh the game matrix with the player move.
-               // grille_de_jeu[rowIndex][colIndex] = player_color;
                 grille_de_jeu[rowIndex][colIndex] = game.getPlayer_color();
                 // Check if there is a winner or a draw match.
                 String victory_color = game.check_victory();
@@ -99,7 +98,6 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                     label_info.setText("Match Nul !");
                     
                     // Save the game in history.
-                   // historiser_partie(pseudo, pseudo_adversaire, "Match Nul", grille_de_jeu, "");
                    game.sauvegarde(EnumSauvegarde.Historisation, game.getPseudo(), game.getPseudo_adversaire(), "Match Nul", grille_de_jeu, "");
                 }
                 else if(!(victory_color.equals("null")))

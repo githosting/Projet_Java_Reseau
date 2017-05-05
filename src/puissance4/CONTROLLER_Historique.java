@@ -128,14 +128,17 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
                 {
                     for (int j = 0; j < 7; j++) 
                     {
-                        File image = new File("./pictures/"+partie.grille_de_jeu[i][j]+".png");
-                        String image_path = image.toURI().toURL().toString();
+                       
                         for (Node node : childrens) {
                             if(gp.getRowIndex(node) == i && gp.getColumnIndex(node) == j) {
-                                node.setStyle("-fx-background-image: url(" + image_path + ");");
+                                String img = partie.grille_de_jeu[i][j];
+
+                                node.setStyle("-fx-background-image: url(" + getClass().getResource("/resources/"+img + ".png").toExternalForm() + ");");
                                 break;
+
                             }
                         }
+                       
                     }
                 }
         } catch (IOException ex) {Logger.getLogger(CONTROLLER_Historique.class.getName()).log(Level.SEVERE, null, ex);}
