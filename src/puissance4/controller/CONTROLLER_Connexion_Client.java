@@ -1,5 +1,5 @@
 
-package puissance4;
+package puissance4.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +18,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import puissance4.Validation;
+import puissance4.bean.INTERFACE_Screen;
+import puissance4.bean.Puissance4;
+import puissance4.bean.RUN_Connexion;
+import puissance4.bean.RUN_Emission;
+import puissance4.bean.RUN_Reception;
 
 
 /**

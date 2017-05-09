@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="700.0" maxWidth="700.0" minHeight="600.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.CONTROLLER_Chargement">
+<AnchorPane maxHeight="700.0" maxWidth="700.0" minHeight="600.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.controller.CONTROLLER_Chargement">
     <children>
         
       <Label fx:id="label_info" layoutX="10.0" layoutY="8.0" prefHeight="41.0" prefWidth="500.0" text="Chargement" textAlignment="CENTER">

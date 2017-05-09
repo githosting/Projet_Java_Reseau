@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package puissance4;
+package puissance4.controller;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,9 +30,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import static puissance4.CONTROLLER_Connexion_Server.player_type;
-import static puissance4.CONTROLLER_Connexion_Server.server_socket;
-import static puissance4.CONTROLLER_Connexion_Server.thread_attente_connexion;
+import puissance4.bean.Partie_Save;
+import puissance4.bean.INTERFACE_Screen;
+import puissance4.bean.Partie;
+import puissance4.bean.Puissance4;
+import puissance4.bean.RUN_Connexion;
+import static puissance4.controller.CONTROLLER_Connexion_Server.player_type;
+import static puissance4.controller.CONTROLLER_Connexion_Server.thread_attente_connexion;
+import static puissance4.controller.CONTROLLER_Connexion_Server.thread_attente_connexion;
 
 /**
  * FXML Controller class

@@ -1,8 +1,9 @@
 
-package puissance4;
+package puissance4.bean;
 
 import java.io.*;
 import java.net.*;
+import puissance4.controller.CONTROLLER_Jeu;
 
 
 /**

@@ -1,5 +1,7 @@
 
-package puissance4;
+package puissance4.bean;
+
+import puissance4.controller.CONTROLLER_Super;
 
 
 /**

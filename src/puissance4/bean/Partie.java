@@ -1,4 +1,4 @@
-package puissance4;
+package puissance4.bean;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import puissance4.controller.CONTROLLER_Jeu;
 
 public class Partie {
      // Attributes
@@ -123,15 +124,14 @@ public class Partie {
         }
         return "null";
     }
-    // à retravailler, certain paramètre sont inutiles ojd
-     public void sauvegarde(EnumSauvegarde type, String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur){
+     public void sauvegarde(EnumSauvegarde type, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur) throws JsonProcessingException{
         if(type == EnumSauvegarde.Historisation){
-            historiser_partie(param_pseudo_moi, param_pseudo_adversaire, param_victoire_defaite, param_grille_de_jeu, param_pseudo_vainqueur);
+            historiser_partie(this.getPseudo(), this.getPseudo_adversaire(), param_victoire_defaite, param_grille_de_jeu, param_pseudo_vainqueur);
         }else{
-            sauvegarde_partie(param_pseudo_moi, param_pseudo_adversaire, param_victoire_defaite, param_grille_de_jeu, param_pseudo_vainqueur);
+            sauvegarde_partie(this.getPseudo(), this.getPseudo_adversaire(), param_victoire_defaite, param_grille_de_jeu, param_pseudo_vainqueur);
         }
     }
-    public void sauvegarde_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur)
+    public void sauvegarde_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur) throws JsonProcessingException
     {
         if(param_victoire_defaite.equals("Défaite"))
         {
@@ -145,31 +145,27 @@ public class Partie {
         // Save the object, serialised with JSON, in a file on the player computer.
         String save_JSON = "";
         ObjectMapper mapper = new ObjectMapper();
-        try 
+        // Serialisation JSON.
+        save_JSON = mapper.writeValueAsString(save);
+        // Create the file name : save_ followed by a timestamp.
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        String timestamp = ts.toString().replace(':', '-').replace('.', '_');
+        String nom_fichier = "game_" + timestamp + ".txt";
+        // Save the file on disk if it doesn't already exist.
+        File repertoire = new File("./games");
+        if(!repertoire.exists()){
+            repertoire.mkdir();
+        }
+        File f = new File("./games/" + nom_fichier);
+        if(!f.exists())
         {
-            // Serialisation JSON.
-            save_JSON = mapper.writeValueAsString(save);
-            // Create the file name : save_ followed by a timestamp.
-            Timestamp ts = new Timestamp(System.currentTimeMillis());
-            String timestamp = ts.toString().replace(':', '-').replace('.', '_');
-            String nom_fichier = "game_" + timestamp + ".txt";
-            // Save the file on disk if it doesn't already exist.
-            File repertoire = new File("./games");
-            if(!repertoire.exists()){
-                repertoire.mkdir();
-            }
-            File f = new File("./games/" + nom_fichier);
-            if(!f.exists()) 
-            { 
-                List<String> lines = Arrays.asList(save_JSON);
-                Path file = Paths.get("./games/" + nom_fichier);
-                try 
-                {
-                    Files.write(file, lines, Charset.forName("UTF-8"));
-                } catch (IOException ex) {Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);}
-            }
-        } 
-        catch (JsonProcessingException ex) { Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex); }
+            List<String> lines = Arrays.asList(save_JSON);
+            Path file = Paths.get("./games/" + nom_fichier);
+            try
+            {
+                Files.write(file, lines, Charset.forName("UTF-8"));
+            } catch (IOException ex) {Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);}
+        }
     }
     
      /**
@@ -187,7 +183,7 @@ public class Partie {
         * 	The winner pseudo.
         * @return void
         */
-    public void historiser_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur)
+    public void historiser_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur) throws JsonProcessingException
     {
         if(param_victoire_defaite.equals("Défaite"))
         {
@@ -201,31 +197,27 @@ public class Partie {
         // Save the object, serialised with JSON, in a file on the player computer.
         String save_JSON = "";
         ObjectMapper mapper = new ObjectMapper();
-        try 
+        // Serialisation JSON.
+        save_JSON = mapper.writeValueAsString(save);
+        // Create the file name : save_ followed by a timestamp.
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        String timestamp = ts.toString().replace(':', '-').replace('.', '_');
+        String nom_fichier = "save_" + timestamp + ".txt";
+        // Save the file on disk if it doesn't already exist.
+        File repertoire = new File("./saves");
+        if(!repertoire.exists()){
+            repertoire.mkdir();
+        }
+        File f = new File("./saves/" + nom_fichier);
+        if(!f.exists())
         {
-            // Serialisation JSON.
-            save_JSON = mapper.writeValueAsString(save);
-            // Create the file name : save_ followed by a timestamp.
-            Timestamp ts = new Timestamp(System.currentTimeMillis());
-            String timestamp = ts.toString().replace(':', '-').replace('.', '_');
-            String nom_fichier = "save_" + timestamp + ".txt";
-            // Save the file on disk if it doesn't already exist.
-            File repertoire = new File("./saves");
-            if(!repertoire.exists()){
-                repertoire.mkdir();
-            }
-            File f = new File("./saves/" + nom_fichier);
-            if(!f.exists()) 
-            { 
-                List<String> lines = Arrays.asList(save_JSON);
-                Path file = Paths.get("./saves/" + nom_fichier);
-                try 
-                {
-                    Files.write(file, lines, Charset.forName("UTF-8"));
-                } catch (IOException ex) {Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);}
-            }
-        } 
-        catch (JsonProcessingException ex) { Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex); }
+            List<String> lines = Arrays.asList(save_JSON);
+            Path file = Paths.get("./saves/" + nom_fichier);
+            try
+            {
+                Files.write(file, lines, Charset.forName("UTF-8"));
+            } catch (IOException ex) {Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);}
+        }
     }
 
     /**

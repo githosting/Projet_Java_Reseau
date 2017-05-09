@@ -1,5 +1,5 @@
 
-package puissance4;
+package puissance4.bean;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import java.net.SocketException;
 import javafx.application.Platform;
+import puissance4.controller.CONTROLLER_Jeu;
 
 
 /**

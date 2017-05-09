@@ -1,5 +1,5 @@
 
-package puissance4;
+package puissance4.controller;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,6 +25,9 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
+import puissance4.bean.Partie_History;
+import puissance4.bean.INTERFACE_Screen;
+import puissance4.bean.Puissance4;
 
 
 /**

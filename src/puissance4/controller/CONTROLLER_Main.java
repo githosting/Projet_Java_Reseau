@@ -1,11 +1,13 @@
 
-package puissance4;
+package puissance4.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import puissance4.bean.INTERFACE_Screen;
+import puissance4.bean.Puissance4;
 
 
 /**

@@ -1,5 +1,5 @@
 
-package puissance4;
+package puissance4.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,11 +16,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import puissance4.Validation;
+import puissance4.bean.INTERFACE_Screen;
+import puissance4.bean.Puissance4;
+import puissance4.bean.RUN_Connexion;
+import puissance4.bean.RUN_Emission;
+import puissance4.bean.RUN_Reception;
 
 
 /**
     * Class acting as a controller for view VUE_Connexion_Server events.
-    * @author Kessler, Araba, Bettinger
     * @version 1.0
     */
 public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Screen {
@@ -74,7 +79,6 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     
     /**
         * Execute code when the view is displayed.
-        * @author Bettinger
         * @version 1.0
         * @param URL location
         * @param ResourceBundle resources

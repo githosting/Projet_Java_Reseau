@@ -1,19 +1,10 @@
 
-package puissance4;
+package puissance4.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -26,6 +17,15 @@ import javafx.scene.layout.GridPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import puissance4.bean.EnumSauvegarde;
+
+import puissance4.bean.INTERFACE_Screen;
+import puissance4.bean.Message;
+import puissance4.bean.Partie;
+import puissance4.bean.RUN_Emission;
+import puissance4.bean.RUN_Reception;
+
+
 
 
 /**
@@ -74,7 +74,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         * @throws MalformedURLException
         */
     @FXML 
-    public void cellClick(MouseEvent event) throws MalformedURLException
+    public void cellClick(MouseEvent event) throws MalformedURLException, JsonProcessingException
     {
       
         Node source = (Node)event.getSource();
@@ -98,13 +98,13 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                     label_info.setText("Match Nul !");
                     
                     // Save the game in history.
-                   game.sauvegarde(EnumSauvegarde.Historisation, game.getPseudo(), game.getPseudo_adversaire(), "Match Nul", grille_de_jeu, "");
+                   game.sauvegarde(EnumSauvegarde.Historisation, "Match Nul", grille_de_jeu, "");
                 }
                 else if(!(victory_color.equals("null")))
                 {
                     label_info.setText("Le joueur " + victory_color + " ("+ game.getPseudo() +") gagne.");
                     // Save the game in history.
-                     game.sauvegarde(EnumSauvegarde.Historisation, game.getPseudo(), game.getPseudo_adversaire(), "Victoire", grille_de_jeu, "");
+                     game.sauvegarde(EnumSauvegarde.Historisation, "Victoire", grille_de_jeu, "");
                 }
                 else
                 {
@@ -146,53 +146,43 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     }
     
      @FXML
-     private void btn_save(ActionEvent event) throws MalformedURLException 
+     private void btn_save(ActionEvent event) throws MalformedURLException, JsonProcessingException 
     {
-        game.sauvegarde(EnumSauvegarde.Sauvegarde,game.getPseudo(), game.getPseudo_adversaire(), "Match en cours", grille_de_jeu, "");
+        game.sauvegarde(EnumSauvegarde.Sauvegarde, "Match en cours", grille_de_jeu, "");
     }    
     private void partieChargement(){
         if(Partie.gameChargement.isCharger()){
               game = Partie.gameChargement;
               grille_de_jeu = game.getGrille_de_jeu();
-              ObservableList<Node> childrens = gp.getChildren();
-              for (int i = 0 ; i < 6 ; i++) 
-              {
-                for (int j = 0; j < 7; j++) 
-                {
-                  for (Node node : childrens) {
-                      if(gp.getRowIndex(node) == i && gp.getColumnIndex(node) == j) {
-                          String img = grille_de_jeu[i][j];
-                          if(img != "null"){
-                            node.setStyle("-fx-background-image: url(" + getClass().getResource("/resources/"+img + ".png").toExternalForm() + ");");
-                            break;
-                          }
-                      }
-                  }
-
-                 }
-              }
+              rafraichissementGrilleTotal(grille_de_jeu);
           } 
     }
     
+    
     private void rafraichissementGrilleReception(String[][] grille){
-              ObservableList<Node> childrens = gp.getChildren();
               game.setGrille_de_jeu(grille);
               grille_de_jeu = grille;
-              for (int i = 0 ; i < 6 ; i++) 
-              {
-                for (int j = 0; j < 7; j++) 
-                {
-                  for (Node node : childrens) {
-                      if(gp.getRowIndex(node) == i && gp.getColumnIndex(node) == j) {
-                          String img = grille[i][j];
-                          node.setStyle("-fx-background-image: url(" + getClass().getResource("/resources/"+img + ".png").toExternalForm() + ");");
-                          break;
-                      }
-                  }
-
-                 }
-              }
+              rafraichissementGrilleTotal(grille);
         
+    }
+    private void rafraichissementGrilleTotal(String[][] grille){
+        ObservableList<Node> childrens = gp.getChildren();
+        for (int i = 0 ; i < 6 ; i++) 
+        {
+          for (int j = 0; j < 7; j++) 
+          {
+            for (Node node : childrens) {
+                if(gp.getRowIndex(node) == i && gp.getColumnIndex(node) == j) {
+                    String img = grille[i][j];
+                    if(img != "null"){
+                      node.setStyle("-fx-background-image: url(" + getClass().getResource("/resources/"+img + ".png").toExternalForm() + ");");
+                      break;
+                    }
+                }
+            }
+
+           }
+        }
     }
     
     private void rafraichissementGrille(int rowIndex, int colIndex){
@@ -216,25 +206,20 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
             }
         }
     }
-    private void controleVictoire(String victory_color){
+    private void controleVictoireReception(String victory_color) throws JsonProcessingException{
                       if(victory_color.equals("match_nul"))
                             {
                                 Platform.runLater(() -> {    
                                     label_info.setText("Match Nul !");
                                 });
-
-                                // Save the game in history.
-                              
-                                game.sauvegarde(EnumSauvegarde.Historisation,game.getPseudo(), game.getPseudo_adversaire(), "Match Nul", grille_de_jeu, "");
-                                
+                               // Save the game in history.                              
+                               game.sauvegarde(EnumSauvegarde.Historisation, "Match Nul", grille_de_jeu, "");                              
                                // game_over = true;
-                               game.setGame_over(true);
-                               
+                               game.setGame_over(true);                              
                             }
                             else if(!(victory_color.equals("null")))
                             {
-                                String pseudo_vainqueur;
-                              
+                                String pseudo_vainqueur;                 
                                 if(victory_color.equals(game.getPlayer_color())){
                                     pseudo_vainqueur = game.getPseudo();
                                 }else{
@@ -245,8 +230,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                                 });
                                 
                                 // Save the game in history
-                                game.sauvegarde(EnumSauvegarde.Historisation,game.getPseudo(), game.getPseudo_adversaire(), "Défaite", grille_de_jeu, pseudo_vainqueur);         
-                                //game_over = true; 
+                                game.sauvegarde(EnumSauvegarde.Historisation, "Défaite", grille_de_jeu, pseudo_vainqueur);         
                                 game.setGame_over(true);
                             }
                            // else if(game_over == false)
@@ -295,7 +279,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                             }
                             
                         }
-                       // System.out.println("THREAD Refresh Grid... saucisse");
+                       // System.out.println("THREAD Refresh Grid...");
                         
                         Message nouveau_message = RUN_Reception.message;
                             
@@ -321,13 +305,16 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
 
                             if(grille_temp == null){
                                 rafraichissementGrille(rowIndex,colIndex);
-                                controleVictoire(victory_color);
+                                try {
+                                    controleVictoireReception(victory_color);
+                                } catch (JsonProcessingException ex) {
+                                    Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }else{
                                 rafraichissementGrilleReception(grille_temp);
                                 game.setGame_over(false);
                             }
-                            // Check if there is a winner or a draw match.
-                            
+                            // Check if there is a winner or a draw match.                        
                              System.out.println(colIndex + "  " + rowIndex + "  " + path_image + "  " + victory_color + "  " + RUN_Reception.message.pseudo + "  " );
                         }        
 

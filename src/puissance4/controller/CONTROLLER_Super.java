@@ -1,5 +1,5 @@
 
-package puissance4;
+package puissance4.controller;
 
 import javafx.util.Duration;
 import java.util.HashMap;
@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import puissance4.bean.INTERFACE_Screen;
+
 
 
 /**

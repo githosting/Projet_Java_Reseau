@@ -1,11 +1,12 @@
 
-package puissance4;
+package puissance4.bean;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.PrintWriter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import puissance4.controller.CONTROLLER_Jeu;
 
 
 /**
@@ -50,17 +51,17 @@ public class RUN_Emission implements Runnable
         {
             if(message.pseudo != null)
             {
-                // Serialisation of the Message object into a JSON_string.
-                ObjectMapper mapper = new ObjectMapper();
-                try 
-                {
+                try {
+                    // Serialisation of the Message object into a JSON_string.
+                    ObjectMapper mapper = new ObjectMapper();
                     message_JSON_string = mapper.writeValueAsString(message);
-                } 
-                catch (JsonProcessingException ex) { Logger.getLogger(RUN_Emission.class.getName()).log(Level.SEVERE, null, ex); }
-                
-                // Sending the serialised Message object.
-                out.println(message_JSON_string);
-                out.flush();
+                    
+                    // Sending the serialised Message object.
+                    out.println(message_JSON_string);
+                    out.flush();
+                } catch (JsonProcessingException ex) {
+                    Logger.getLogger(RUN_Emission.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
             // Make a brief pause.

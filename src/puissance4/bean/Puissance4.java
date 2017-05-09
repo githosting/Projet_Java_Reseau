@@ -1,5 +1,5 @@
 
-package puissance4;
+package puissance4.bean;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import puissance4.controller.CONTROLLER_Super;
 
 
 /**
@@ -19,27 +20,27 @@ public class Puissance4 extends Application
 {
     // Main screen.
     public static final String MAIN_SCREEN = "main"; 
-    public static final String MAIN_SCREEN_FXML = "VUE_Accueil.fxml";
+    public static final String MAIN_SCREEN_FXML = "/puissance4/vue/VUE_Accueil.fxml";
     
     // Server player connection screen.
     public static final String SERVER_CONNECT_SCREEN = "serverconnect"; 
-    public static final String SERVER_CONNECT_SCREEN_FXML = "VUE_Connexion_Server.fxml";
+    public static final String SERVER_CONNECT_SCREEN_FXML = "/puissance4/vue/VUE_Connexion_Server.fxml";
 
     // Client player connection screen.
     public static final String CLIENT_CONNECT_SCREEN = "clientconnect"; 
-    public static final String CLIENT_CONNECT_SCREEN_FXML = "VUE_Connexion_Client.fxml";
+    public static final String CLIENT_CONNECT_SCREEN_FXML = "/puissance4/vue/VUE_Connexion_Client.fxml";
     
     // Game screen. 
     public static final String GAME_SCREEN = "jeu"; 
-    public static final String GAME_SCREEN_FXML = "VUE_Jeu.fxml";
+    public static final String GAME_SCREEN_FXML = "/puissance4/vue/VUE_Jeu.fxml";
     
     // Historic screen. 
     public static final String HISTORIQUE_SCREEN = "historique"; 
-    public static final String HISTORIQUE_SCREEN_FXML = "VUE_Historique.fxml"; 
+    public static final String HISTORIQUE_SCREEN_FXML = "/puissance4/vue/VUE_Historique.fxml"; 
     
     // Sauvegarde screen screen. 
     public static final String CHARGEMENT_SCREEN = "Chargement"; 
-    public static final String CHARGEMENT_SCREEN_FXML = "VUE_Chargement.fxml"; 
+    public static final String CHARGEMENT_SCREEN_FXML = "/puissance4/vue/VUE_Chargement.fxml"; 
     
     
     /**
