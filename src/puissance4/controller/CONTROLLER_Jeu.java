@@ -27,18 +27,18 @@ import puissance4.bean.RUN_Reception;
 // import alert
 import javafx.scene.control.Alert;
 
-
-
-
 /**
     * Class acting as a controller for view VUE_Jeu events.
-    * @author Araba, Kessler, Bettinger
     * @version 4.0
     */
 public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
+    
+   // initialize a new partie
    public static Partie game = new Partie();
+   
     CONTROLLER_Super mycontroller;
-    // The game matrix.
+    
+    // The grid of game.
     public static String grille_de_jeu [][] =   
         {
             {"null", "null", "null", "null", "null", "null", "null"}, 
@@ -51,22 +51,36 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     
     @FXML
     public Label label_info;
+    
     @FXML
     public Label label_versus;
+    
     @FXML
+    // concerning the grid
     private GridPane gp;
     
     // Accessors
-    public Label getLabelInfo() { return label_info; }
-    public Label getLabelVersus() { return label_versus; }
-    public GridPane getGridPane() { return gp; }
+    public Label getLabelInfo() { 
+        return label_info; 
+    }
     
+    public Label getLabelVersus() {
+        return label_versus; 
+    }
+    
+    public GridPane getGridPane() {
+        return gp;
+    }
+    
+    /**
+     * return parent screen
+     * @param screenParent 
+     * @return void
+     */
     @Override
     public void setScreenParent(CONTROLLER_Super screenParent) {
         mycontroller = screenParent;
     }
-    
-      
     
     /**
         * Manage the click on a game grid cell.
@@ -77,8 +91,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         */
     @FXML 
     public void cellClick(MouseEvent event) throws MalformedURLException, JsonProcessingException
-    {
-      
+    { 
         Node source = (Node)event.getSource();
         
        // if(source.getStyle().length() == 0 && my_turn == true && game_start == true && game_over == false)
@@ -123,14 +136,12 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                 Platform.runLater(() -> {
                     source.setStyle("-fx-background-image: url(" + game.getImage_path() + ");");
                 });
-
-               
+          
                 game.setMy_turn(false);
             }
         }
     }
     
-   
     /**
         * Manage a game reinitialisation.
         * @version 1.0
@@ -147,8 +158,14 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         System.exit(0);
     }
     
-     @FXML
-     private void btn_save(ActionEvent event) throws MalformedURLException, JsonProcessingException 
+    /**
+     * Manage a save game
+     * @param event
+     * @throws MalformedURLException
+     * @throws JsonProcessingException 
+     */
+    @FXML
+    private void btn_save(ActionEvent event) throws MalformedURLException, JsonProcessingException 
     {
         game.sauvegarde(EnumSauvegarde.Sauvegarde, "Match en cours", grille_de_jeu, "");
     }    

@@ -33,13 +33,14 @@ import puissance4.bean.Puissance4;
 /**
     * Class acting as a controller for view VUE_Historique events.
     * @version 1.0
-    */
+*/
+
 public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
 
     // Attributes
     CONTROLLER_Super mycontroller;
     
-     // The game matrix.
+     // The grid of game.
     public static String grille_de_jeu [][] =   
         {
             {"null", "null", "null", "null", "null", "null", "null"}, 
@@ -53,53 +54,71 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     // FXML Attributes
     @FXML
     public Label label_info;
+    
     @FXML
+    // indicate my pseudo 
     public Label label_pseudo_moi;
+    
     @FXML
+    // indicate the pseudo of adversaire
     public Label label_pseudo_adversaire;
+    
     @FXML
+    // indicate the type of victory null, victory, 
     public Label label_victoire_defaite;
+    
     @FXML
     public ListView listview;
+    
     @FXML
+    // indicate the grid of game
     private GridPane gp;
     
     // Accessors
     public Label getLabelInfo() { return label_info; }
     public GridPane getGridPane() { return gp; }
     
+    /**
+        * return parent screen
+        * @param screenParent
+        * @return void
+    */
     @Override
     public void setScreenParent(CONTROLLER_Super screenParent) {
         mycontroller = screenParent;
     }
     
     
+
+    /**
+        * click on cell
+        * @param event
+        * @throws MalformedURLException 
+    */
+    @FXML
     // Used for tests only.
-    @FXML 
     public void cellClick(MouseEvent event) throws MalformedURLException
     {
         //label_info.setText("CLICK");
     }
-    
     
     /**
         * Redirect to the main interface.
         * @version 1.0
         * @param ActionEvent event
         * @return void
-        */
+    */
     @FXML
     private void goToHome (ActionEvent event){
         mycontroller.setScreen(Puissance4.MAIN_SCREEN);
     }
-    
-    
+     
     /**
         * Inside the listview, when a click occurs on a game, associated information are displayed.
         * @version 1.0
         * @param MouseEvent arg0
         * @return void
-        */
+    */
     @FXML 
     public void handleMouseClick(MouseEvent arg0) 
     {
@@ -154,7 +173,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
         * @param URL location
         * @param ResourceBundle rb
         * @return void
-        */
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {

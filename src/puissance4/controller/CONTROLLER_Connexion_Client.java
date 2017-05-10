@@ -28,7 +28,6 @@ import puissance4.bean.RUN_Reception;
 
 /**
     * Class acting as a controller for view VUE_Connexion_Client events.
-    * @author Kessler, Araba, Bettinger
     * @version 1.0
     */
 public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Screen {
@@ -37,7 +36,6 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
     public static Socket socket;
     private PrintWriter out;
     private BufferedReader in;
-    public static String player_type;
     public static ServerSocket server_socket;
     public static Thread thread_attente_connexion;
     public static Thread thread_emission;
@@ -45,74 +43,103 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
     public static RUN_Connexion runnable_connexion;
     public static RUN_Emission runnable_emission;
     public static RUN_Reception runnable_reception;
+    
+    // indicate the type of player server or client
+    public static String player_type;
+    
+    // boolean true if its the player is playing
     public boolean my_turn = false;
+    
+    // pseudo of client player
     public String pseudo;
     public boolean game_start = false;
     CONTROLLER_Super mycontroller;
     
     // FXML Attributes
     @FXML
+    // input the pseudo of client player
     private TextField textfield_pseudo;
+    
     @FXML
-    private TextField textfield_adresse; 
+    // input adresse server connection
+    private TextField textfield_adresse;
+    
     @FXML
+    // input port of server
     private TextField textfield_port;
+    
     @FXML
+    // launch connection for the player client
     private Button button_connect;
+    
     @FXML
+    // title of page 
     public Label label_info;
+ 
     @FXML
-    protected  Label label_erreurs;
-    @FXML
+    // grid of game
     private GridPane gp;
 
-    
     // Accessors
-    public Label getLabelInfo() { return label_info; }
-    public GridPane getGridPane() { return gp; }
+    /**
+     * @params null
+     * @return Label
+     */
+    public Label getLabelInfo() { 
+        return label_info; 
+    }
     
+    /**
+     * getter the gridpane
+     * @return GridPane
+     */
+    public GridPane getGridPane() {
+        return gp;
+    }
+    
+    /**
+     * 
+     * set screen parent.
+     * @version 1.0
+     * @param screenParent 
+     * @return void
+    */
     @Override
     public void setScreenParent(CONTROLLER_Super screenParent) {
         mycontroller = screenParent;
     }
     
-    
     /**
         * Execute code when the view is displayed.
-        * @author Bettinger
         * @version 1.0
         * @param URL location
         * @param ResourceBundle resources
         * @return void
-        */
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         textfield_adresse.setText("127.0.0.1");
         textfield_port.setText("4200");
     }
 
-    
     /**
         * Redirect to the main interface.
-        * @author Araba, Kessler
         * @version 1.0
         * @param ActionEvent event
         * @return void
-        */
+    */
     @FXML
     private void goToHome (ActionEvent event){
         mycontroller.setScreen(Puissance4.MAIN_SCREEN);
     }
-    
-    
+        
     /**
         * Manage a client connection to a game.
-        * @author Bettinger, Kessler, Araba
         * @version 2.0
         * @param ActionEvent event
         * @return void
         * @throws MalformedURLException
-        */
+    */
     @FXML
     private void btn_connect(ActionEvent event) throws MalformedURLException 
     {
@@ -157,5 +184,4 @@ public class CONTROLLER_Connexion_Client implements Initializable,INTERFACE_Scre
             this.mycontroller.setScreen(Puissance4.GAME_SCREEN);
         }
     }
-    
 }

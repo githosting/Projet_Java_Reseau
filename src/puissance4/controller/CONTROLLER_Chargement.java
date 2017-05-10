@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package puissance4.controller;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -42,11 +38,14 @@ import static puissance4.controller.CONTROLLER_Connexion_Server.thread_attente_c
 /**
  * FXML Controller class
  *
- * @author Alex
  */
 public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
     CONTROLLER_Super mycontroller;
+    
+    // true if the party is loading
     public static Boolean charger = false;
+    
+    // initilize the grid of game
      public static String grille_de_jeu [][] =   
         {
             {"null", "null", "null", "null", "null", "null", "null"}, 
@@ -59,28 +58,43 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
      
     @FXML
     private Label label_info;
+    
     @FXML
+    // label indicate the pseudo 
     private Label label_pseudo_moi;
+    
     @FXML
+    //label indicate pseudo adversaire
     private Label label_pseudo_adversaire;
+    
     @FXML
+    // label indicate type of result game
     private Label label_victoire_defaite;
+    
     @FXML
     private ListView<?> listview;
+    
     @FXML
+    // the grid of game
     private GridPane gp;
 
     /**
      * Initializes the controller class.
+     * @params screenParent
+     * @return void
      */
     @Override
     public void setScreenParent(CONTROLLER_Super screenParent) {
         mycontroller = screenParent;
     }
     
+    /**
+     * inintialize the chargement page
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         ObservableList data = FXCollections.observableArrayList();
         
             File dossier = new File("./games"); 
@@ -92,9 +106,13 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
                 dossier.mkdir();
             }
             listview.setItems(data);
-
     }    
 
+    /**
+     * 
+     * @param event
+     * @throws URISyntaxException 
+     */
     @FXML
     private void handleMouseClick(MouseEvent event) throws URISyntaxException {
         
@@ -158,14 +176,29 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
         } catch (IOException ex) {Logger.getLogger(CONTROLLER_Historique.class.getName()).log(Level.SEVERE, null, ex);}
     }
 
+    /**
+     * action when you click on cell
+     * @param event 
+     */
     @FXML
     private void cellClick(MouseEvent event) {
     }
 
+    /**
+     * method when you click on return button
+     * @param event
+     * @return void
+     */
     @FXML
     private void goToHome(ActionEvent event) {
          mycontroller.setScreen(Puissance4.MAIN_SCREEN);
     }
+    
+    /**
+     * Method to launch game 
+     * @param event 
+     * @return void
+     */
     @FXML
     private void goToGame(ActionEvent event) {
         if(Partie.gameChargement.isCharger()){
@@ -173,5 +206,4 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
          mycontroller.setScreen(Puissance4.GAME_SCREEN);
         }
     }
-    
 }

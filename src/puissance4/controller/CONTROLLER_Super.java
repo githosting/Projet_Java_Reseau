@@ -11,15 +11,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+// import programme
 import puissance4.bean.INTERFACE_Screen;
 
 
 
 /**
     * Class acting as a general controller for other controllers.
-    * @author Kessler, Araba
     * @version 1.0
-    */
+*/
 public class CONTROLLER_Super extends StackPane {
     
     // Hashmap to manage the different screens. 
@@ -27,12 +27,22 @@ public class CONTROLLER_Super extends StackPane {
     
     // Accessors
 
+    /**
+        * to add a screen
+        * @param name name of screen
+        * @param screen node of screen
+    */
     public void addScreen(String name, Node screen){
         // @param name : screen name
         // @param screen : screen node
         screens.put(name, screen);
     }
     
+    /**
+        * @getter
+        * @param name name of node 
+        * @return Node
+    */
     public Node getScreen(String name){
         return screens.get(name);
     }
@@ -40,12 +50,11 @@ public class CONTROLLER_Super extends StackPane {
     
     /**
         * Load a screen.
-        * @author Kessler, Araba
         * @version 1.0
         * @param final String name
         * 	The screen name we have to load.
         * @return boolean representing the loading success or failure.
-        */
+    */
     public boolean setScreen(final String name) { 
         
         // If the screen is loaded.
@@ -96,13 +105,12 @@ public class CONTROLLER_Super extends StackPane {
     
     /**
         * Manage the redirection to a screen.
-        * @author Kessler, Araba
         * @version 1.0
         * @param String name
         * 	The screen name we have to redirect to.
         * @param String resource
         * @return boolean representing redirection success or failure.
-        */
+    */
     public boolean loadScreen(String name, String resource){
         try
         {
@@ -118,16 +126,14 @@ public class CONTROLLER_Super extends StackPane {
             return false;
         }
     }
-    
-     
+       
     /**
         * Check if a screen unload gone well.
-        * @author Kessler, Araba
         * @version 1.0
         * @param String name
         * 	The screen name.
         * @return boolean representing unload success or failure.
-        */
+    */
     public boolean unloadScreen(String name) { 
         if(screens.remove(name) == null) { 
             System.out.println("Screen didn't exist"); 

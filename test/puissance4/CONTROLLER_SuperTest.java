@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import puissance4.controller.CONTROLLER_Super;
 
 /**
  *
@@ -49,7 +50,7 @@ public class CONTROLLER_SuperTest {
         CONTROLLER_Super instance = new CONTROLLER_Super();
         instance.addScreen(name, screen);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -64,7 +65,7 @@ public class CONTROLLER_SuperTest {
         Node result = instance.getScreen(name);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -80,7 +81,7 @@ public class CONTROLLER_SuperTest {
         boolean result = instance.loadScreen(name, resource);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -95,7 +96,7 @@ public class CONTROLLER_SuperTest {
         boolean result = instance.setScreen(name);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -110,7 +111,6 @@ public class CONTROLLER_SuperTest {
         boolean result = instance.unloadScreen(name);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
-    
 }
