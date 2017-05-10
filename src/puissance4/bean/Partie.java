@@ -182,7 +182,7 @@ public class Partie {
         * @param String param_pseudo_vainqueur
         * 	The winner pseudo.
         * @return void
-        */
+    */
     public void historiser_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur) throws JsonProcessingException
     {
         if(param_victoire_defaite.equals("Défaite"))

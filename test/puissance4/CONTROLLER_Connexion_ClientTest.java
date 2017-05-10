@@ -15,6 +15,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import puissance4.controller.CONTROLLER_Connexion_Client;
+import puissance4.controller.CONTROLLER_Super;
 
 /**
  *

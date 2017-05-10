@@ -4,9 +4,8 @@ package puissance4.bean;
 
 /**
     * Class allowing the creation of Partie_History objects representing games we want to save in the history.
-    * @author Bettinger
     * @version 1.0
-    */
+*/
 public class Partie_History 
 {
     // Attributes
@@ -26,17 +25,14 @@ public class Partie_History
     
     /**
         * Constructor without parameters for Partie_History class.
-        * @author Bettinger
         * @version 1.0
         * @param No Parameters
         * @return A Partie_History instance
-        */
+    */
     public Partie_History(){}
             
-    
     /**
         * Constructor with parameters for Partie_History class.
-        * @author Bettinger
         * @version 1.0
         * @param String un_pseudo_moi
         * 	The pseudo of the player who save the game in history.
@@ -47,7 +43,7 @@ public class Partie_History
         * @param String[][] un_grille_de_jeu
         * 	The game grid configuration at game end.
         * @return A Partie_History instance
-        */
+    */
     public Partie_History(String un_pseudo_moi, String un_pseudo_adversaire, String un_victoire_defaite, String[][] un_grille_de_jeu)
     {
         this.pseudo_moi = un_pseudo_moi;

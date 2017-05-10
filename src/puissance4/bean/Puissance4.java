@@ -14,9 +14,8 @@ import puissance4.controller.CONTROLLER_Super;
 
 /**
     * Class extending Application and being the application entry point.
-    * @author Bettinger, Araba, Kessler
     * @version 2.0
-    */
+*/
 public class Puissance4 extends Application 
 {
     // attributs
@@ -54,7 +53,7 @@ public class Puissance4 extends Application
         *       The main application interface.
         * @return void
         * @throws Exception
-        */
+    */
     @Override
     public void start(Stage stage) throws Exception 
     {
@@ -97,12 +96,11 @@ public class Puissance4 extends Application
 
 
     /**
-    * Launch the application.
-    * @author Automatic Generation
-    * @version 1.0
-    * @param args 
-    * 		The command line arguments.
-    * @return void
+        * Launch the application.
+        * @version 1.0
+        * @param args 
+        * 		The command line arguments.
+        * @return void
     */
     public static void main(String[] args) 
     {

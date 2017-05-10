@@ -4,9 +4,8 @@ package puissance4.bean;
 
 /**
     * Class allowing creation of Message objects which are exchanged between players.
-    * @author Bettinger
     * @version 2.0
-    */
+ */
 public class Message 
 {
     // Attributes
@@ -26,11 +25,10 @@ public class Message
     
     /**
         * Constructor without parameters for Message class.
-        * @author Bettinger
         * @version 2.0
         * @param No Parameters
         * @return A Message instance.
-        */
+    */
     public Message()
     {
         this.colIndex = 0;
@@ -55,7 +53,7 @@ public class Message
         * @param String un_pseudo
         *       Pseudo of the player sending the message.
         * @return A Message instance
-        */
+    */
     public Message(int un_colIndex, int un_rowIndex, String un_imagePath, String un_victoryColor, String un_pseudo)
     {
         this.colIndex = un_colIndex;

@@ -18,11 +18,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import puissance4.controller.CONTROLLER_Jeu;
+import puissance4.controller.CONTROLLER_Super;
 
-/**
- *
- * @author Kevin Araba
- */
+
 public class CONTROLLER_JeuTest {
     
     public CONTROLLER_JeuTest() {
