@@ -24,6 +24,8 @@ import puissance4.bean.Message;
 import puissance4.bean.Partie;
 import puissance4.bean.RUN_Emission;
 import puissance4.bean.RUN_Reception;
+// import alert
+import javafx.scene.control.Alert;
 
 
 
@@ -326,5 +328,15 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                 }
             }).start();
     }  
-    
+    /** * Redirect to the history interface.
+     * @version 1.0 
+     * @param ActionEvent event
+     * @return void */
+    @FXML 
+    private void goToRegle (ActionEvent event){ 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Message d'information"); 
+        alert.setContentText("Le but du jeu est d'aligner 4 pions sur une grille comptant 6 rangées et 7 colonnes. \n\n Chaque joueur dispose de 21 pions d'une couleur (par convention, en général jaune ou rouge). \nTour à tour les deux joueurs placent un pion dans la colonne de leur choix, le pion coulisse alors jusqu'à la position la plus basse possible dans la dite colonne à la suite de quoi c'est à l'adversaire de jouer. \n\n Le vainqueur est le joueur qui réalise le premier un alignement (horizontal, vertical ou diagonal) d'au moins quatre pions de sa couleur.\n\n Si, alors que toutes les cases de la grille de jeu sont remplies, aucun des deux joueurs n'a réalisé un tel alignement, la partie est déclarée nulle."); 
+    alert.showAndWait(); 
+    }
 }

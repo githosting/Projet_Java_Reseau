@@ -1,8 +1,10 @@
 
-package puissance4;
+package puissance4.bean;
 
 import java.util.HashMap;
 import java.util.Map;
+import javafx.scene.control.Alert; 
+import javafx.scene.control.Alert.AlertType;
 
 /**
     * Class containing methods to validate user inputs.
@@ -124,6 +126,10 @@ public class Validation {
             for(Map.Entry<String, String> erreur: ERREURS.entrySet()){
                 listeErreur = listeErreur.concat(erreur.getKey().concat(" : ").concat(erreur.getValue()));
             }
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Message d'information");
+            alert.setContentText(listeErreur);
+            alert.showAndWait();
         }
         return listeErreur;
     }

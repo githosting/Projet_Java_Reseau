@@ -6,24 +6,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.controller.CONTROLLER_Connexion_Server">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.controller.CONTROLLER_Connexion_Server">
    <children>
-      <TextField fx:id="textfield_pseudo" layoutX="156.0" layoutY="80.0" prefHeight="31.0" prefWidth="306.0" promptText="Pseudo" />
-      <Label fx:id="label_info1" layoutX="57.0" layoutY="85.0" prefHeight="17.0" prefWidth="383.0" text="Pseudo" textAlignment="CENTER" />
-      <Label fx:id="label_info2" layoutX="57.0" layoutY="156.0" prefHeight="17.0" prefWidth="383.0" text="IP Serveur" textAlignment="CENTER" />
-      <Label fx:id="label_info3" layoutX="57.0" layoutY="224.0" prefHeight="17.0" prefWidth="383.0" text="Port" textAlignment="CENTER" />
+      <TextField fx:id="textfield_pseudo" layoutX="157.0" layoutY="170.0" prefHeight="31.0" prefWidth="306.0" promptText="Pseudo" />
+      <Label fx:id="label_info1" layoutX="57.0" layoutY="175.0" prefHeight="17.0" prefWidth="383.0" text="Pseudo" textAlignment="CENTER" />
+      <Label fx:id="label_info2" layoutX="57.0" layoutY="230.0" prefHeight="17.0" prefWidth="383.0" text="IP Serveur" textAlignment="CENTER" />
+      <Label fx:id="label_info3" layoutX="57.0" layoutY="281.0" prefHeight="17.0" prefWidth="383.0" text="Port" textAlignment="CENTER" />
       <Label fx:id="label_info" layoutX="20.0" layoutY="57.0" prefHeight="17.0" prefWidth="383.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <TextField fx:id="textfield_adresse" layoutX="156.0" layoutY="151.0" prefHeight="31.0" prefWidth="306.0" promptText="IP Serveur" />
-      <TextField fx:id="textfield_port" layoutX="156.0" layoutY="219.0" prefHeight="31.0" prefWidth="306.0" promptText="Port" />
-      <Button fx:id="button_server" layoutX="156.0" layoutY="289.0" mnemonicParsing="false" onAction="#btn_server" prefHeight="6.0" prefWidth="306.0" text="Jouer" />
-      <Label layoutX="25.0" layoutY="29.0" text="Connexion au serveur">
+      <TextField fx:id="textfield_adresse" layoutX="157.0" layoutY="225.0" prefHeight="31.0" prefWidth="306.0" promptText="IP Serveur" />
+      <TextField fx:id="textfield_port" layoutX="156.0" layoutY="276.0" prefHeight="31.0" prefWidth="306.0" promptText="Port" />
+      <Button fx:id="button_server" layoutX="156.0" layoutY="348.0" mnemonicParsing="false" onAction="#btn_server" prefHeight="6.0" prefWidth="306.0" text="Jouer" />
+      <Label layoutX="24.0" layoutY="115.0" text="Connexion au serveur">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
       <Button layoutX="25.0" layoutY="411.0" mnemonicParsing="false" onAction="#goToHome" text="Retour" />
-      <Label fx:id="label_erreurs" layoutX="157.0" layoutY="335.0" prefHeight="105.0" prefWidth="306.0" textAlignment="CENTER" textFill="#ee0909" />
+      <Label layoutX="185.0" layoutY="35.0" text="Nouvelle partie">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

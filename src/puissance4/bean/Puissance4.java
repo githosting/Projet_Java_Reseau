@@ -6,6 +6,7 @@ import static javafx.application.Application.launch;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import puissance4.controller.CONTROLLER_Super;
@@ -18,6 +19,8 @@ import puissance4.controller.CONTROLLER_Super;
     */
 public class Puissance4 extends Application 
 {
+    // attributs
+    public static String stage;
     // Main screen.
     public static final String MAIN_SCREEN = "main"; 
     public static final String MAIN_SCREEN_FXML = "/puissance4/vue/VUE_Accueil.fxml";
@@ -29,6 +32,7 @@ public class Puissance4 extends Application
     // Client player connection screen.
     public static final String CLIENT_CONNECT_SCREEN = "clientconnect"; 
     public static final String CLIENT_CONNECT_SCREEN_FXML = "/puissance4/vue/VUE_Connexion_Client.fxml";
+    public static final String title_client_screen = "client connexion";
     
     // Game screen. 
     public static final String GAME_SCREEN = "jeu"; 
@@ -36,7 +40,7 @@ public class Puissance4 extends Application
     
     // Historic screen. 
     public static final String HISTORIQUE_SCREEN = "historique"; 
-    public static final String HISTORIQUE_SCREEN_FXML = "/puissance4/vue/VUE_Historique.fxml"; 
+    public static final String HISTORIQUE_SCREEN_FXML = "/puissance4/vue/VUE_Historique.fxml";
     
     // Sauvegarde screen screen. 
     public static final String CHARGEMENT_SCREEN = "Chargement"; 
@@ -45,7 +49,6 @@ public class Puissance4 extends Application
     
     /**
         * Start the application.
-        * @author Bettinger, Araba, Kessler
         * @version 2.0
         * @param Stage stage
         *       The main application interface.
@@ -66,6 +69,7 @@ public class Puissance4 extends Application
                                  Puissance4.SERVER_CONNECT_SCREEN_FXML); 
         mainContainer.loadScreen(Puissance4.CLIENT_CONNECT_SCREEN, 
                                  Puissance4.CLIENT_CONNECT_SCREEN_FXML);
+    
         mainContainer.loadScreen(Puissance4.HISTORIQUE_SCREEN, 
                                  Puissance4.HISTORIQUE_SCREEN_FXML);
         
@@ -77,7 +81,8 @@ public class Puissance4 extends Application
         // Preparing main interface.
         Group root2 = new Group(); 
         root2.getChildren().addAll(mainContainer); 
-        Scene scene = new Scene(root2, 560, 530);
+        Scene scene = new Scene(root2, 600, 580); 
+        stage.getIcons().add(new Image("https://lh3.ggpht.com/V4FL3iqgEauIClIKQdJd_B2ar89SDMBsVD3Q_qKJc-pKqJfE-ftLLoyZG4YGXLrD21uU=w70"));
         stage.setTitle("Puissance 4 Net");
         stage.setScene(scene); 
         stage.show();

@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import puissance4.Validation;
+import puissance4.bean.Validation;
 import puissance4.bean.INTERFACE_Screen;
 import puissance4.bean.Puissance4;
 import puissance4.bean.RUN_Connexion;
@@ -147,10 +147,6 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
             this.mycontroller.loadScreen(Puissance4.GAME_SCREEN, Puissance4.GAME_SCREEN_FXML); 
             this.mycontroller.setScreen(Puissance4.GAME_SCREEN);
         
-        } 
-        else{
-            // Display detected errors.
-            label_erreurs.setText(Validation.afficheErreur());
         } 
     }
 }

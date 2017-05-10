@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="700.0" maxWidth="700.0" minHeight="600.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.controller.CONTROLLER_Historique">
+<AnchorPane maxHeight="700.0" maxWidth="700.0" minHeight="600.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.controller.CONTROLLER_Historique">
     <children>
         
-      <Label fx:id="label_info" layoutX="10.0" layoutY="8.0" prefHeight="41.0" prefWidth="500.0" text="Historique" textAlignment="CENTER">
+      <Label fx:id="label_info" alignment="CENTER" layoutX="242.0" layoutY="8.0" prefHeight="41.0" prefWidth="500.0" text="Historique" textAlignment="RIGHT">
          <font><Font size="30.0" /></font></Label>
       
-      <Label fx:id="label_pseudo_moi" layoutX="234.0" layoutY="53.0" prefHeight="25.0" prefWidth="163.0" text="" textAlignment="CENTER" />
-      <Label fx:id="label_pseudo_adversaire" layoutX="234.0" layoutY="85.0" prefHeight="25.0" prefWidth="163.0" text="" textAlignment="CENTER" />
-      <Label fx:id="label_victoire_defaite" layoutX="234.0" layoutY="116.0" prefHeight="25.0" prefWidth="163.0" text="" textAlignment="CENTER" />
+      <Label fx:id="label_pseudo_moi" layoutX="333.0" layoutY="53.0" prefHeight="25.0" prefWidth="163.0" text="" textAlignment="CENTER" />
+      <Label fx:id="label_pseudo_adversaire" layoutX="333.0" layoutY="85.0" prefHeight="25.0" prefWidth="163.0" text="" textAlignment="CENTER" />
+      <Label fx:id="label_victoire_defaite" layoutX="333.0" layoutY="116.0" prefHeight="25.0" prefWidth="163.0" text="" textAlignment="CENTER" />
         
-      <ListView fx:id="listview" layoutX="14.0" layoutY="53.0" onMouseClicked="#handleMouseClick" prefHeight="88.0" prefWidth="213.0" />
+      <ListView fx:id="listview" layoutX="14.0" layoutY="53.0" onMouseClicked="#handleMouseClick" prefHeight="88.0" prefWidth="310.0" />
       
-      <GridPane fx:id="gp" gridLinesVisible="true" layoutX="16.0" layoutY="148.0" prefHeight="360.0" prefWidth="472.0">
+      <GridPane fx:id="gp" gridLinesVisible="true" layoutX="75.0" layoutY="149.0" prefHeight="360.0" prefWidth="472.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,7 +85,7 @@
          </children>
       </GridPane>
       
-      <Button layoutX="169.0" layoutY="18.0" mnemonicParsing="false" onAction="#goToHome" text="Retour" />
+      <Button layoutX="23.0" layoutY="528.0" mnemonicParsing="false" onAction="#goToHome" text="Retour" />
             
    </children>
 </AnchorPane>
