@@ -21,7 +21,9 @@ import static org.junit.Assert.*;
 import puissance4.controller.CONTROLLER_Jeu;
 import puissance4.controller.CONTROLLER_Super;
 
-
+/**
+    * Test CONTROLLER_Jeu
+ */
 public class CONTROLLER_JeuTest {
     
     public CONTROLLER_JeuTest() {
@@ -41,7 +43,7 @@ public class CONTROLLER_JeuTest {
         
         System.out.println("Avant chaque test.");
         
-        // Réinitialisation de la grille de jeu.
+        // Reinitialize the grid.
         for(int i=0 ; i<CONTROLLER_Jeu.grille_de_jeu.length ; i++)
         {
             for(int y=0 ; y<CONTROLLER_Jeu.grille_de_jeu[i].length ; y++)
@@ -54,7 +56,7 @@ public class CONTROLLER_JeuTest {
     }
 
     /**
-     * Test of getLabelInfo method, of class CONTROLLER_Jeu.
+        * Test of getLabelInfo method, of class CONTROLLER_Jeu.
      */
     @Test
     public void testGetLabelInfo() {
@@ -66,7 +68,7 @@ public class CONTROLLER_JeuTest {
     }
 
     /**
-     * Test of getGridPane method, of class CONTROLLER_Jeu.
+        * Test of getGridPane method, of class CONTROLLER_Jeu.
      */
     @Test
     public void testGetGridPane() {
@@ -78,7 +80,7 @@ public class CONTROLLER_JeuTest {
     }
 
     /**
-     * Test of setScreenParent method, of class CONTROLLER_Jeu.
+        * Test of setScreenParent method, of class CONTROLLER_Jeu.
      */
     @Test
     public void testSetScreenParent() {

@@ -21,7 +21,6 @@ public class Validation {
         * @version 2.0
         * @param pseudo
         *       The pseudo given by the player. 
-        * @return void
     */
     public static void validationPseudo(String pseudo){
         // If the pseudo is not empty and contains less than 15 characters.
@@ -49,7 +48,6 @@ public class Validation {
         * @version 2.0
         * @param ip
         *       The IP address given by the player.
-        * @return void
     */
     public static void validationIp(String ip){
         
@@ -84,7 +82,6 @@ public class Validation {
         * @version 2.0
         * @param port
         *       The port given by the player. 
-        * @return void
     */
     public static void validationPort(String port){
         
