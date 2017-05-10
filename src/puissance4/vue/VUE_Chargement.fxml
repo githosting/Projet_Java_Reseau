@@ -85,8 +85,8 @@
          </children>
       </GridPane>
       
-      <Button layoutX="213.0" layoutY="18.0" mnemonicParsing="false" onAction="#goToHome" text="Retour" />
-      <Button layoutX="276.0" layoutY="18.0" mnemonicParsing="false" onAction="#goToGame" text="Charger" />
+      <Button layoutX="335.0" layoutY="18.0" mnemonicParsing="false" onAction="#goToHome" text="Retour" />
+      <Button layoutX="397.0" layoutY="18.0" mnemonicParsing="false" onAction="#goToGame" text="Charger" />
             
    </children>
 </AnchorPane>
