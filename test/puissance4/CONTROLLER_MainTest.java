@@ -17,8 +17,7 @@ import puissance4.controller.CONTROLLER_Main;
 import puissance4.controller.CONTROLLER_Super;
 
 /**
- *
- * @author Kevin Araba
+     * Test CONTROLLER_Main
  */
 public class CONTROLLER_MainTest {
     
@@ -42,7 +41,7 @@ public class CONTROLLER_MainTest {
     }
 
     /**
-     * Test of initialize method, of class CONTROLLER_Main.
+        * Test of initialize method, of class CONTROLLER_Main.
      */
     @Test
     public void testInitialize() {
@@ -55,7 +54,7 @@ public class CONTROLLER_MainTest {
     }
 
     /**
-     * Test of setScreenParent method, of class CONTROLLER_Main.
+        * Test of setScreenParent method, of class CONTROLLER_Main.
      */
     @Test
     public void testSetScreenParent() {

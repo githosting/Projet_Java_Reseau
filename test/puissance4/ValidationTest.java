@@ -84,7 +84,7 @@ public class ValidationTest {
         for (String ip: ips){
             Validation.validationIp(ip);
             assertTrue(Validation.ERREURS.containsKey("ip"));
-            Validation.afficheErreur();
+            //Validation.afficheErreur();
         }
     }
 
@@ -97,7 +97,7 @@ public class ValidationTest {
         for (String port: ports){
             Validation.validationPort(port);
             assertTrue(Validation.ERREURS.containsKey("port"));
-            Validation.afficheErreur();
+            //Validation.afficheErreur();
         }
     }
 
@@ -110,7 +110,7 @@ public class ValidationTest {
         Validation.validationPseudo("toto");
         Validation.validationIp("127.0.0.1");
         Validation.validationPort("4200");
-        String val = Validation.afficheErreur();
+        Validation.afficheErreur();
         assertTrue(Validation.afficheErreur().isEmpty());
         
     }
