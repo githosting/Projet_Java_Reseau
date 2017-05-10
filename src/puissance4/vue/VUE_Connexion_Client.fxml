@@ -8,7 +8,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puissance4.controller.CONTROLLER_Connexion_Client">
    <children>
-      <TextField fx:id="textfield_pseudo" layoutX="156.0" layoutY="164.0" prefHeight="31.0" prefWidth="306.0" promptText="Pseudo" />
       <Label fx:id="label_info1" layoutX="57.0" layoutY="169.0" prefHeight="17.0" prefWidth="383.0" text="Pseudo" textAlignment="CENTER" />
       <Label fx:id="label_info2" layoutX="57.0" layoutY="224.0" prefHeight="17.0" prefWidth="383.0" text="IP Serveur" textAlignment="CENTER" />
       <Label fx:id="label_info3" layoutX="57.0" layoutY="284.0" prefHeight="17.0" prefWidth="383.0" text="Port" textAlignment="CENTER" />
@@ -16,6 +15,7 @@
          <font>
             <Font size="30.0" />
          </font></Label>
+      <TextField fx:id="textfield_pseudo" layoutX="156.0" layoutY="164.0" prefHeight="31.0" prefWidth="306.0" promptText="Pseudo" />
       <TextField fx:id="textfield_adresse" layoutX="156.0" layoutY="219.0" prefHeight="31.0" prefWidth="306.0" promptText="IP Serveur" />
       <TextField fx:id="textfield_port" layoutX="156.0" layoutY="279.0" prefHeight="31.0" prefWidth="306.0" promptText="Port" />
       <Button layoutX="25.0" layoutY="409.0" mnemonicParsing="false" onAction="#goToHome" text="Retour" />
