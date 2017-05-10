@@ -15,8 +15,7 @@ import static org.junit.Assert.*;
 import puissance4.controller.CONTROLLER_Super;
 
 /**
- *
- * @author Kevin Araba
+    * Test CONTROLLER_Super
  */
 public class CONTROLLER_SuperTest {
     
@@ -40,7 +39,7 @@ public class CONTROLLER_SuperTest {
     }
 
     /**
-     * Test of addScreen method, of class CONTROLLER_Super.
+        * Test of addScreen method, of class CONTROLLER_Super.
      */
     @Test
     public void testAddScreen() {
@@ -54,7 +53,7 @@ public class CONTROLLER_SuperTest {
     }
 
     /**
-     * Test of getScreen method, of class CONTROLLER_Super.
+        * Test of getScreen method, of class CONTROLLER_Super.
      */
     @Test
     public void testGetScreen() {
@@ -69,7 +68,7 @@ public class CONTROLLER_SuperTest {
     }
 
     /**
-     * Test of loadScreen method, of class CONTROLLER_Super.
+        * Test of loadScreen method, of class CONTROLLER_Super.
      */
     @Test
     public void testLoadScreen() {
@@ -85,7 +84,7 @@ public class CONTROLLER_SuperTest {
     }
 
     /**
-     * Test of setScreen method, of class CONTROLLER_Super.
+        * Test of setScreen method, of class CONTROLLER_Super.
      */
     @Test
     public void testSetScreen() {
@@ -100,7 +99,7 @@ public class CONTROLLER_SuperTest {
     }
 
     /**
-     * Test of unloadScreen method, of class CONTROLLER_Super.
+        * Test of unloadScreen method, of class CONTROLLER_Super.
      */
     @Test
     public void testUnloadScreen() {

@@ -19,8 +19,7 @@ import puissance4.controller.CONTROLLER_Connexion_Client;
 import puissance4.controller.CONTROLLER_Super;
 
 /**
- *
- * @author Kevin Araba
+    * Test CONTROLLER_Connexion_Client
  */
 public class CONTROLLER_Connexion_ClientTest {
     
@@ -44,7 +43,7 @@ public class CONTROLLER_Connexion_ClientTest {
     }
 
     /**
-     * Test of getLabelInfo method, of class CONTROLLER_Connexion_Client.
+        * Test of getLabelInfo method, of class CONTROLLER_Connexion_Client.
      */
     @Test
     public void testGetLabelInfo() {
@@ -58,7 +57,7 @@ public class CONTROLLER_Connexion_ClientTest {
     }
 
     /**
-     * Test of getGridPane method, of class CONTROLLER_Connexion_Client.
+        * Test of getGridPane method, of class CONTROLLER_Connexion_Client.
      */
     @Test
     public void testGetGridPane() {
@@ -72,7 +71,7 @@ public class CONTROLLER_Connexion_ClientTest {
     }
 
     /**
-     * Test of initialize method, of class CONTROLLER_Connexion_Client.
+        * Test of initialize method, of class CONTROLLER_Connexion_Client.
      */
     @Test
     public void testInitialize() {
@@ -86,7 +85,7 @@ public class CONTROLLER_Connexion_ClientTest {
     }
 
     /**
-     * Test of setScreenParent method, of class CONTROLLER_Connexion_Client.
+        * Test of setScreenParent method, of class CONTROLLER_Connexion_Client.
      */
     @Test
     public void testSetScreenParent() {
