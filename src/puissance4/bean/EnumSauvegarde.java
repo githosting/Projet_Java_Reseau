@@ -7,7 +7,6 @@ package puissance4.bean;
 
 /**
  *
- * @author Alex
  */
 public enum EnumSauvegarde {
     Sauvegarde,

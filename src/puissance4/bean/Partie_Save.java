@@ -11,7 +11,6 @@ import java.net.Socket;
     
 /**
  *
- * @author Alex
  */
 public class Partie_Save {
     

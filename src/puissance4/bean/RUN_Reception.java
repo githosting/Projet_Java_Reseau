@@ -16,9 +16,8 @@ import puissance4.controller.CONTROLLER_Jeu;
 
 /**
     * Class implementing Runnable and managing message receptions from the network.
-    * @author Bettinger
     * @version 3.0
-    */
+*/
 public class RUN_Reception implements Runnable 
 {
     private final BufferedReader in;
@@ -34,7 +33,7 @@ public class RUN_Reception implements Runnable
         * @param BufferedReader in
         *       Class attribute to receive content from the network.
         * @return A RUN_Reception instance
-        */
+    */
     public RUN_Reception(BufferedReader in)
     {
         this.in = in;
@@ -47,7 +46,7 @@ public class RUN_Reception implements Runnable
         * @version 3.0
         * @param No Parameters
         * @return void
-        */
+    */
     @Override
     public void run() 
     {          

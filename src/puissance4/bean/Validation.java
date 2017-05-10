@@ -9,9 +9,8 @@ import javafx.scene.control.Alert.AlertType;
 /**
     * Class containing methods to validate user inputs.
     * Ensure that the program manages all error cases linked to user inputs.
-    * @author Kessler
     * @version 2.0
-    */
+*/
 public class Validation {
     
     // Collection containing the detected errors list.
@@ -19,12 +18,11 @@ public class Validation {
     
     /**
         * Check the input integrity from pseudo field.
-        * @author Kessler
         * @version 2.0
         * @param pseudo
         *       The pseudo given by the player. 
         * @return void
-        */
+    */
     public static void validationPseudo(String pseudo){
         // If the pseudo is not empty and contains less than 15 characters.
         if(!pseudo.trim().isEmpty() && pseudo.length()<15)
@@ -48,12 +46,11 @@ public class Validation {
     
     /**
         * Check the input integrity from adresse field.
-        * @author Kessler
         * @version 2.0
         * @param ip
         *       The IP address given by the player.
         * @return void
-        */
+    */
     public static void validationIp(String ip){
         
         // The REGEX pattern the IP must stick to.
@@ -84,12 +81,11 @@ public class Validation {
 
     /**
         * Check the input integrity from port field.
-        * @author Kessler
         * @version 2.0
         * @param port
         *       The port given by the player. 
         * @return void
-        */
+    */
     public static void validationPort(String port){
         
         // If the port is not empty and contains 6 numeric characters maximum.
@@ -112,11 +108,10 @@ public class Validation {
 
     /**
         * Display detected errors to the player.
-        * @author Kessler
         * @version 2.0
         * @param No Parameters
         * @return String containing concatenated error messages.
-        */
+    */
     public static String afficheErreur(){
         String listeErreur = ""; 
         // If the errors list is not empty.

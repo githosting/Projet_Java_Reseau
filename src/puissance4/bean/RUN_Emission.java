@@ -11,9 +11,8 @@ import puissance4.controller.CONTROLLER_Jeu;
 
 /**
     * Class implementing Runnable and managing message broadcasts on the network.
-    * @author Bettinger
     * @version 3.0
-    */
+*/
 public class RUN_Emission implements Runnable 
 {
     // Attributes
@@ -23,12 +22,11 @@ public class RUN_Emission implements Runnable
 
     /**
         * Constructor for RUN_Emission class.
-        * @author Bettinger
         * @version 2.0
         * @param PrintWriter out
         *       Class attribute to broadcast content on the network.
         * @return A RUN_Emission instance
-        */
+    */
     public RUN_Emission(PrintWriter out) 
     {
         this.out = out;
@@ -38,11 +36,10 @@ public class RUN_Emission implements Runnable
     
     /**
         * Start the RUN_Emission runnable.
-        * @author Bettinger
         * @version 3.0
         * @param No Parameters
         * @return void
-        */
+    */
     @Override
     public void run() 
     {
