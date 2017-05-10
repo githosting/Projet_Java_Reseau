@@ -11,7 +11,7 @@
    <children>
       <Button layoutX="89.0" layoutY="191.0" mnemonicParsing="false" onAction="#goToConnectScreenServer" prefHeight="31.0" prefWidth="423.0" text="Nouvelle partie" />
       <Button layoutX="89.0" layoutY="313.0" mnemonicParsing="false" onAction="#goToConnectScreenClient" prefHeight="31.0" prefWidth="423.0" text="Rejoindre partie" />
-      <Button layoutX="89.0" layoutY="251.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="423.0" text="Charger partie" />
+      <Button layoutX="89.0" layoutY="251.0" mnemonicParsing="false" onAction="#goToChargement" prefHeight="31.0" prefWidth="423.0" text="Charger partie" />
       <Button layoutX="89.0" layoutY="374.0" mnemonicParsing="false" onAction="#goToHistorique" prefHeight="31.0" prefWidth="423.0" text="Historique" />
       <Label layoutX="34.0" layoutY="536.0" text="Copyright Araba Bettinger Kessler Milev " />
       <Button layoutX="531.0" layoutY="441.0" mnemonicParsing="false" onAction="#goToRegle" prefHeight="31.0" prefWidth="20.0" text="?" />

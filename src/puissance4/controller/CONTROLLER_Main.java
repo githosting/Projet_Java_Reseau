@@ -79,6 +79,11 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
         mycontroller.setScreen(Puissance4.HISTORIQUE_SCREEN);        
     }
     
+    
+     @FXML
+    private void goToChargement (ActionEvent event){
+        mycontroller.setScreen(Puissance4.CHARGEMENT_SCREEN);        
+    }
     /**
      * Save game
      * @param event 
