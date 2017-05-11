@@ -53,6 +53,16 @@ public class Partie {
     public Partie(){
         
     }
+     /**
+        * Initialise a player variables considering his type.
+        * @version 1.0
+        * @param String type_player
+        * 	The player type : client or server.
+        * @param String pseudo_name
+        * 	The player pseudo.
+        * @return void
+        * @throws MalformedURLException
+        */
     public void setInformationPlayer (String type_player, String pseudo_name)throws MalformedURLException {
         if(type_player == "client"){
             setPseudo(pseudo_name);
@@ -70,7 +80,12 @@ public class Partie {
             setPlayer_type("server");
         }
     }
-     
+         /**
+        * Check victory conditions after a player move.
+        * @version 3.0
+        * @param No Parameters
+        * @return String representing game state or winner color after a player move.
+        */
      public  String check_victory()
     {
         grille_de_jeu = CONTROLLER_Jeu.grille_de_jeu;
@@ -126,6 +141,21 @@ public class Partie {
         }
         return "null";
     }
+          /**
+        * Manage the game save or history.
+        * @version 1.0
+        * @param String param_pseudo_moi
+        * 	The pseudo of the player saving the game.
+        * @param String param_pseudo_adversaire
+        * 	The pseudo of his opponent.
+        * @param String param_victoire_defaite
+        * 	The game result for the player saving the game.
+        * @param String[][] param_grille_de_jeu
+        * 	The game grid configuration at game end.
+        * @param String param_pseudo_vainqueur
+        * 	The winner pseudo.
+        * @return void
+    */
      public void sauvegarde(EnumSauvegarde type, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur) throws JsonProcessingException{
         if(type == EnumSauvegarde.Historisation){
             historiser_partie(this.getPseudo(), this.getPseudo_adversaire(), param_victoire_defaite, param_grille_de_jeu, param_pseudo_vainqueur);
@@ -133,6 +163,21 @@ public class Partie {
             sauvegarde_partie(this.getPseudo(), this.getPseudo_adversaire(), param_victoire_defaite, param_grille_de_jeu, param_pseudo_vainqueur);
         }
     }
+          /**
+        * Manage the game save.
+        * @version 1.0
+        * @param String param_pseudo_moi
+        * 	The pseudo of the player saving the game.
+        * @param String param_pseudo_adversaire
+        * 	The pseudo of his opponent.
+        * @param String param_victoire_defaite
+        * 	The game result for the player saving the game.
+        * @param String[][] param_grille_de_jeu
+        * 	The game grid configuration at game end.
+        * @param String param_pseudo_vainqueur
+        * 	The winner pseudo.
+        * @return void
+    */
     public void sauvegarde_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur) throws JsonProcessingException
     {
         if(param_victoire_defaite.equals("Défaite"))

@@ -51,6 +51,8 @@ public Partie_Save(){
         * 	The game result for the player who save the game in history.
         * @param String[][] un_grille_de_jeu
         * 	The game grid configuration at game end.
+        *  * @param Boolean myTurn
+        * 	The turn of the player.
         * @param String textfield_port
         *       the port of the server
         * @return A Partie_History instance
