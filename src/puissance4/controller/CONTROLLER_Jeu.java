@@ -366,6 +366,10 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                                 
                                 game.setGame_over(false);
                                 game.setMy_turn(RUN_Reception.message.my_turn);
+                                final String tour =  game.isMy_turn() ? "VOTRE TOUR" : "TOUR ADVERSE";
+                                Platform.runLater(() -> {
+                                    label_info.setText(tour);
+                                });
                             }
                             // Check if there is a winner or a draw match.                        
                              System.out.println(colIndex + "  " + rowIndex + "  " + path_image + "  " + victory_color + "  " + RUN_Reception.message.pseudo + "  " );
@@ -388,6 +392,6 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Message d'information"); 
         alert.setContentText("Le but du jeu est d'aligner 4 pions sur une grille comptant 6 rangées et 7 colonnes. \n\n Chaque joueur dispose de 21 pions d'une couleur (par convention, en général jaune ou rouge). \nTour à tour les deux joueurs placent un pion dans la colonne de leur choix, le pion coulisse alors jusqu'à la position la plus basse possible dans la dite colonne à la suite de quoi c'est à l'adversaire de jouer. \n\n Le vainqueur est le joueur qui réalise le premier un alignement (horizontal, vertical ou diagonal) d'au moins quatre pions de sa couleur.\n\n Si, alors que toutes les cases de la grille de jeu sont remplies, aucun des deux joueurs n'a réalisé un tel alignement, la partie est déclarée nulle."); 
-    alert.showAndWait(); 
+        alert.showAndWait(); 
     }
 }
