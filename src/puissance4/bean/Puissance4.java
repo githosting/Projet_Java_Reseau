@@ -49,10 +49,9 @@ public class Puissance4 extends Application
     /**
         * Start the application.
         * @version 2.0
-        * @param Stage stage
-        *       The main application interface.
-        * @return void
-        * @throws Exception
+        * @param stage The main application interface.
+        * 
+        * @throws Exception If a problem occurs
     */
     @Override
     public void start(Stage stage) throws Exception 
@@ -100,7 +99,7 @@ public class Puissance4 extends Application
         * @version 1.0
         * @param args 
         * 		The command line arguments.
-        * @return void
+        * 
     */
     public static void main(String[] args) 
     {

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package puissance4;
 
 import java.net.URL;
@@ -20,6 +16,7 @@ import puissance4.controller.CONTROLLER_Super;
 
 /**
     * Test CONTROLLER_Connexion_Server
+        * @version 1.0
  */
 public class CONTROLLER_Connexion_ServerTest {
     
@@ -44,6 +41,9 @@ public class CONTROLLER_Connexion_ServerTest {
 
     /**
         * Test of getLabelInfo method, of class CONTROLLER_Connexion_Server.
+        * @param No parameters
+        * @version 1.0
+        * 
      */
     @Test
     public void testGetLabelInfo() {
@@ -58,6 +58,9 @@ public class CONTROLLER_Connexion_ServerTest {
 
     /**
         * Test of getGridPane method, of class CONTROLLER_Connexion_Server.
+        * @param No parameters
+        * @version 1.0
+        * 
      */
     @Test
     public void testGetGridPane() {
@@ -72,6 +75,9 @@ public class CONTROLLER_Connexion_ServerTest {
 
     /**
         * Test of initialize method, of class CONTROLLER_Connexion_Server.
+        * @param No parameters
+        * @version 1.0
+        * 
      */
     @Test
     public void testInitialize() {
@@ -86,6 +92,9 @@ public class CONTROLLER_Connexion_ServerTest {
 
     /**
         * Test of setScreenParent method, of class CONTROLLER_Connexion_Server.
+        * @param No parameters
+        * @version 1.0
+        * 
      */
     @Test
     public void testSetScreenParent() {

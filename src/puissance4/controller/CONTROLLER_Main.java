@@ -37,9 +37,9 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
     /**
         * Execute code when the view is displayed.
         * @version 1.0
-        * @param URL location
-        * @param ResourceBundle resources
-        * @return void
+        * @param location URL 
+        * @param resources ResourceBundle 
+        * 
     */
     @Override
     public void initialize(URL location, ResourceBundle resources) 
@@ -50,7 +50,7 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
         * Redirect to the server player connection interface.
         * @version 1.0
         * @param ActionEvent event
-        * @return void
+        * 
     */
     @FXML
     private void goToConnectScreenServer(ActionEvent event){
@@ -61,7 +61,7 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
         * Redirect to the client player connection interface.
         * @version 1.0
         * @param ActionEvent event
-        * @return void
+        * 
     */
     @FXML
     private void goToConnectScreenClient (ActionEvent event){
@@ -72,7 +72,7 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
         * Redirect to the history interface.
         * @version 1.0
         * @param ActionEvent event
-        * @return void
+        * 
     */
     @FXML
     private void goToHistorique (ActionEvent event){
@@ -84,10 +84,12 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
     private void goToChargement (ActionEvent event){
         mycontroller.setScreen(Puissance4.CHARGEMENT_SCREEN);        
     }
+    
     /**
-     * Save game
-     * @param event 
-     * @return void
+     * Redirect to saves page.
+     * @param event
+     * @version 1.0
+     * 
      */
      @FXML
      private void goToSauvegarde (ActionEvent event){
@@ -95,10 +97,10 @@ public class CONTROLLER_Main implements Initializable,INTERFACE_Screen {
     }
      
     /**
-     * Redirect to the history interface. 
-     * @version 1.0 
-     * @param ActionEvent event 
-     * @return void 
+     * Redirect to the rules page.
+     * @version 1.0
+     * @param ActionEvent event
+     * 
      */ 
     @FXML private void goToRegle (ActionEvent event){
         Alert alert = new Alert(AlertType.INFORMATION);

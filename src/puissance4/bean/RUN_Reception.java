@@ -30,9 +30,7 @@ public class RUN_Reception implements Runnable
     /**
         * Constructor for RUN_Reception class.
         * @version 2.0
-        * @param BufferedReader in
-        *       Class attribute to receive content from the network.
-        * @return A RUN_Reception instance
+        * @param in Class attribute to receive content from the network.
     */
     public RUN_Reception(BufferedReader in)
     {
@@ -44,8 +42,7 @@ public class RUN_Reception implements Runnable
     /**
         * Start the RUN_Reception runnable.
         * @version 3.0
-        * @param No Parameters
-        * @return void
+        * 
     */
     @Override
     public void run() 

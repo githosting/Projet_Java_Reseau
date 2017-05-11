@@ -23,9 +23,7 @@ public class RUN_Emission implements Runnable
     /**
         * Constructor for RUN_Emission class.
         * @version 2.0
-        * @param PrintWriter out
-        *       Class attribute to broadcast content on the network.
-        * @return A RUN_Emission instance
+        * @param out Class attribute to broadcast content on the network.
     */
     public RUN_Emission(PrintWriter out) 
     {
@@ -37,8 +35,7 @@ public class RUN_Emission implements Runnable
     /**
         * Start the RUN_Emission runnable.
         * @version 3.0
-        * @param No Parameters
-        * @return void
+        * 
     */
     @Override
     public void run() 

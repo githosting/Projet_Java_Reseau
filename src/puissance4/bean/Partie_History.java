@@ -26,23 +26,16 @@ public class Partie_History
     /**
         * Constructor without parameters for Partie_History class.
         * @version 1.0
-        * @param No Parameters
-        * @return A Partie_History instance
     */
     public Partie_History(){}
             
     /**
         * Constructor with parameters for Partie_History class.
         * @version 1.0
-        * @param String un_pseudo_moi
-        * 	The pseudo of the player who save the game in history.
-        * @param String un_pseudo_adversaire
-        * 	The pseudo of the player opponent.
-        * @param String un_victoire_defaite
-        * 	The game result for the player who save the game in history.
-        * @param String[][] un_grille_de_jeu
-        * 	The game grid configuration at game end.
-        * @return A Partie_History instance
+        * @param un_pseudo_moi The pseudo of the player who save the game in history.
+        * @param un_pseudo_adversaire The pseudo of the player opponent.
+        * @param un_victoire_defaite The game result for the player who save the game in history.
+        * @param un_grille_de_jeu The game grid configuration at game end.
     */
     public Partie_History(String un_pseudo_moi, String un_pseudo_adversaire, String un_victoire_defaite, String[][] un_grille_de_jeu)
     {

@@ -11,13 +11,14 @@ import static org.junit.Assert.*;
 import puissance4.bean.Validation;
 
 /**
+ * Class to validate fields filled by the user.
+ * @version 3.0
  * 
- * @author ck
  */
 
 public class ValidationTest {
     
-    //liste de pseudos érronés
+    // List of incorrect pseudo.
     private ArrayList<String> pseudos = new ArrayList<>();
     private ArrayList<String> ips = new ArrayList<>();
     private ArrayList<String> ports = new ArrayList<>();
@@ -35,16 +36,16 @@ public class ValidationTest {
     
     @Before
     public void setUp() {
-        //pseudos non corrects
+        // Incorrect pseudos
         pseudos.add(" ");
         pseudos.add("!");
         pseudos.add("<p>");
         pseudos.add("o's");
-        //ip non correctes
+        // Incorrect IPs
         ips.add("256.0.0.0");
         ips.add("");
         ips.add("<!&-");
-        //ports non correctes
+        // Incorrect ports
         ports.add("0");
         ports.add("80");
         ports.add("65600");

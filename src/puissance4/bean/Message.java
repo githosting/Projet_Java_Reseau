@@ -26,8 +26,6 @@ public class Message
     /**
         * Constructor without parameters for Message class.
         * @version 2.0
-        * @param No Parameters
-        * @return A Message instance.
     */
     public Message()
     {
@@ -42,17 +40,11 @@ public class Message
     /**
         * Constructor with parameters for Message class.
         * @version 2.0
-        * @param int un_colIndex
-        *       Game grid column index just modified.
-        * @param int un_rowIndex
-        *       Game grid row index just modified.
-        * @param String un_imagePath
-        *       Path to the picture we have to display.
-        * @param String un_victoryColor
-        *       Return from the checkVictory function.
-        * @param String un_pseudo
-        *       Pseudo of the player sending the message.
-        * @return A Message instance
+        * @param un_colIndex Game grid column index just modified.
+        * @param un_rowIndex Game grid row index just modified.
+        * @param un_imagePath Path to the picture we have to display.
+        * @param un_victoryColor Return from the checkVictory function.
+        * @param un_pseudo Pseudo of the player sending the message.
     */
     public Message(int un_colIndex, int un_rowIndex, String un_imagePath, String un_victoryColor, String un_pseudo)
     {

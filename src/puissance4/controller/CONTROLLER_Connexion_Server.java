@@ -107,9 +107,9 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
     /**
         * Execute code when the view is displayed.
         * @version 1.0
-        * @param URL location
-        * @param ResourceBundle resources
-        * @return void
+        * @param location URL 
+        * @param resources ResourceBundle 
+        * 
     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -122,7 +122,7 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
         * Redirect to the main interface.
         * @version 1.0
         * @param ActionEvent event
-        * @return void
+        * 
     */ 
     @FXML
     private void goToHome (ActionEvent event){
@@ -133,7 +133,7 @@ public class CONTROLLER_Connexion_Server implements Initializable,INTERFACE_Scre
         * Manage a game creation by a server player.
         * @version 2.0
         * @param ActionEvent event
-        * @return void
+        * 
         * @throws MalformedURLException
     */
     @FXML

@@ -22,6 +22,10 @@ import puissance4.controller.CONTROLLER_Connexion_Client;
 import puissance4.controller.CONTROLLER_Connexion_Server;
 import puissance4.controller.CONTROLLER_Jeu;
 
+/**
+    * Class representing a game with its parameters.
+    * @version 1.0
+*/
 public class Partie {
      // Attributes
     private String player_color = "";
@@ -56,12 +60,10 @@ public class Partie {
      /**
         * Initialise a player variables considering his type.
         * @version 1.0
-        * @param String type_player
-        * 	The player type : client or server.
-        * @param String pseudo_name
-        * 	The player pseudo.
-        * @return void
-        * @throws MalformedURLException
+        * @param type_player The player type : client or server.
+        * @param pseudo_name The player pseudo.
+        * 
+        * @throws MalformedURLException If url malformed
         */
     public void setInformationPlayer (String type_player, String pseudo_name)throws MalformedURLException {
         if(type_player == "client"){
@@ -83,7 +85,6 @@ public class Partie {
          /**
         * Check victory conditions after a player move.
         * @version 3.0
-        * @param No Parameters
         * @return String representing game state or winner color after a player move.
         */
      public  String check_victory()
@@ -144,17 +145,12 @@ public class Partie {
           /**
         * Manage the game save or history.
         * @version 1.0
-        * @param String param_pseudo_moi
-        * 	The pseudo of the player saving the game.
-        * @param String param_pseudo_adversaire
-        * 	The pseudo of his opponent.
-        * @param String param_victoire_defaite
-        * 	The game result for the player saving the game.
-        * @param String[][] param_grille_de_jeu
-        * 	The game grid configuration at game end.
-        * @param String param_pseudo_vainqueur
-        * 	The winner pseudo.
-        * @return void
+        * @param type The save type.
+        * @param param_victoire_defaite The game result for the player saving the game.
+        * @param param_grille_de_jeu The game grid configuration at game end.
+        * @param param_pseudo_vainqueur The winner pseudo.
+        * @throws JsonProcessingException If the json process goes wrong.
+        * 
     */
      public void sauvegarde(EnumSauvegarde type, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur) throws JsonProcessingException{
         if(type == EnumSauvegarde.Historisation){
@@ -166,17 +162,13 @@ public class Partie {
           /**
         * Manage the game save.
         * @version 1.0
-        * @param String param_pseudo_moi
-        * 	The pseudo of the player saving the game.
-        * @param String param_pseudo_adversaire
-        * 	The pseudo of his opponent.
-        * @param String param_victoire_defaite
-        * 	The game result for the player saving the game.
-        * @param String[][] param_grille_de_jeu
-        * 	The game grid configuration at game end.
-        * @param String param_pseudo_vainqueur
-        * 	The winner pseudo.
-        * @return void
+        * @param param_pseudo_moi The pseudo of the player saving the game.
+        * @param param_pseudo_adversaire The pseudo of his opponent.
+        * @param param_victoire_defaite The game result for the player saving the game.
+        * @param param_grille_de_jeu The game grid configuration at game end.
+        * @param param_pseudo_vainqueur The winner pseudo.
+        * @throws JsonProcessingException If the json process goes wrong.
+        * 
     */
     public void sauvegarde_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur) throws JsonProcessingException
     {
@@ -220,17 +212,13 @@ public class Partie {
      /**
         * Manage the automatic game save into history when it ends.
         * @version 1.0
-        * @param String param_pseudo_moi
-        * 	The pseudo of the player saving the game.
-        * @param String param_pseudo_adversaire
-        * 	The pseudo of his opponent.
-        * @param String param_victoire_defaite
-        * 	The game result for the player saving the game.
-        * @param String[][] param_grille_de_jeu
-        * 	The game grid configuration at game end.
-        * @param String param_pseudo_vainqueur
-        * 	The winner pseudo.
-        * @return void
+        * @param param_pseudo_moi The pseudo of the player saving the game.
+        * @param param_pseudo_adversaire The pseudo of his opponent.
+        * @param param_victoire_defaite The game result for the player saving the game.
+        * @param param_grille_de_jeu The game grid configuration at game end.
+        * @param param_pseudo_vainqueur The winner pseudo.
+        * @throws JsonProcessingException If the json process goes wrong.
+        * 
     */
     public void historiser_partie(String param_pseudo_moi, String param_pseudo_adversaire, String param_victoire_defaite, String[][] param_grille_de_jeu, String param_pseudo_vainqueur) throws JsonProcessingException
     {

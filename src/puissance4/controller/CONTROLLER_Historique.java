@@ -79,9 +79,9 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     public GridPane getGridPane() { return gp; }
     
     /**
-        * return parent screen
-        * @param screenParent
-        * @return void
+        * Set the parent screen.
+        * @param screenParent The screen parent
+        * 
     */
     @Override
     public void setScreenParent(CONTROLLER_Super screenParent) {
@@ -91,9 +91,10 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     
 
     /**
-        * click on cell
-        * @param event
-        * @throws MalformedURLException 
+        * Manage the click on a grid cell.
+        * @param event MouseEvent
+        * @throws MalformedURLException If url malformed
+        * 
     */
     @FXML
     // Used for tests only.
@@ -106,7 +107,7 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
         * Redirect to the main interface.
         * @version 1.0
         * @param ActionEvent event
-        * @return void
+        * 
     */
     @FXML
     private void goToHome (ActionEvent event){
@@ -116,8 +117,8 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     /**
         * Inside the listview, when a click occurs on a game, associated information are displayed.
         * @version 1.0
-        * @param MouseEvent arg0
-        * @return void
+        * @param arg0 MouseEvent
+        * 
     */
     @FXML 
     public void handleMouseClick(MouseEvent arg0) 
@@ -170,9 +171,9 @@ public class CONTROLLER_Historique implements Initializable,INTERFACE_Screen {
     /**
         * Execute code when the view is displaye
         * @version 1.0
-        * @param URL location
-        * @param ResourceBundle rb
-        * @return void
+        * @param url The page url 
+        * @param rb The ResourceBundle 
+        * 
     */
     @Override
     public void initialize(URL url, ResourceBundle rb) 

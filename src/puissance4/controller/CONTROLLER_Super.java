@@ -28,9 +28,11 @@ public class CONTROLLER_Super extends StackPane {
     // Accessors
 
     /**
-        * to add a screen
+        * Manage the add of a screen
         * @param name name of screen
         * @param screen node of screen
+        * @version 1.0
+        * 
     */
     public void addScreen(String name, Node screen){
         // @param name : screen name
@@ -39,7 +41,7 @@ public class CONTROLLER_Super extends StackPane {
     }
     
     /**
-        * @getter
+        * Get a screen.
         * @param name name of node 
         * @return Node
     */
@@ -51,8 +53,7 @@ public class CONTROLLER_Super extends StackPane {
     /**
         * Load a screen.
         * @version 1.0
-        * @param final String name
-        * 	The screen name we have to load.
+        * @param name The screen name we have to load.
         * @return boolean representing the loading success or failure.
     */
     public boolean setScreen(final String name) { 
@@ -106,9 +107,8 @@ public class CONTROLLER_Super extends StackPane {
     /**
         * Manage the redirection to a screen.
         * @version 1.0
-        * @param String name
-        * 	The screen name we have to redirect to.
-        * @param String resource
+        * @param name The screen name we have to redirect to.
+        * @param resource The screen resource
         * @return boolean representing redirection success or failure.
     */
     public boolean loadScreen(String name, String resource){
@@ -130,8 +130,7 @@ public class CONTROLLER_Super extends StackPane {
     /**
         * Check if a screen unload gone well.
         * @version 1.0
-        * @param String name
-        * 	The screen name.
+        * @param name The screen name.
         * @return boolean representing unload success or failure.
     */
     public boolean unloadScreen(String name) { 

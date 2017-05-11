@@ -73,9 +73,9 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     }
     
     /**
-     * return parent screen
-     * @param screenParent 
-     * @return void
+     * Set the parent screen.
+     * @param screenParent The screen parent
+     * 
      */
     @Override
     public void setScreenParent(CONTROLLER_Super screenParent) {
@@ -85,9 +85,10 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     /**
         * Manage the click on a game grid cell.
         * @version 2.0
-        * @param MouseEvent event
-        * @return void
-        * @throws MalformedURLException
+        * @param event MouseEvent 
+        * 
+        * @throws MalformedURLException If url malformed
+        * @throws JsonProcessingException If the json process goes wrong.
         */
     @FXML 
     public void cellClick(MouseEvent event) throws MalformedURLException, JsonProcessingException
@@ -146,7 +147,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         * Manage a game reinitialisation.
         * @version 1.0
         * @param ActionEvent event
-        * @return void
+        * 
         * @throws MalformedURLException
         */
     @FXML
@@ -159,10 +160,12 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     }
     
     /**
-     * Manage a save game
+     * Manage a game save.
      * @param event
+     * @version 1.0
      * @throws MalformedURLException
-     * @throws JsonProcessingException 
+     * @throws JsonProcessingException
+     * 
      */
     @FXML
     private void btn_save(ActionEvent event) throws MalformedURLException, JsonProcessingException 
@@ -171,8 +174,9 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     }    
       /**
         * Manage the load of the game.
+        * @param No Parameters
         * @version 2.0
-        * @return void
+        * 
         */
     private void partieChargement(){
         if(Partie.gameChargement.isCharger()){
@@ -187,7 +191,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         * Manage the refresh on a game grid when the game is loaded.
         * @version 2.0
         * @param String[][] grille
-        * @return void
+        * 
         */
     private void rafraichissementGrilleReception(String[][] grille){
               game.setGrille_de_jeu(grille);
@@ -199,7 +203,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         * Manage to refresh the grid.
         * @version 2.0
         * @param String[][] grille
-        * @return void
+        * 
         */
     private void rafraichissementGrilleTotal(String[][] grille){
         ObservableList<Node> childrens = gp.getChildren();
@@ -224,7 +228,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         * Manage to refresh a cell of the grid.
         * @version 2.0
         * @param String[][] grille
-        * @return void
+        * 
         */
     private void rafraichissementGrille(int rowIndex, int colIndex){
 // Refresh the grid with the opponent move.
@@ -251,8 +255,8 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         * Manage to check this victory when a message is received.
         * @version 2.0
         * @param String victory_color
-        * @return void
-        * @throws JsonProcessingException 
+        * 
+        * @throws JsonProcessingException
         */
     private void controleVictoireReception(String victory_color) throws JsonProcessingException{
                       if(victory_color.equals("match_nul"))
@@ -294,9 +298,9 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
         * Execute code when the view is displayed.
         * Contains the Thread which refreshes the game grid.
         * @version 4.0
-        * @param URL url
-        * @param ResourceBundle rb
-        * @return void
+        * @param url URL 
+        * @param rb ResourceBundle 
+        * 
         */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -386,7 +390,7 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     /** * Redirect to the history interface.
      * @version 1.0 
      * @param ActionEvent event
-     * @return void */
+     *  */
     @FXML 
     private void goToRegle (ActionEvent event){ 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

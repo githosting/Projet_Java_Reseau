@@ -106,7 +106,6 @@ public class Validation {
     /**
         * Display detected errors to the player.
         * @version 2.0
-        * @param No Parameters
         * @return String containing concatenated error messages.
     */
     public static String afficheErreur(){

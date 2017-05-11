@@ -13,9 +13,8 @@ public interface INTERFACE_Screen
     /**
         * Allow injection of the parent screenPage.
         * @version 1.0
-        * @param CONTROLLER_Super screenPage
+        * @param screenPage CONTROLLER_Super 
         *       The application super-controller.
-        * @return void
     */
     public void setScreenParent (CONTROLLER_Super screenPage);
 }

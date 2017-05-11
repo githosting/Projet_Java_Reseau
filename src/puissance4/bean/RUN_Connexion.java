@@ -24,9 +24,7 @@ public class RUN_Connexion implements Runnable
     /**
         * Constructor for RUN_Connexion class.
         * @version 1.0
-        * @param ServerSocket ss
-        *       The server player's network socket.
-        * @return A RUN_Connexion instance
+        * @param ss The server player's network socket.
     */
     public RUN_Connexion(ServerSocket ss)
     {
@@ -37,8 +35,7 @@ public class RUN_Connexion implements Runnable
     /**
         * Start the RUN_Connexion runnable.
         * @version 1.0
-        * @param No Parameters
-        * @return void
+        * 
     */
     @Override
     public void run() 

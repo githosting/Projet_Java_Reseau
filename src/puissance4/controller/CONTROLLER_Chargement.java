@@ -36,8 +36,8 @@ import static puissance4.controller.CONTROLLER_Connexion_Server.thread_attente_c
 import static puissance4.controller.CONTROLLER_Connexion_Server.thread_attente_connexion;
 
 /**
- * FXML Controller class
- *
+ * FXML Controller class.
+ * @version 1.0
  */
 public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
     CONTROLLER_Super mycontroller;
@@ -80,8 +80,8 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
 
     /**
      * Initializes the controller class.
-     * @params screenParent
-     * @return void
+     * @param screenParent The screen parent
+     * @version 1.0
      */
     @Override
     public void setScreenParent(CONTROLLER_Super screenParent) {
@@ -89,9 +89,11 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
     }
     
     /**
-     * inintialize the chargement page
-     * @param url
-     * @param rb 
+     * Load the page.
+     * @param url The page url
+     * @param rb The ResourceBundle
+     * @version 1.0
+     * 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -109,9 +111,11 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
     }    
 
     /**
-     * 
-     * @param event
+     * Handle the listbox selection change.
+     * @param MouseEvent event
      * @throws URISyntaxException 
+     * @version 1.0
+     * 
      */
     @FXML
     private void handleMouseClick(MouseEvent event) throws URISyntaxException {
@@ -177,17 +181,20 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
     }
 
     /**
-     * action when you click on cell
+     * Action when you click on a grid cell
      * @param event 
+     * @version 1.0
+     * 
      */
     @FXML
     private void cellClick(MouseEvent event) {
     }
 
     /**
-     * method when you click on return button
+     * Manage the click on the return to home button.
      * @param event
-     * @return void
+     * @version 1.0
+     * 
      */
     @FXML
     private void goToHome(ActionEvent event) {
@@ -195,9 +202,10 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
     }
     
     /**
-     * Method to launch game 
+     * Launch the game.
      * @param event 
-     * @return void
+     * @version 1.0
+     * 
      */
     @FXML
     private void goToGame(ActionEvent event) {
