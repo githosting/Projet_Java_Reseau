@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="3" hostname="PC-DOC" name="puissance4.CONTROLLER_Connexion_ClientTest" skipped="0" tests="4" time="0.453" timestamp="2017-05-11T13:55:06">
+<testsuite errors="0" failures="0" hostname="PC-DOC" name="puissance4.CONTROLLER_Connexion_ClientTest" skipped="0" tests="1" time="0.179" timestamp="2017-05-11T14:40:02">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="FR" />
@@ -61,7 +61,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner puissance4.CONTROLLER_Connexion_ClientTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Bettinger\Desktop\Projet_Java_Reseau\build\test\results\TEST-puissance4.CONTROLLER_Connexion_ClientTest.xml crashfile=C:\Users\Bettinger\Desktop\Projet_Java_Reseau\build\junitvmwatcher1362998467010598438.properties propsfile=C:\Users\Bettinger\Desktop\Projet_Java_Reseau\build\junit8743086485712002552.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner puissance4.CONTROLLER_Connexion_ClientTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Bettinger\Desktop\Projet_Java_Reseau\build\test\results\TEST-puissance4.CONTROLLER_Connexion_ClientTest.xml crashfile=C:\Users\Bettinger\Desktop\Projet_Java_Reseau\build\junitvmwatcher6359462082945416795.properties propsfile=C:\Users\Bettinger\Desktop\Projet_Java_Reseau\build\junit2686597267063921078.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -430,31 +430,8 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Logiciels\NetBeans 8.0.2\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="puissance4.CONTROLLER_Connexion_ClientTest" name="testGetLabelInfo" time="0.061">
-    <failure message="The test case is a prototype." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: The test case is a prototype.
-	at puissance4.CONTROLLER_Connexion_ClientTest.testGetLabelInfo(CONTROLLER_Connexion_ClientTest.java:56)
-</failure>
-  </testcase>
-  <testcase classname="puissance4.CONTROLLER_Connexion_ClientTest" name="testGetGridPane" time="0.006">
-    <failure message="The test case is a prototype." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: The test case is a prototype.
-	at puissance4.CONTROLLER_Connexion_ClientTest.testGetGridPane(CONTROLLER_Connexion_ClientTest.java:73)
-</failure>
-  </testcase>
-  <testcase classname="puissance4.CONTROLLER_Connexion_ClientTest" name="testInitialize" time="0.014">
-    <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at puissance4.controller.CONTROLLER_Connexion_Client.initialize(CONTROLLER_Connexion_Client.java:121)
-	at puissance4.CONTROLLER_Connexion_ClientTest.testInitialize(CONTROLLER_Connexion_ClientTest.java:88)
-</error>
-  </testcase>
-  <testcase classname="puissance4.CONTROLLER_Connexion_ClientTest" name="testSetScreenParent" time="0.002">
-    <failure message="The test case is a prototype." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: The test case is a prototype.
-	at puissance4.CONTROLLER_Connexion_ClientTest.testSetScreenParent(CONTROLLER_Connexion_ClientTest.java:106)
-</failure>
-  </testcase>
-  <system-out><![CDATA[getLabelInfo
-getGridPane
-initialize
-setScreenParent
+  <testcase classname="puissance4.CONTROLLER_Connexion_ClientTest" name="testSetScreenParent" time="0.014" />
+  <system-out><![CDATA[setScreenParent
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
