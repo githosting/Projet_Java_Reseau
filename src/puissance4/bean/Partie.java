@@ -18,6 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import puissance4.controller.CONTROLLER_Connexion_Client;
+import puissance4.controller.CONTROLLER_Connexion_Server;
 import puissance4.controller.CONTROLLER_Jeu;
 
 public class Partie {
@@ -140,7 +142,9 @@ public class Partie {
         }
         
         // Create the Partie_History object we want to save.
-        Partie_Save save = new Partie_Save(param_pseudo_moi, param_pseudo_adversaire, param_victoire_defaite, param_grille_de_jeu, "4200");
+        String port;
+        port = CONTROLLER_Connexion_Server.port_serveur != null ? CONTROLLER_Connexion_Server.port_serveur : new Integer(CONTROLLER_Connexion_Client.socket.getPort()).toString();
+        Partie_Save save = new Partie_Save(param_pseudo_moi, param_pseudo_adversaire, param_victoire_defaite, param_grille_de_jeu, my_turn ,port);
         
         // Save the object, serialised with JSON, in a file on the player computer.
         String save_JSON = "";

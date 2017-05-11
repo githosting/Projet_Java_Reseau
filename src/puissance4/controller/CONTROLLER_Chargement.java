@@ -158,7 +158,7 @@ public class CONTROLLER_Chargement implements Initializable,INTERFACE_Screen  {
                 
                 player_type = "server";
                
-                Partie.gameChargement.setMy_turn(true);
+                Partie.gameChargement.setMy_turn(partie.myTurn);
                       
                 ServerSocket socket = new ServerSocket(Integer.parseInt( partie.textfield_port));
          

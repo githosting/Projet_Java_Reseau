@@ -169,21 +169,38 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
     {
         game.sauvegarde(EnumSauvegarde.Sauvegarde, "Match en cours", grille_de_jeu, "");
     }    
+      /**
+        * Manage the load of the game.
+        * @version 2.0
+        * @return void
+        */
     private void partieChargement(){
         if(Partie.gameChargement.isCharger()){
               game = Partie.gameChargement;
               grille_de_jeu = game.getGrille_de_jeu();
               rafraichissementGrilleTotal(grille_de_jeu);
+             
           } 
     }
     
-    
+      /**
+        * Manage the refresh on a game grid when the game is loaded.
+        * @version 2.0
+        * @param String[][] grille
+        * @return void
+        */
     private void rafraichissementGrilleReception(String[][] grille){
               game.setGrille_de_jeu(grille);
               grille_de_jeu = grille;
               rafraichissementGrilleTotal(grille);
         
     }
+    /**
+        * Manage to refresh the grid.
+        * @version 2.0
+        * @param String[][] grille
+        * @return void
+        */
     private void rafraichissementGrilleTotal(String[][] grille){
         ObservableList<Node> childrens = gp.getChildren();
         for (int i = 0 ; i < 6 ; i++) 
@@ -203,7 +220,12 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
            }
         }
     }
-    
+    /**
+        * Manage to refresh a cell of the grid.
+        * @version 2.0
+        * @param String[][] grille
+        * @return void
+        */
     private void rafraichissementGrille(int rowIndex, int colIndex){
 // Refresh the grid with the opponent move.
         if(game.getPlayer_color().equals("orange"))
@@ -225,6 +247,13 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
             }
         }
     }
+     /**
+        * Manage to check this victory when a message is received.
+        * @version 2.0
+        * @param String victory_color
+        * @return void
+        * @throws JsonProcessingException 
+        */
     private void controleVictoireReception(String victory_color) throws JsonProcessingException{
                       if(victory_color.equals("match_nul"))
                             {
@@ -285,17 +314,19 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                         // For the server player and at initialisation only.
                         if(game.isClient_connecte())
                         {
-                            Platform.runLater(() -> {
-                                label_info.setText("VOTRE TOUR");
-                            });
+                           
                             game.setGame_start(true);
                             game.setClient_connecte(false);
                             if(game.isCharger()){
                                 
                                 game.setCharger(false);
-                                Message le_message = new Message(-1, -1, game.getImage_path(), "null", game.getPseudo(),grille_de_jeu);
+                                Message le_message = new Message(-1, -1, game.getImage_path(), "null", game.getPseudo(),!game.isMy_turn(), grille_de_jeu);
                                 RUN_Emission.message = le_message;
                             }
+                            final String tour =  game.isMy_turn() ? "VOTRE TOUR" : "TOUR ADVERSE";
+                            Platform.runLater(() -> {
+                                label_info.setText(tour);
+                            });
                             
                         }
                        // System.out.println("THREAD Refresh Grid...");
@@ -329,9 +360,12 @@ public class CONTROLLER_Jeu implements Initializable,INTERFACE_Screen {
                                 } catch (JsonProcessingException ex) {
                                     Logger.getLogger(CONTROLLER_Jeu.class.getName()).log(Level.SEVERE, null, ex);
                                 }
+                               
                             }else{
                                 rafraichissementGrilleReception(grille_temp);
+                                
                                 game.setGame_over(false);
+                                game.setMy_turn(RUN_Reception.message.my_turn);
                             }
                             // Check if there is a winner or a draw match.                        
                              System.out.println(colIndex + "  " + rowIndex + "  " + path_image + "  " + victory_color + "  " + RUN_Reception.message.pseudo + "  " );

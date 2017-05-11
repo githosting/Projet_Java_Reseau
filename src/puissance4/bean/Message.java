@@ -15,7 +15,7 @@ public class Message
     public String victoryColor = null;
     public String pseudo = null;
     public String[][] grille_de_jeu = null;
-    
+    public Boolean my_turn;
     // Accessors
     public int get_colIndex() { return colIndex; }
     public int get_rowIndex() { return rowIndex; }
@@ -63,7 +63,7 @@ public class Message
         this.pseudo = un_pseudo;
         System.out.println(colIndex + "  " + rowIndex + "  " + imagePath + "  " + victoryColor + "  " + pseudo + "  " );
     }
-    public Message(int un_colIndex, int un_rowIndex, String un_imagePath, String un_victoryColor, String un_pseudo, String[][] grille_de_jeu)
+    public Message(int un_colIndex, int un_rowIndex, String un_imagePath, String un_victoryColor, String un_pseudo, Boolean my_turn, String[][] grille_de_jeu)
     {
         this.colIndex = un_colIndex;
         this.rowIndex = un_rowIndex;
@@ -71,7 +71,7 @@ public class Message
         this.victoryColor = un_victoryColor;
         this.pseudo = un_pseudo;
         this.grille_de_jeu = grille_de_jeu;
-        
+        this.my_turn = my_turn;
         System.out.println(colIndex + "  " + rowIndex + "  " + imagePath + "  " + victoryColor + "  " + pseudo + "  " );
     }
 }
